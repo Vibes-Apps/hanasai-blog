@@ -53,8 +53,10 @@ Git Bash'te `/blog/...` gibi argümanlar Windows yoluna çevrilir: `MSYS_NO_PATH
 
 1. Editör CMS'te kaydeder → GitHub App'in kullanıcı token'ıyla `main`'e commit.
 2. `.github/workflows/deploy.yml`: `npm ci` → `npm test` → `npm run build` → `wrangler versions upload` + `versions deploy`.
-3. Token (`CLOUDFLARE_API_TOKEN`, repo secret): Cloudflare'de hesaba ait token, kapsam **yalnızca `hanasai-blog`**, rol Editor,
-   route izni yok. Hesap kimliği repo değişkeni `CLOUDFLARE_ACCOUNT_ID`.
+3. Token (`CLOUDFLARE_API_TOKEN`, repo secret): Cloudflare'de hesaba ait token "hanasai-blog GitHub Actions deploy", kapsam
+   **yalnızca `hanasai-blog`**, rol Editor, route izni yok. **Bitiş: 2027-11-15**; süresi dolunca yayın durur (Actions'ta deploy
+   adımı düşer). Yenilemek: aynı kapsamla yeni token → `gh secret set CLOUDFLARE_API_TOKEN -R Vibes-Apps/hanasai-blog`.
+   Hesap kimliği repo değişkeni `CLOUDFLARE_ACCOUNT_ID`.
 4. Hatalı içerik derlemeyi Türkçe mesajla durdurur; canlı site son iyi halinde kalır.
 
 Route ve CMS deploy'u elle (hesap sahibinin `wrangler login`'iyle):
