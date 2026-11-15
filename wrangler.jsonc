@@ -1,0 +1,18 @@
+{
+  // Blog: yalnızca statik dosya sunan Worker (script yok, gizli değer yok, veritabanı yok).
+  // gethanas.com/blog* route'u, aynı hostname'deki çekirdek Worker'ın (hanasai, Custom Domain) önüne geçer
+  // (Cloudflare: "Routes ... take precedence if configured on the same hostname"). Çekirdeğin diğer yolları etkilenmez.
+  // Ayrıntı: çekirdek repo docs/TECH_PLAN.md §19.
+  "name": "hanasai-blog",
+  "compatibility_date": "2026-11-13",
+  "workers_dev": false,
+  "preview_urls": false,
+  "assets": {
+    "directory": "./dist",
+    // dist/ kökü /blog/ altından sunulur (Wrangler ≥ 4.148).
+    "base_path": "/blog",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  },
+  "routes": [{ "pattern": "gethanas.com/blog*", "zone_name": "gethanas.com" }]
+}
