@@ -15,8 +15,8 @@
     "run_worker_first": ["/auth", "/callback", "/oauth/*"]
   },
   "vars": {
-    // GitHub App'in Client ID'si (gizli değil). Sahibi App'i oluşturunca doldurulur.
-    "GITHUB_CLIENT_ID": "",
+    // GitHub App "hanasai blog editor" (Vibes-Apps organizasyonu, yalnızca hanasai-blog'a kurulu). Client ID gizli değil.
+    "GITHUB_CLIENT_ID": "Iv23lirjy9g4uuAvTkXV",
     // Token yalnızca bu adresten açılan yönetim ekranına verilir.
     "ALLOWED_DOMAINS": "cms.gethanas.com"
   },
