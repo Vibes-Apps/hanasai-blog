@@ -1,0 +1,39 @@
+import { describe, expect, it } from "vitest";
+import { cmsConfig } from "../cms/config.js";
+import { DESCRIPTION_MAX, DESCRIPTION_MIN, frontmatterSchema, SLUG_RE, TAGS_MAX, TITLE_MAX } from "../src/schema.js";
+
+// CMS alanları blog şemasıyla aynı kalmalı: biri değişip diğeri unutulursa bu test kırılır.
+type Field = { name: string; widget: string; required?: boolean; minlength?: number; maxlength?: number; max?: number; default?: unknown; field?: { pattern?: [string, string] }; type?: string };
+const collection = (mode: "production" | "test") => (cmsConfig(mode).collections as { name: string; folder: string; fields: Field[] }[])[0]!;
+const field = (name: string) => collection("production").fields.find((f) => f.name === name)!;
+
+describe("CMS yapılandırması", () => {
+  it("bilgi bloğu alanları şemanın alanlarıyla aynı (body hariç)", () => {
+    const cms = collection("production").fields.map((f) => f.name).filter((n) => n !== "body").sort();
+    // Zod 4: refine edilmiş strictObject'in şekli .shape üzerinden değil, iç şemadan okunur.
+    const inner = (frontmatterSchema as unknown as { _zod: { def: { in?: { shape: object }; shape?: object } } })._zod.def;
+    const shape = (inner.in?.shape ?? inner.shape) as object;
+    expect(cms).toEqual(Object.keys(shape).sort());
+  });
+
+  it("uzunluk, etiket ve tarih kuralları şemadakiyle aynı", () => {
+    expect(field("title").maxlength).toBe(TITLE_MAX);
+    expect(field("description")).toMatchObject({ minlength: DESCRIPTION_MIN, maxlength: DESCRIPTION_MAX });
+    expect(field("tags")).toMatchObject({ required: false, max: TAGS_MAX });
+    expect(field("tags").field!.pattern![0]).toBe(SLUG_RE.source);
+    expect(field("date")).toMatchObject({ widget: "datetime", type: "date" });
+    expect(field("updated")).toMatchObject({ widget: "datetime", type: "date", required: false });
+    expect(field("draft")).toMatchObject({ widget: "boolean", default: true });
+  });
+
+  it("içerik klasörü ve medya klasörü derlemenin okuduğu yerler", () => {
+    const c = cmsConfig("production");
+    expect(collection("production").folder).toBe("content/posts");
+    expect(c).toMatchObject({ media_folder: "public/images", public_folder: "/blog/images", load_config_file: false });
+  });
+
+  it("canlıda GitHub, yerel testte sahte depo", () => {
+    expect(cmsConfig("production").backend).toMatchObject({ name: "github", repo: "Vibes-Apps/hanasai-blog", branch: "main", base_url: "https://cms.gethanas.com" });
+    expect(cmsConfig("test").backend).toEqual({ name: "test-repo" });
+  });
+});

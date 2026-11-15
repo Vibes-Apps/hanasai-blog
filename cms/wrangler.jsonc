@@ -1,0 +1,24 @@
+{
+  // Blog yönetim ekranı: Sveltia CMS (statik, cms/dist) + GitHub App ile giriş (worker/auth.js, resmi sveltia-cms-auth).
+  // gethanas.com'dan ayrı origin: Sveltia ve token'ı panel (/app) ile aynı origin'de çalışmaz (çekirdek repo TECH_PLAN §19).
+  // Gizli değer: GITHUB_CLIENT_SECRET (`npx wrangler secret put GITHUB_CLIENT_SECRET -c cms/wrangler.jsonc`, değeri sahibi girer).
+  // Deploy elle: `npm run cms:build && npx wrangler deploy -c cms/wrangler.jsonc` (blog deploy'undan bağımsız).
+  "name": "hanasai-cms",
+  "main": "worker/auth.js",
+  "compatibility_date": "2026-11-13",
+  "workers_dev": false,
+  "preview_urls": false,
+  "observability": { "enabled": true, "head_sampling_rate": 1, "logs": { "invocation_logs": false } },
+  "assets": {
+    "directory": "./dist",
+    // Yalnızca giriş yolları Worker koduna gider; geri kalan her şey statik dosya.
+    "run_worker_first": ["/auth", "/callback", "/oauth/*"]
+  },
+  "vars": {
+    // GitHub App'in Client ID'si (gizli değil). Sahibi App'i oluşturunca doldurulur.
+    "GITHUB_CLIENT_ID": "",
+    // Token yalnızca bu adresten açılan yönetim ekranına verilir.
+    "ALLOWED_DOMAINS": "cms.gethanas.com"
+  },
+  "routes": [{ "pattern": "cms.gethanas.com", "custom_domain": true }]
+}
