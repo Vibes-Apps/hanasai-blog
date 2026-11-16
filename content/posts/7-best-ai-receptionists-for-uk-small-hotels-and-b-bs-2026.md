@@ -37,7 +37,7 @@ We reviewed 14 products' public websites on 15 November 2026: homepages, pricing
 5. How is it set up: self-serve or demo-led?
 6. Where is call data stored, and what compliance claims does the vendor make?
 
-We ordered the seven by how well each matches a small independent hotel that wants a visible price and little setup effort. That is a judgment, and a hotel that needs PMS-written bookings would order them differently. The UK is our first market. We did not verify UK phone number support or the UK GDPR position of any vendor beyond what is stated in an entry, so "for the UK" here describes our audience, not a tested claim. We make Hanas, so treat our ranking as one perspective and read each entry's limits. We were not paid by any other vendor on this list. Where a page did not say something, we write "not stated" rather than guess. Vendors change prices often, so check the linked page before you buy. For data protection, the ICO's guidance on [controllers and processors](https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/controllers-and-processors/controllers-and-processors/what-are-controllers-and-processors/) is a starting point, and we summarise the rules in [Is it legal to use an AI receptionist at a UK hotel?](https://gethanas.com/blog/ai-receptionist-uk-hotel-legal/).
+We ordered the seven by how well each matches a small independent hotel that wants a visible price and little setup effort. That is a judgment, and a hotel that needs PMS-written bookings would order them differently. The UK is our first market. We did not verify UK phone number support or the UK GDPR position of any vendor beyond what is stated in an entry, so "for the UK" here describes our audience, not a tested claim. We make Hanas, so treat our ranking as one perspective and read each entry's limits. We were not paid by any other vendor on this list. Where a page did not say something, we write "not stated" rather than guess. Vendors change prices often, so check the linked page before you buy. For data protection, the ICO's guidance on [controllers and processors](https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/controllers-and-processors/controllers-and-processors/what-are-controllers-and-processors/) is a starting point, and we summarise the rules in [Is it legal to use an AI receptionist at a UK hotel?](https://gethanas.com/blog/is-it-legal-to-use-an-ai-receptionist-at-a-uk-hotel).
 
 ## At a glance
 
@@ -77,7 +77,7 @@ D3x publishes a separate "Independent & SMB" price and says its phone AI resolve
 
 **Limits:** the pages we read do not say whether the phone AI creates new bookings. Setup is demo-led, and the site describes a launch in "days to weeks" with a banner mentioning three weeks. GDPR, SOC 2 and data location were not stated on the pages we read.
 
-**Pricing:** [d3x.ai/pricing](https://www.d3x.ai/pricing) shows €5 per room a month (EUR, USD or GBP), and phone AI at €100 a month for 5 hours, then €12 per extra hour. As we read it, these are separate lines; confirm the total for your room count. We compare it with Hanas in [Hanas vs D3x](https://gethanas.com/compare/d3x), and work through example totals in [what an AI receptionist costs in the UK](https://gethanas.com/blog/ai-receptionist-hotel-cost-published-prices/).
+**Pricing:** [d3x.ai/pricing](https://www.d3x.ai/pricing) shows €5 per room a month (EUR, USD or GBP), and phone AI at €100 a month for 5 hours, then €12 per extra hour. As we read it, these are separate lines; confirm the total for your room count. We compare it with Hanas in [Hanas vs D3x](https://gethanas.com/compare/d3x), and work through example totals in [what an AI receptionist costs in the UK](https://gethanas.com/blog/ai-receptionist-for-hotels-what-it-costs-in-the-uk-2026).
 
 ## 4. Dextr AI: claims PMS-written bookings, with a demo-led process
 
@@ -123,7 +123,7 @@ HiJiffy sells guest messaging and AI to hotel groups, independent hotels and hos
 
 ## What 300 minutes a month costs on published prices
 
-A worked example, using only published prices and each vendor's own currency (not converted). At 300 minutes of calls a month, Hanas comes to £94 (£49 plus 150 extra minutes at £0.30). For a 20-room hotel, D3x's published prices come to about €200 a month as we read them (€5 × 20 rooms plus €100 for 5 phone hours, which is 300 minutes). The other products either publish no price or do not state minutes per tier, so we cannot compute them. Our [cost article](https://gethanas.com/blog/ai-receptionist-hotel-cost-published-prices/) sets out the workings and what a price leaves out.
+A worked example, using only published prices and each vendor's own currency (not converted). At 300 minutes of calls a month, Hanas comes to £94 (£49 plus 150 extra minutes at £0.30). For a 20-room hotel, D3x's published prices come to about €200 a month as we read them (€5 × 20 rooms plus €100 for 5 phone hours, which is 300 minutes). The other products either publish no price or do not state minutes per tier, so we cannot compute them. Our [cost article](https://gethanas.com/blog/ai-receptionist-for-hotels-what-it-costs-in-the-uk-2026) sets out the workings and what a price leaves out.
 
 ## Frequently asked questions
 
@@ -145,9 +145,9 @@ We plan to re-check prices and features at least every 90 days and update the da
 
 ## Related reads
 
-- [What an AI receptionist costs in the UK](https://gethanas.com/blog/ai-receptionist-hotel-cost-published-prices/): published prices, with workings.
-- [How many calls does a small hotel miss?](https://gethanas.com/blog/missed-calls-small-hotel-cost/): measure your own missed calls before you buy.
-- [Is it legal to use an AI receptionist at a UK hotel?](https://gethanas.com/blog/ai-receptionist-uk-hotel-legal/): call recording and UK GDPR.
+- [What an AI receptionist costs in the UK](https://gethanas.com/blog/ai-receptionist-for-hotels-what-it-costs-in-the-uk-2026): published prices, with workings.
+- [How many calls does a small hotel miss?](https://gethanas.com/blog/how-many-calls-does-a-small-hotel-miss-what-it-costs): measure your own missed calls before you buy.
+- [Is it legal to use an AI receptionist at a UK hotel?](https://gethanas.com/blog/is-it-legal-to-use-an-ai-receptionist-at-a-uk-hotel): call recording and UK GDPR.
 
 ## About this article
 
