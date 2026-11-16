@@ -1,6 +1,8 @@
 ---
 title: 7 Best AI Receptionists for UK Small Hotels and B&Bs (2026)
 description: A research-based shortlist of AI phone receptionists for small independent UK hotels, B&Bs and inns, compared on price, booking, PMS and data location.
+cover: /blog/images/blog1-best-ai-receptionists-uk-small-hotels.jpg
+coverAlt: Glass app tiles on a dark violet and teal background showing a phone, a service bell, a bar chart and a checkmark.
 date: 2026-11-16
 author: hanas.ai
 tags:
