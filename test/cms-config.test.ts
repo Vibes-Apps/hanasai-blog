@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { cmsConfig } from "../cms/config.js";
-import { DESCRIPTION_MAX, DESCRIPTION_MIN, frontmatterSchema, SLUG_RE, TAGS_MAX, TITLE_MAX } from "../src/schema.js";
+import { COVER_ALT_MAX, DESCRIPTION_MAX, DESCRIPTION_MIN, frontmatterSchema, SLUG_RE, TAGS_MAX, TITLE_MAX } from "../src/schema.js";
 
 // CMS alanları blog şemasıyla aynı kalmalı: biri değişip diğeri unutulursa bu test kırılır.
 type Field = { name: string; widget: string; required?: boolean; minlength?: number; maxlength?: number; max?: number; default?: unknown; field?: { pattern?: [string, string] }; type?: string };
@@ -24,6 +24,17 @@ describe("CMS yapılandırması", () => {
     expect(field("date")).toMatchObject({ widget: "datetime", type: "date" });
     expect(field("updated")).toMatchObject({ widget: "datetime", type: "date", required: false });
     expect(field("draft")).toMatchObject({ widget: "boolean", default: true });
+  });
+
+  it("kapak görseli: yalnızca yükleme (dış adres yok), JPG/PNG/WebP, alt metin sınırı; canonical yalnızca https", () => {
+    const cover = field("cover") as Field & { choose_url?: boolean; accept?: string };
+    expect(cover).toMatchObject({ widget: "image", required: false, choose_url: false, accept: "image/jpeg,image/png,image/webp" });
+    expect(field("coverAlt")).toMatchObject({ widget: "string", required: false, maxlength: COVER_ALT_MAX });
+    const canonical = field("canonical") as Field & { pattern?: [string, string] };
+    expect(canonical).toMatchObject({ widget: "string", type: "url", required: false });
+    expect(new RegExp(canonical.pattern![0]).test("https://www.linkedin.com/pulse/x")).toBe(true);
+    expect(new RegExp(canonical.pattern![0]).test("http://example.com")).toBe(false);
+    expect(cmsConfig("production").media_libraries).toEqual({ default: { config: { slugify_filename: true, max_file_size: 2_000_000 } } });
   });
 
   it("içerik klasörü ve medya klasörü derlemenin okuduğu yerler", () => {

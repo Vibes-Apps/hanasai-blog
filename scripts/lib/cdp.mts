@@ -182,6 +182,16 @@ export class Page {
     await this.conn.send("Input.insertText", { text });
   }
 
+  // Dosya seçme kutusuna (input[type=file]) diskteki dosyaları verir; sayfa "change" olayını kendisi alır.
+  // nth: seçiciye uyan kaçıncı kutu (0 = ilki).
+  async setFiles(selector: string, paths: string[], nth = 0): Promise<void> {
+    const { root } = await this.conn.send("DOM.getDocument", { depth: -1, pierce: true });
+    const { nodeIds } = await this.conn.send("DOM.querySelectorAll", { nodeId: root.nodeId, selector });
+    const nodeId = nodeIds?.[nth];
+    if (!nodeId) throw new Error(`dosya kutusu yok: ${selector} [${nth}]`);
+    await this.conn.send("DOM.setFileInputFiles", { files: paths, nodeId });
+  }
+
   async viewport(width: number, height = 900): Promise<void> {
     await this.conn.send("Emulation.setDeviceMetricsOverride", { width, height, deviceScaleFactor: 1, mobile: width < 600 });
   }
