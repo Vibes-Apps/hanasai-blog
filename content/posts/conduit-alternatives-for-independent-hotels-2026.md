@@ -10,7 +10,7 @@ tags:
   - ai-receptionist
   - hotels-and-bbs
   - pricing-and-costs
-draft: true
+draft: false
 ---
 
 Conduit is a capable platform built around messaging, operations and credit-based usage, and a small hotel cannot work out its monthly phone cost from the public pages. If you want a phone receptionist with a price you can calculate, D3x and Hanas publish one. If you need messaging and PMS context in one tool, Conduit may be the better fit and you may not need an alternative.
