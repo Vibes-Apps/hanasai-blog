@@ -65,7 +65,7 @@ Ask any vendor for its data processing agreement and check it against that list.
 
 Some AI voice products use speech providers outside the UK. If personal data is sent to the US, the ICO's page on the [UK Extension to the EU-US Data Privacy Framework](https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/international-transfers/adequacy-regulations/how-does-the-uk-extension-to-the-eu-us-data-privacy-framework-work/) (last updated 30 July 2026) says you can rely on it only where the US business has an active status on the DPF list, has certified to the UK Extension and the certification covers the type of data. Otherwise you need appropriate safeguards or an exception, and a transfer risk assessment first if you use a safeguard.
 
-Ask every vendor where calls are processed and stored, including sub-processors. For example, as stated in the [privacy and security section of the Hanas website](https://gethanas.com/#trust) on 15 November 2026, Hanas stores transcripts and requests in Ireland and its speech provider, ElevenLabs, processes calls in the US. Whether that arrangement meets your transfer obligations is something your hotel should check. Hanas's [privacy notice](https://gethanas.com/privacy) is the place to check the detail. For how other vendors describe where they store data, see our [comparison of seven AI receptionists](https://gethanas.com/blog/best-ai-receptionist-small-hotels-uk/).
+Ask every vendor where calls are processed and stored, including sub-processors. For example, as stated in the [privacy and security section of the Hanas website](https://gethanas.com/#trust) on 15 November 2026, Hanas stores transcripts and requests in Ireland and its speech provider, ElevenLabs, processes calls in the US. Whether that arrangement meets your transfer obligations is something your hotel should check. Hanas's [privacy notice](https://gethanas.com/privacy) is the place to check the detail. For how other vendors describe where they store data, see our [comparison of seven AI receptionists](https://gethanas.com/blog/7-best-ai-receptionists-for-uk-small-hotels-and-b-bs-2026).
 
 ## Automated decisions and human involvement
 
@@ -102,7 +102,7 @@ The PCI Security Standards Council's [FAQ on audio recordings](https://www.pcise
 7. Does a person make the final decision on bookings, and how is that shown?
 8. What happens when the AI cannot help?
 
-For price questions to ask as well, see [what an AI receptionist costs in the UK](https://gethanas.com/blog/ai-receptionist-hotel-cost-published-prices/).
+For price questions to ask as well, see [what an AI receptionist costs in the UK](https://gethanas.com/blog/ai-receptionist-for-hotels-what-it-costs-in-the-uk-2026).
 
 ## Frequently asked questions
 
@@ -135,9 +135,9 @@ All pages were read on 15 November 2026.
 
 ## Related reads
 
-- [7 best AI receptionists for UK small hotels and B&Bs](https://gethanas.com/blog/best-ai-receptionist-small-hotels-uk/): compares vendors, including where each says it stores data.
-- [What an AI receptionist costs in the UK](https://gethanas.com/blog/ai-receptionist-hotel-cost-published-prices/): published prices, with workings.
-- [How many calls does a small hotel miss?](https://gethanas.com/blog/missed-calls-small-hotel-cost/): measure the problem before you choose a fix.
+- [7 best AI receptionists for UK small hotels and B&Bs](https://gethanas.com/blog/7-best-ai-receptionists-for-uk-small-hotels-and-b-bs-2026): compares vendors, including where each says it stores data.
+- [What an AI receptionist costs in the UK](https://gethanas.com/blog/ai-receptionist-for-hotels-what-it-costs-in-the-uk-2026): published prices, with workings.
+- [How many calls does a small hotel miss?](https://gethanas.com/blog/how-many-calls-does-a-small-hotel-miss-what-it-costs): measure the problem before you choose a fix.
 - [Hanas for boutique hotels](https://gethanas.com/for/boutique-hotels)
 
 ## About this article
