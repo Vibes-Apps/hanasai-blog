@@ -5,7 +5,7 @@ date: 2026-11-16
 author: Hanas team
 tags:
   - ai-receptionist-cost
-canonical: https://gethanas.com/blog/best-ai-receptionist-small-hotels-uk/
+canonical: https://gethanas.com/blog/ai-receptionist-hotel-cost-published-prices/
 draft: false
 ---
 
