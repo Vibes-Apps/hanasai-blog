@@ -1,13 +1,15 @@
 ---
 title: How Many Calls Does a Small Hotel Miss? What It Costs
 description: We found no reliable benchmark for hotel missed calls. See what HOTREC data shows about phone bookings, plus a 7-day method to count your own.
+cover: /blog/images/blog3-missed-calls-small-hotel.jpg
+coverAlt: Glass app tiles on a dark violet and teal background showing a missed phone call, a clock, a calendar and a service bell.
 date: 2026-11-16
 author: The hanas.ai team
 tags:
   - missed-calls
   - hotels-and-bbs
   - pricing-and-costs
-draft: true
+draft: false
 ---
 
 > **Disclosure.** We make Hanas, an AI phone receptionist for small hotels. This article is about measuring a problem, and the method works whatever you decide to do about it.
