@@ -18,7 +18,12 @@ draft: false
 
 We could not find a reliable published figure for how many calls small hotels miss. What the best available data does show is that the phone is still a major way guests book direct: HOTREC's 2026 European study puts phone at 14.1% of overnight stays in its 2025 data. You can measure your own missed calls in a week, and a simple formula turns that count into revenue at risk.
 
-> **Key Takeaways**In HOTREC's 2026 study, 14.1% of overnight stays in 2025 were booked by phone, from a weighted sample that does not name the UK as a separate country. In the 2024 edition (2023 data) the figure was 15.4%.We found no credible independent study of how many calls hotels miss. Vendor-published figures without a named study are unsupported, so we do not use them.Revenue at risk = missed booking enquiries × the share who would have booked × average booking value. A table below shows what that looks like at different values.The only input you cannot guess is your own missed-call count, and a week of logging gets you most of the way there.
+> **Key Takeaways**
+
+- In HOTREC's 2026 study, 14.1% of overnight stays in 2025 were booked by phone, from a weighted sample that does not name the UK as a separate country. In the 2024 edition (2023 data) the figure was 15.4%.
+- We found no credible independent study of how many calls hotels miss. Vendor-published figures without a named study are unsupported, so we do not use them.
+- Revenue at risk = missed booking enquiries × the share who would have booked × average booking value. A table below shows what that looks like at different values.
+- The only input you cannot guess is your own missed-call count, and a week of logging gets you most of the way there.
 
 ## What the data says about phone bookings
 
