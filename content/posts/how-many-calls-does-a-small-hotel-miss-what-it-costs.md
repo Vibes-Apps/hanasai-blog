@@ -89,9 +89,9 @@ Each option has trade-offs, and the right one depends on what your log shows.
 
 - **Forward calls to a mobile out of hours.** Low cost, though forwarding can carry call charges, and it depends on someone being available and willing at all hours.
 - **A clear voicemail greeting and a fast call-back habit.** Low cost. It works only if callers leave messages and you call back quickly.
-- **A human answering service.** Real people take messages. Some UK providers publish their prices, and we compare them with AI options and night staff in [what an AI receptionist costs in the UK](https://gethanas.com/blog/ai-receptionist-hotel-cost-published-prices/).
-- **An AI phone receptionist.** In principle it can answer every call and take details. Products differ on whether they confirm bookings or send a request to staff, on PMS connection and on price. Our [comparison of seven options for small UK hotels](https://gethanas.com/blog/best-ai-receptionist-small-hotels-uk/) covers this.
-- **Check the legal side first.** Recording calls and using an AI vendor bring data protection duties, which we summarise in [Is it legal to use an AI receptionist at a UK hotel?](https://gethanas.com/blog/ai-receptionist-uk-hotel-legal/)
+- **A human answering service.** Real people take messages. Some UK providers publish their prices, and we compare them with AI options and night staff in [what an AI receptionist costs in the UK](https://gethanas.com/blog/ai-receptionist-for-hotels-what-it-costs-in-the-uk-2026).
+- **An AI phone receptionist.** In principle it can answer every call and take details. Products differ on whether they confirm bookings or send a request to staff, on PMS connection and on price. Our [comparison of seven options for small UK hotels](https://gethanas.com/blog/7-best-ai-receptionists-for-uk-small-hotels-and-b-bs-2026) covers this.
+- **Check the legal side first.** Recording calls and using an AI vendor bring data protection duties, which we summarise in [Is it legal to use an AI receptionist at a UK hotel?](https://gethanas.com/blog/is-it-legal-to-use-an-ai-receptionist-at-a-uk-hotel)
 - **Online booking and chat.** They shift demand away from the phone, but HOTREC's data shows phone is still a major direct channel, so they do not remove the need to answer it.
 
 ## Frequently asked questions
