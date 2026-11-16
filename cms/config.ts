@@ -1,5 +1,6 @@
 import { BASE, DEFAULT_AUTHOR, SITE_URL } from "../src/config.js";
-import { COVER_ALT_MAX, DESCRIPTION_MAX, DESCRIPTION_MIN, SLUG_RE, TAGS_MAX, TITLE_MAX } from "../src/schema.js";
+import { COVER_ALT_MAX, DESCRIPTION_MAX, DESCRIPTION_MIN, TITLE_MAX } from "../src/schema.js";
+import { TAGS, TAGS_MAX, TAGS_MIN } from "../src/tags.js";
 
 // CMS'in kabul ettiği en büyük dosya (kapak ve gövde görselleri). Derleme 500 KB üstü kapak için uyarı verir.
 export const COVER_MAX_BYTES = 2_000_000;
@@ -12,7 +13,6 @@ export const CMS_ORIGIN = "https://cms.gethanas.com";
 
 export type Mode = "production" | "test";
 
-const slugPattern = (re: RegExp): [string, string] => [re.source, "Use lowercase letters, numbers and hyphens only, e.g. guest-calls"];
 
 export function cmsConfig(mode: Mode): Record<string, unknown> {
   const backend =
@@ -100,13 +100,16 @@ export function cmsConfig(mode: Mode): Record<string, unknown> {
           { name: "updated", label: "Updated", widget: "datetime", type: "date", required: false, hint: "Only if you changed the facts in the post." },
           { name: "author", label: "Author", widget: "string", required: false, default: DEFAULT_AUTHOR },
           {
+            // Sabit liste (src/tags.ts): işaret kutularıyla seçilir; kaydedilen değer adres kısmı, görünen ad label.
             name: "tags",
             label: "Tags",
-            widget: "list",
-            required: false,
+            widget: "select",
+            multiple: true,
+            min: TAGS_MIN,
             max: TAGS_MAX,
-            field: { name: "tag", label: "Tag", widget: "string", pattern: slugPattern(SLUG_RE) },
-            hint: `Up to ${TAGS_MAX}. Reuse existing tags where you can.`,
+            dropdown_threshold: TAGS.length,
+            options: TAGS.map((t) => ({ label: t.label, value: t.slug })),
+            hint: `Tick ${TAGS_MIN} to ${TAGS_MAX} topics. Each topic has its own button and page on the blog.`,
           },
           {
             name: "canonical",
@@ -115,7 +118,7 @@ export function cmsConfig(mode: Mode): Record<string, unknown> {
             type: "url",
             required: false,
             pattern: ["^https://\\S+$", "Use a full address starting with https://"],
-            hint: "Leave empty for most posts. Only if this post was first published somewhere else: paste that address. Search engines then treat that address as the original, and this post is left out of our sitemap.",
+            hint: "Leave empty to keep the address made from the title. To give this post another address on our blog, enter it in full, e.g. https://gethanas.com/blog/hotel-phone-tips: the post moves there and the old address redirects to it. Enter another website's address only if the post was first published there.",
           },
           { name: "draft", label: "Draft", widget: "boolean", default: true, hint: "Drafts are never published. Turn off and save to publish." },
           {

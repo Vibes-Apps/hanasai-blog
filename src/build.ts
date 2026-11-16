@@ -3,9 +3,10 @@ import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, write
 import { dirname, join } from "node:path";
 import { pathToFileURL } from "node:url";
 import { BASE } from "./config.js";
-import { indexPage, notFoundPage, postPage, postPath, rssXml, sitemapXml, tagPage, tagPath, type Assets, type Ctx } from "./pages.js";
-import { ContentError, loadPosts, relatedPosts, tagIndex, type Post } from "./posts.js";
+import { indexPage, notFoundPage, postPage, rssXml, sitemapXml, tagPage, tagPath, type Assets, type Ctx } from "./pages.js";
+import { ContentError, loadPosts, movedPosts, relatedPosts, tagIndex, type Post } from "./posts.js";
 import { loadShell } from "./shell.js";
+import { TAGS } from "./tags.js";
 
 // Blogu dist/'e derler. dist/ Worker'ın statik dosya klasörüdür; adresler assets.base_path=/blog ile /blog altında sunulur
 // (wrangler.jsonc). Çıktı yolları BASE'siz: dist/index.html → /blog/, dist/<slug>.html → /blog/<slug>.
@@ -86,10 +87,19 @@ export function build(opts: BuildOptions = {}): BuildResult {
   const tags = tagIndex(posts);
 
   write(out, "index.html", indexPage(posts, ctx), files);
-  for (const p of posts) write(out, `${p.slug}.html`, postPage(p, relatedPosts(p, posts), ctx), files);
-  for (const [tag, list] of tags) write(out, `tag/${tag}.html`, tagPage(tag, list, ctx), files);
+  // Yazı yayın adresinde (canonical kendi blogumuzu gösteriyorsa oradan gelen adres).
+  for (const p of posts) write(out, `${p.urlSlug}.html`, postPage(p, relatedPosts(p, posts), ctx), files);
+  // Sabit listenin bütün etiketleri (butonlar hep görünür); yazısı olmayan etiket sayfası noindex.
+  for (const t of TAGS) write(out, `tag/${t.slug}.html`, tagPage(t, tags.get(t.slug) ?? [], ctx), files);
   write(out, "404.html", notFoundPage(ctx), files);
   write(out, "feed.xml", rssXml(posts), files);
+
+  // Taşınan yazıların eski adresleri kalıcı (301) yönlenir. Yollar _headers gibi base_path dahil tam yoldur.
+  const moved = movedPosts(posts);
+  if (moved.length) {
+    const own = existsSync(join(out, "_redirects")) ? `${readFileSync(join(out, "_redirects"), "utf8").trimEnd()}\n` : "";
+    write(out, "_redirects", `${own}${moved.map((m) => `${m.from} ${m.to} 301`).join("\n")}\n`, files);
+  }
 
   const newest = posts.map((p) => p.updated ?? p.date).sort().at(-1);
   write(
@@ -97,14 +107,16 @@ export function build(opts: BuildOptions = {}): BuildResult {
     "sitemap.xml",
     sitemapXml([
       ...(posts.length ? [{ path: `${BASE}/`, ...(newest ? { lastmod: newest } : {}) }] : []),
-      // Canonical'ı başka bir adresi gösteren yazı sitemap'e girmez: sitemap yalnızca canonical adresleri listeler.
-      ...posts.filter((p) => p.selfCanonical).map((p) => ({ path: postPath(p.slug), lastmod: p.updated ?? p.date })),
-      ...[...tags.keys()].map((t) => ({ path: tagPath(t) })),
+      // Canonical'ı başka bir siteyi gösteren yazı sitemap'e girmez: sitemap yalnızca canonical adresleri listeler.
+      ...posts.filter((p) => p.selfCanonical).map((p) => ({ path: p.path, lastmod: p.updated ?? p.date })),
+      // Yalnızca yazısı olan etiket sayfaları (boş olanlar noindex).
+      ...[...tags.entries()].filter(([, list]) => list.length).map(([t]) => ({ path: tagPath(t) })),
     ]),
     files,
   );
 
-  return { posts, tags: [...tags.keys()], files, warnings: posts.flatMap((p) => p.warnings) };
+  const usedTags = [...tags.entries()].filter(([, list]) => list.length).map(([t]) => t);
+  return { posts, tags: usedTags, files, warnings: posts.flatMap((p) => p.warnings) };
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {

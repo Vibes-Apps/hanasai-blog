@@ -7,8 +7,8 @@ date: 2026-11-15
 updated: 2026-11-15
 author: The hanas.ai team
 tags:
-  - writing-guide
-  - example
+  - ai-receptionist
+  - product-news
 draft: true
 ---
 

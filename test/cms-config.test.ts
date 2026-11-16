@@ -1,9 +1,10 @@
 import { describe, expect, it } from "vitest";
 import { cmsConfig } from "../cms/config.js";
-import { COVER_ALT_MAX, DESCRIPTION_MAX, DESCRIPTION_MIN, frontmatterSchema, SLUG_RE, TAGS_MAX, TITLE_MAX } from "../src/schema.js";
+import { COVER_ALT_MAX, DESCRIPTION_MAX, DESCRIPTION_MIN, frontmatterSchema, TITLE_MAX } from "../src/schema.js";
+import { TAGS, TAGS_MAX, TAGS_MIN } from "../src/tags.js";
 
 // CMS alanları blog şemasıyla aynı kalmalı: biri değişip diğeri unutulursa bu test kırılır.
-type Field = { name: string; widget: string; required?: boolean; minlength?: number; maxlength?: number; max?: number; default?: unknown; field?: { pattern?: [string, string] }; type?: string };
+type Field = { name: string; widget: string; required?: boolean; minlength?: number; maxlength?: number; min?: number; max?: number; default?: unknown; type?: string };
 const collection = (mode: "production" | "test") => (cmsConfig(mode).collections as { name: string; folder: string; fields: Field[] }[])[0]!;
 const field = (name: string) => collection("production").fields.find((f) => f.name === name)!;
 
@@ -19,8 +20,9 @@ describe("CMS yapılandırması", () => {
   it("uzunluk, etiket ve tarih kuralları şemadakiyle aynı", () => {
     expect(field("title").maxlength).toBe(TITLE_MAX);
     expect(field("description")).toMatchObject({ minlength: DESCRIPTION_MIN, maxlength: DESCRIPTION_MAX });
-    expect(field("tags")).toMatchObject({ required: false, max: TAGS_MAX });
-    expect(field("tags").field!.pattern![0]).toBe(SLUG_RE.source);
+    // Sabit liste: işaret kutularıyla 2–4 seçim, değer adres kısmı, görünen ad label.
+    expect(field("tags")).toMatchObject({ widget: "select", multiple: true, min: TAGS_MIN, max: TAGS_MAX, dropdown_threshold: TAGS.length });
+    expect((field("tags") as Field & { options: unknown }).options).toEqual(TAGS.map((t) => ({ label: t.label, value: t.slug })));
     expect(field("date")).toMatchObject({ widget: "datetime", type: "date" });
     expect(field("updated")).toMatchObject({ widget: "datetime", type: "date", required: false });
     expect(field("draft")).toMatchObject({ widget: "boolean", default: true });

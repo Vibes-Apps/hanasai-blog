@@ -6,7 +6,7 @@ import { join } from "node:path";
 export const DESC = "A description that is long enough for search results and link previews, written for boutique hotel owners in the UK. Here.";
 
 export function post(fm: Record<string, unknown> = {}, body = "A short body paragraph with a few words in it."): string {
-  const data: Record<string, unknown> = { title: "A test post", description: DESC, date: "2026-11-10", tags: ["guest-calls"], draft: false, ...fm };
+  const data: Record<string, unknown> = { title: "A test post", description: DESC, date: "2026-11-10", tags: ["ai-receptionist", "hotels-and-bbs"], draft: false, ...fm };
   const lines = Object.entries(data)
     .filter(([, v]) => v !== undefined)
     .map(([k, v]) => `${k}: ${JSON.stringify(v)}`);

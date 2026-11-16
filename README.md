@@ -24,16 +24,28 @@ scripts/               tarayıcı kontrolleri (blog-check, cms-check), sync-site
 
 ### Bilgi bloğu (src/schema.ts, CMS alanları cms/config.ts; ikisi test ile eşit tutulur)
 
-`title`, `description` (120–160), `date`, `updated`?, `author`?, `tags`? (≤ 6, küçük harf-tire), `draft`,
+`title`, `description` (120–160), `date`, `updated`?, `author`?, `tags` (sabit listeden 2–4; taslakta şart yok), `draft`,
 `cover`? + `coverAlt` (kapak varsa zorunlu), `canonical`?. Bilinmeyen alan derlemeyi durdurur.
+
+- **Etiketler (`tags`):** sabit liste `src/tags.ts` (slug, görünen ad, etiket sayfası açıklaması; Ahmet'in sırası ve slug'ları). Bilgi
+  bloğunda slug (`hotels-and-bbs`), sayfada ad ("Hotels & B&Bs"). `/blog/` ve `/blog/tag/<slug>` sayfalarının üstünde büyük konu
+  butonları ("All" + 10 etiket; JavaScript yok, her buton link; telefonda yana kayan tek satır). Bütün etiket sayfaları üretilir; yazısı
+  olmayan noindex ve sitemap dışı. Yazı sayfasında bütün etiketler `h1`'in üstünde `.topic-pill`. CMS: `select` + `multiple`, `min: 2`,
+  `max: 4`, `dropdown_threshold: 10` (işaret kutuları). Site CSS'inde `.pill` başka anlamda (durum rozeti); blog sınıfları çakışmaz.
 
 - **Kapak (`cover`):** yalnızca `/blog/images/<dosya>.(jpg|jpeg|png|webp)` (ya da aynısının `https://gethanas.com` ile tam adresi);
   dosya `public/images/` altında olmalı (derleme denetler, 500 KB üstü uyarı). Yazı başında `<figure class="post-cover">`, liste ve ilgili
   yazı kartlarında küçük kapak; `og:image` + `og:image:alt` + `twitter:card=summary_large_image`. 1200×630 oranında gösterilir
   (`object-fit: cover`, genişlik/yükseklik verili, düzen kaymaz). CMS: görsel alanı yalnızca yükleme (`choose_url: false`), dosya adları
   slug'lanır, en çok 2 MB.
-- **Canonical (`canonical`):** yalnızca `https://` tam adres. `<link rel="canonical">` ve `og:url` bu olur. Yazının kendi adresinden
-  farklıysa yazı `sitemap.xml`'e girmez (listede ve RSS'te kalır).
+- **Canonical (`canonical`, sahibinin kararı 2026-11-16):** yalnızca `https://` tam adres.
+  - `https://gethanas.com/blog/<adres>[/]` → yazı **o adreste** yayınlanır (`dist/<adres>.html`); dosya adından gelen eski adres
+    `dist/_redirects` ile 301 yönlenir (`/blog/<dosya> /blog/<adres> 301`; `_redirects` yolları da `base_path` dahil tam yol, yerelde
+    doğrulandı). Canonical, og:url, liste, RSS ve sitemap yeni adresi kullanır. Çakışan adres (iki yazı aynı adres, yeni adres başka
+    yazının adresi, ayrılmış `tag`/`assets`/`images`…) derlemeyi durdurur.
+  - Başka bir site (ya da gethanas.com'un blog dışı bir sayfası) → `<link rel="canonical">` ve `og:url` o adres; yazı kendi adresinde
+    kalır ama `sitemap.xml`'e girmez.
+  - Yazının kimliği dosya adıdır (`slug`); yayın adresi `urlSlug`/`path`/`url`.
 
 ## Komutlar
 
