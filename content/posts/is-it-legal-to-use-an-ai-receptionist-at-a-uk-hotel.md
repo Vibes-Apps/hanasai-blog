@@ -1,13 +1,15 @@
 ---
 title: Is It Legal to Use an AI Receptionist at a UK Hotel?
 description: A plain-English guide to UK call recording, UK GDPR, automated decisions and AI disclosure for hotels using an AI phone receptionist. Not legal advice.
+cover: /blog/images/blog4-ai-receptionist-uk-hotel-legal.jpg
+coverAlt: Glass app tiles on a dark violet and teal background showing a shield with a checkmark, a padlock, a document and a phone.
 date: 2026-11-16
 author: The hanas.ai team
 tags:
   - ai-receptionist
   - hotels-and-bbs
   - legal-and-compliance
-draft: true
+draft: false
 ---
 
 > **This is general information, not legal advice.** We are a software company, not a law firm. We make Hanas, an AI phone receptionist for small hotels, so we have an interest in this topic. We link to primary sources throughout. Most ICO pages we read carry a notice that the guidance is under review because of the Data (Use and Access) Act 2025, so check the live page before you rely on it. Where we found no primary source, we say so.
