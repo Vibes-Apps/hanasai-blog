@@ -43,13 +43,26 @@ varken site bozulmaz; son çalışan hali yayında kalır.
 | **Publish date** | Zorunlu. Yayın tarihi; liste yeniden eskiye bu tarihe göre sıralanır. | Yazı ve liste |
 | **Updated** | İsteğe bağlı. Yalnızca yazıdaki bilgiyi değiştirdiyseniz (yazım düzeltmesi için değil). | Yazının üstünde "Updated …" |
 | **Author** | İsteğe bağlı. Boş bırakılırsa "The hanas.ai team". | Yazının üstünde "By …" |
-| **Tags** | İsteğe bağlı, en fazla 6. Küçük harf, rakam ve tire: `guest-calls`, `front-desk`. Var olan etiketleri tekrar kullanın. | Etiket sayfaları (`/blog/tag/<etiket>`), ilgili yazılar |
-| **Canonical URL** | Çoğu yazıda **boş** bırakılır. Yalnızca yazı ilk olarak başka bir yerde yayınlandıysa (ör. LinkedIn makalesi) o adres, `https://` ile. | Arama motorlarına "asıl adres burası" bilgisi |
+| **Tags** | Sabit listeden **2–4 etiket** işaretlenir (aşağıda). Yayındaki yazıda en az 2 zorunlu. | Başlığın üstündeki kutucuklar, blogdaki konu butonları, etiket sayfaları, ilgili yazılar |
+| **Canonical URL** | İsteğe bağlı. Yazıya başlıktan gelenden **farklı bir adres** vermek için: `https://gethanas.com/blog/istediginiz-adres`. Yalnızca yazı önce başka bir sitede yayınlandıysa o sitenin adresi. | Yazının adresi (aşağıda) |
 | **Draft** | Yeni yazıda açık. Kapatıp kaydetmek = yayınlamak. | — |
 | **Body** | Yazının metni (zorunlu). | Yazı sayfası |
 
-**Adres (slug):** yazı ilk kez kaydedilirken başlıktan üretilir (ör. *Answering guest calls at night* →
-`answering-guest-calls-at-night`). Oluştururken değiştirebilirsiniz; sonradan değiştirilemez, çünkü paylaşılmış linkler kırılır.
+**Adres:** yazı ilk kez kaydedilirken başlıktan üretilir (ör. *Answering guest calls at night* →
+`gethanas.com/blog/answering-guest-calls-at-night`). Başka bir adres istiyorsanız **Canonical URL** alanına yazın (aşağıda).
+
+### Etiketler (sabit liste)
+
+Her yazıya bu listeden **2 ile 4** arası etiket işaretlenir; listede olmayan etiket kullanılamaz:
+
+AI Receptionist · Voice AI · Hotels & B&Bs · Other Industries · Pricing & Costs · Comparisons · Missed Calls ·
+Legal & Compliance · Integrations & PMS · Product News
+
+- Blogun ana sayfasında (`/blog`) büyük konu butonları olarak bu sırayla durur; "All" bütün yazılardır. Her buton o etiketin
+  sayfasına gider (ör. `/blog/tag/hotels-and-bbs`). Henüz yazısı olmayan konunun sayfasında "No posts in this topic yet" yazar.
+- Yazı sayfasında yazının bütün etiketleri başlığın üstünde kutucuk olarak görünür.
+- İlgili yazılar ortak etikete göre seçilir: doğru etiket, okuru doğru yazıya götürür.
+- Yeni bir etiket gerekiyorsa geliştiriciye söyleyin (liste kodda tek yerde: `src/tags.ts`).
 
 Okuma süresi (dakikada yaklaşık 200 kelime), yazı sonundaki "Get early access" kutusu ve ilgili yazılar (önce ortak etiketli,
 sonra en yeni yazılar) kendiliğinden eklenir.
@@ -80,14 +93,21 @@ sonra en yeni yazılar) kendiliğinden eklenir.
   yayın kaydında uyarı çıkar.
 - Alt metni olmadan kapaklı yazı yayınlanmaz.
 
-### Canonical URL
+### Canonical URL (yazının adresi)
 
-Bir yazının "asıl adresi"ni arama motorlarına söyler. **Neredeyse her zaman boş bırakın**; boşsa asıl adres yazının kendi
-adresidir (`https://gethanas.com/blog/<adres>`).
+Bir yazının asıl adresini söyler. Üç durum var:
 
-Yalnızca yazı ilk olarak başka bir yerde yayınlandıysa (ör. önce LinkedIn'de makale olarak çıktı, sonra blogumuza da
-koyduk) o adresi `https://` ile yazın. O zaman Google asıl sayfa olarak orayı sayar ve bizim kopyamızı çoğunlukla aramada
-göstermez; yazı blogda, listede ve RSS'te yine görünür ama site haritasına (sitemap) girmez.
+| Canonical URL alanı | Ne olur |
+| --- | --- |
+| **Boş** (çoğu yazı) | Yazı başlıktan gelen adreste yayınlanır. |
+| **Blogumuzun bir adresi**, ör. `https://gethanas.com/blog/best-ai-receptionist-small-hotels-uk` | Yazı **o adrese taşınır**. Başlıktan gelen eski adres yeni adrese kalıcı olarak (301) yönlenir, eski linkler çalışmaya devam eder. Google'a da yeni adres asıl adres olarak bildirilir. |
+| **Başka bir sitenin adresi**, ör. bir LinkedIn makalesi | Yazı bizde kendi adresinde durur ama Google'a "asıl yazı orada" denir. Google çoğunlukla bizim kopyamızı aramada göstermez; yazı site haritasına girmez. Yalnızca yazı gerçekten önce orada yayınlandıysa kullanın. |
+
+Kurallar:
+
+- Adres kısmı küçük harf, rakam ve tireden oluşur (`best-ai-receptionist-small-hotels-uk`); sondaki `/` önemli değil.
+- İki yazı aynı adresi isteyemez; isterse yayın durur ve hata mesajı hangi yazıların çakıştığını söyler.
+- Yayındaki bir yazının adresini sık değiştirmeyin: her değişiklik arama sonuçlarında yeniden yerleşme demek.
 
 ## Yazı kuralları
 
