@@ -18,7 +18,12 @@ draft: false
 
 We did not find any UK rule that bans a hotel from using an AI to answer its phone. But several rules shape how you do it. The main ones are about recording calls, handling personal data under UK GDPR, how much a human is involved in decisions, and telling callers what they are speaking to. If you also serve EU guests, EU rules on AI transparency may matter too.
 
-> **Key Takeaways**Recording calls needs more than switching it on: UK regulations on business call monitoring expect reasonable efforts to inform the people who may use the phone system, and the ICO says a recorded message is good practice.If a vendor processes calls for you, your hotel is usually the data controller, though that depends on the facts, and the ICO expects a written contract with specific terms.We found no UK primary source that requires a business to tell callers they are speaking to an AI. Saying so early is still the safer course, and the ICO treats AI transparency as a data protection risk.Since 5 February 2026 UK GDPR's automated decision rules have been replaced by new Articles 22A to 22D. Whether a booking-request tool falls within them is untested, and we flag our reading as unverified.
+> **Key Takeaways**
+
+- Recording calls needs more than switching it on: UK regulations on business call monitoring expect reasonable efforts to inform the people who may use the phone system, and the ICO says a recorded message is good practice.
+- If a vendor processes calls for you, your hotel is usually the data controller, though that depends on the facts, and the ICO expects a written contract with specific terms.
+- We found no UK primary source that requires a business to tell callers they are speaking to an AI. Saying so early is still the safer course, and the ICO treats AI transparency as a data protection risk.
+- Since 5 February 2026 UK GDPR's automated decision rules have been replaced by new Articles 22A to 22D. Whether a booking-request tool falls within them is untested, and we flag our reading as unverified.
 
 ## At a glance: what the sources say and where they stop
 
