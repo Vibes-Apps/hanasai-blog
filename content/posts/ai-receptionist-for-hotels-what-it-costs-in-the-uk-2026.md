@@ -30,7 +30,7 @@ Published monthly prices for whole-property AI phone plans run from about $19 (C
 All figures are from the vendor's own pricing page, checked on 15 November 2026. "Included" means call minutes unless stated.
 
 | Product | Published price | What the page says is included | Unit |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | [Hanas](https://gethanas.com/#pricing) | £49 a month, then £0.30 a minute | 150 minutes (early-access price, excluding VAT) | Flat plus per minute |
 | [PolyAI](https://poly.ai/pricing) | $49 a month (Essentials) | 250 minutes, then 30 cents a minute | Flat plus per minute |
 | [PolyAI](https://poly.ai/pricing) | $199 a month (Plus) | 1,000 minutes, then 25 cents a minute | Flat plus per minute |
@@ -45,7 +45,7 @@ All figures are from the vendor's own pricing page, checked on 15 November 2026.
 
 **No price shown on the pages we could load on 15 November 2026:** [Dextr AI](https://dextr.ai), [Canary AI Voice](https://www.canarytechnologies.com/products/ai-voice-hotels), [Akia](https://www.akia.com/pricing) (tiers named Basic, Pro and Max, with no figures) and [Sadie](https://heysadie.ai) (its pricing page would not load). For [Moneypenny](https://www.moneypenny.com/uk/pricing/), a human answering service, the pricing page says to contact them for a quote.
 
-Some of these tools are built for hotels. Others are general small-business tools. For example, My AI Front Desk books against a calendar, not hotel room inventory, and its pricing page does not name hotels. For a comparison by features, see our [list of seven AI receptionists for UK small hotels](https://gethanas.com/blog/best-ai-receptionist-small-hotels-uk/). Hanas is listed first in the tables because this is our site, not because it is the cheapest.
+Some of these tools are built for hotels. Others are general small-business tools. For example, My AI Front Desk books against a calendar, not hotel room inventory, and its pricing page does not name hotels. For a comparison by features, see our [list of seven AI receptionists for UK small hotels](https://gethanas.com/blog/7-best-ai-receptionists-for-uk-small-hotels-and-b-bs-2026). Hanas is listed first in the tables because this is our site, not because it is the cheapest.
 
 ## What a published price may leave out
 
@@ -64,7 +64,7 @@ The monthly figure is rarely the whole bill. Before you compare two vendors, ask
 These use only the published figures above, in the vendor's own currency. They show how the plan shape changes the bill, not which product is better. Check that each product does what you need before comparing price. The minutes are illustrative.
 
 | Monthly call minutes | Hanas | PolyAI Essentials | My AI Front Desk (annual) |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | 150 | £49 | $49 | $79 |
 | 300 | £94 | $64 | $104 |
 | 600 | £184 | $154 | $179 |
@@ -99,17 +99,17 @@ An AI receptionist is not a like-for-like swap for that role. A night porter han
 A human answering service is the other common way to cover calls. These are published prices, excluding VAT, from the vendors' own pages on 15 November 2026:
 
 | Service | Published price | Notes |
-|---|---|---|
+| --- | --- | --- |
 | [TTNC](https://ttnc.co.uk/services/telephone-answering-service) | £12.66 a month, plus £1.20 a minute | SMS and call transfers charged separately |
 | [Posh](https://www.posh.com/en-uk/pricing) | £74 a month (Vogue), 50 minutes included, then £1.45 a minute | Seven plans, from £50 a month |
-| [Posh](https://www.posh.com/en-uk/pricing) | £128 a month (Elegant), 100 minutes included, then £1.35 a minute | |
+| [Posh](https://www.posh.com/en-uk/pricing) | £128 a month (Elegant), 100 minutes included, then £1.35 a minute |  |
 | [Connect Communications](https://www.connect-communications.co.uk/cost-calculator/call-answering-service-costs/) | From £14.99 a month | Billed per message, not per minute |
 
 Illustrative cost for 300 minutes a month on the same basis as the table above: TTNC is £12.66 + 300 × £1.20 = £372.66. Posh Elegant is £128 + 200 × £1.35 = £398. These services take messages and relay them, so they do different work from an AI that can quote your rates and take a booking request. Minutes are also counted differently from one provider to the next.
 
 ## When an AI receptionist is not the cheaper option
 
-- **Very few calls.** If you miss only a handful of calls a month, a voicemail greeting and a call-back habit may cost less. [Count your own missed calls for a week](https://gethanas.com/blog/missed-calls-small-hotel-cost/) before you decide.
+- **Very few calls.** If you miss only a handful of calls a month, a voicemail greeting and a call-back habit may cost less. [Count your own missed calls for a week](https://gethanas.com/blog/how-many-calls-does-a-small-hotel-miss-what-it-costs) before you decide.
 - **You need PMS-written bookings.** Some products that connect to your PMS publish no price, such as Dextr AI and Akia on the pages we read.
 - **You need a human voice for complex enquiries.** Weddings, group bookings and unusual requests may suit a person better.
 - **Call volume is high.** Usage-based plans scale with minutes, so a busy line can cost more than a flat plan.
@@ -140,9 +140,9 @@ We plan to re-check prices at least every 90 days, and whenever our own pricing 
 
 ## Related reads
 
-- [7 best AI receptionists for UK small hotels and B&Bs](https://gethanas.com/blog/best-ai-receptionist-small-hotels-uk/): the feature comparison.
-- [How many calls does a small hotel miss?](https://gethanas.com/blog/missed-calls-small-hotel-cost/): work out what your own missed calls cost.
-- [Is it legal to use an AI receptionist at a UK hotel?](https://gethanas.com/blog/ai-receptionist-uk-hotel-legal/): call recording and UK GDPR.
+- [7 best AI receptionists for UK small hotels and B&Bs](https://gethanas.com/blog/7-best-ai-receptionists-for-uk-small-hotels-and-b-bs-2026): the feature comparison.
+- [How many calls does a small hotel miss?](https://gethanas.com/blog/how-many-calls-does-a-small-hotel-miss-what-it-costs): work out what your own missed calls cost.
+- [Is it legal to use an AI receptionist at a UK hotel?](https://gethanas.com/blog/is-it-legal-to-use-an-ai-receptionist-at-a-uk-hotel): call recording and UK GDPR.
 - [Hanas for boutique hotels](https://gethanas.com/for/boutique-hotels) and [Hanas vs Dextr AI](https://gethanas.com/compare/dextr).
 
 ## About this article
