@@ -38,10 +38,13 @@ varken site bozulmaz; son çalışan hali yayında kalır.
 | --- | --- | --- |
 | **Title** | Zorunlu, en fazla 110 karakter. Cümle düzeninde (yalnızca ilk kelime ve özel adlar büyük harf), sonda nokta yok. | Sayfa başlığı, liste, paylaşım önizlemesi |
 | **Description** | Zorunlu, **120–160 karakter** (sayaç alanın altında). Yazıyı bir iki cümleyle özetleyin. | Google sonuçları, link önizlemesi, liste |
+| **Cover image** | İsteğe bağlı. Bilgisayardan yüklenir (başka sitedeki görselin adresi girilemez). **1200 × 630 px**, JPG ya da PNG, 500 KB altı önerilir; en çok 2 MB. | Yazının başı, liste, ilgili yazılar, link paylaşım görseli |
+| **Cover image alt text** | Kapak varsa **zorunlu**, en çok 200 karakter: görseli göremeyen biri için ne gösterdiğini anlatın. | Ekran okuyucular, paylaşım kartı |
 | **Publish date** | Zorunlu. Yayın tarihi; liste yeniden eskiye bu tarihe göre sıralanır. | Yazı ve liste |
 | **Updated** | İsteğe bağlı. Yalnızca yazıdaki bilgiyi değiştirdiyseniz (yazım düzeltmesi için değil). | Yazının üstünde "Updated …" |
 | **Author** | İsteğe bağlı. Boş bırakılırsa "The hanas.ai team". | Yazının üstünde "By …" |
 | **Tags** | İsteğe bağlı, en fazla 6. Küçük harf, rakam ve tire: `guest-calls`, `front-desk`. Var olan etiketleri tekrar kullanın. | Etiket sayfaları (`/blog/tag/<etiket>`), ilgili yazılar |
+| **Canonical URL** | Çoğu yazıda **boş** bırakılır. Yalnızca yazı ilk olarak başka bir yerde yayınlandıysa (ör. LinkedIn makalesi) o adres, `https://` ile. | Arama motorlarına "asıl adres burası" bilgisi |
 | **Draft** | Yeni yazıda açık. Kapatıp kaydetmek = yayınlamak. | — |
 | **Body** | Yazının metni (zorunlu). | Yazı sayfası |
 
@@ -64,7 +67,27 @@ sonra en yeni yazılar) kendiliğinden eklenir.
 - Editörde görsel ekleyin; dosya depoya yüklenir ve `/blog/images/…` adresinden sunulur.
 - Yalnızca kendi alan adımızdan görsel kullanılır; başka sitelerin görsel adresleri yazıyı yayınlatmaz.
 - **Alt metin zorunlu**: görseli göremeyen biri için ne gösterdiğini bir cümleyle anlatın.
-- Kapak görseli yok. Telif hakkı size ya da hanas.ai'ye ait olmayan görsel kullanmayın.
+- Dosya adları kendiliğinden düzeltilir (`Lobby Photo (1).JPG` → `lobby-photo-1.jpg`). Tek dosya en çok 2 MB.
+- Telif hakkı size ya da hanas.ai'ye ait olmayan görsel kullanmayın.
+
+### Kapak görseli
+
+- Yazının başında, yazı listesinde ve ilgili yazılarda görünür; link LinkedIn, WhatsApp ya da X'te paylaşılınca büyük
+  görsel olarak çıkar. Kapak yoksa paylaşımda küçük kart çıkar.
+- **1200 × 630 px** hazırlayın: sayfada ve paylaşım kartında bu oranla gösterilir, farklı oranda görselin kenarları kırpılır.
+  Önemli kısmı (yazı, yüz) ortada tutun.
+- JPG (fotoğraf) ya da PNG (çizim, ekran görüntüsü); 500 KB altı. Daha büyük dosya kaydedilir ama sayfayı yavaşlatır ve
+  yayın kaydında uyarı çıkar.
+- Alt metni olmadan kapaklı yazı yayınlanmaz.
+
+### Canonical URL
+
+Bir yazının "asıl adresi"ni arama motorlarına söyler. **Neredeyse her zaman boş bırakın**; boşsa asıl adres yazının kendi
+adresidir (`https://gethanas.com/blog/<adres>`).
+
+Yalnızca yazı ilk olarak başka bir yerde yayınlandıysa (ör. önce LinkedIn'de makale olarak çıktı, sonra blogumuza da
+koyduk) o adresi `https://` ile yazın. O zaman Google asıl sayfa olarak orayı sayar ve bizim kopyamızı çoğunlukla aramada
+göstermez; yazı blogda, listede ve RSS'te yine görünür ama site haritasına (sitemap) girmez.
 
 ## Yazı kuralları
 
