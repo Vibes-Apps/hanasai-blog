@@ -1,6 +1,9 @@
 import { describe, expect, it } from "vitest";
 import { isAllowedHref, isOwnImage, renderMarkdown } from "../src/markdown.js";
-import { ContentError, loadPosts, parsePost, readingMinutes, relatedPosts, splitFrontmatter, tagIndex, type Post } from "../src/posts.js";
+import { mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { COVER_WARN_BYTES, ContentError, loadPosts, parsePost, readingMinutes, relatedPosts, splitFrontmatter, tagIndex, type Post } from "../src/posts.js";
 import { DESC, contentDir, post } from "./helpers.js";
 
 const problemsOf = (fn: () => unknown): string[] => {
@@ -44,7 +47,7 @@ describe("bilgi bloğu doğrulaması", () => {
     ["etiket biçimi", { tags: ["Guest Calls"] }, "tags.0: etiket küçük harf"],
     ["aynı etiket", { tags: ["a", "a"] }, "tags: aynı etiket iki kez"],
     ["taslak türü", { draft: "yes" }, "draft: true ya da false olmalı"],
-    ["bilinmeyen alan", { cover: "x.png" }, "bilinmeyen alan: cover"],
+    ["bilinmeyen alan", { category: "hotels" }, "bilinmeyen alan: category"],
   ])("%s → anlaşılır hata", (_name, fm, expected) => {
     const problems = problemsOf(() => parsePost("bad-post.md", post(fm)));
     expect(problems.join("\n")).toContain(`content/posts/bad-post.md: ${expected}`);
@@ -65,6 +68,48 @@ describe("bilgi bloğu doğrulaması", () => {
 
   it("CRLF satır sonlarını ve BOM'u kabul eder", () => {
     expect(splitFrontmatter("﻿---\r\ntitle: x\r\n---\r\nBody")).toEqual({ yaml: "title: x", body: "Body" });
+  });
+});
+
+describe("kapak görseli ve canonical", () => {
+  const COVER = "/blog/images/example-cover.png";
+
+  it("kapak alt metniyle birlikte geçer; kendi alan adımızla tam adres de olur", () => {
+    expect(parsePost("x.md", post({ cover: COVER, coverAlt: "A teal card" })).cover).toBe(COVER);
+    expect(parsePost("x.md", post({ cover: `https://gethanas.com${COVER}`, coverAlt: "A teal card" })).cover).toBe(`https://gethanas.com${COVER}`);
+  });
+
+  it.each([
+    ["alt metinsiz kapak", { cover: COVER }, "coverAlt: kapak görseli varsa alt metni zorunlu"],
+    ["başka sitedeki kapak", { cover: "https://evil.example/a.jpg", coverAlt: "x" }, "cover: kapak görseli CMS'ten yüklenmiş olmalı"],
+    ["medya klasörü dışı", { cover: "/assets/a.jpg", coverAlt: "x" }, "cover: kapak görseli CMS'ten yüklenmiş olmalı"],
+    ["SVG kapak", { cover: "/blog/images/a.svg", coverAlt: "x" }, "cover: kapak görseli CMS'ten yüklenmiş olmalı"],
+    ["http canonical", { canonical: "http://example.com/post" }, "canonical: https:// ile başlayan tam bir adres olmalı"],
+    ["göreli canonical", { canonical: "/blog/other" }, "canonical: https:// ile başlayan tam bir adres olmalı"],
+    ["javascript canonical", { canonical: "javascript:alert(1)" }, "canonical: https:// ile başlayan tam bir adres olmalı"],
+  ])("%s → anlaşılır hata", (_name, fm, expected) => {
+    expect(problemsOf(() => parsePost("bad-post.md", post(fm))).join("\n")).toContain(`content/posts/bad-post.md: ${expected}`);
+  });
+
+  it("canonical yoksa kendi adresi; başka adres verilirse selfCanonical false; sondaki / aynı sayılır", () => {
+    const own = parsePost("my-post.md", post());
+    expect(own).toMatchObject({ url: "https://gethanas.com/blog/my-post", canonicalUrl: "https://gethanas.com/blog/my-post", selfCanonical: true });
+    const ext = parsePost("my-post.md", post({ canonical: "https://www.linkedin.com/pulse/original-article" }));
+    expect(ext).toMatchObject({ canonicalUrl: "https://www.linkedin.com/pulse/original-article", selfCanonical: false });
+    expect(parsePost("my-post.md", post({ canonical: "https://gethanas.com/blog/my-post/" })).selfCanonical).toBe(true);
+  });
+
+  it("derlemede kapak dosyası yoksa durur, büyükse uyarır", () => {
+    const missing = contentDir({ "a.md": post({ cover: "/blog/images/does-not-exist.jpg", coverAlt: "x" }) });
+    expect(problemsOf(() => loadPosts(missing, { publicDir: "public" })).join()).toContain("cover: görsel dosyası bulunamadı (images/does-not-exist.jpg)");
+    // publicDir verilmezse (ör. CMS önizlemesi) dosyaya bakılmaz.
+    expect(loadPosts(missing)).toHaveLength(1);
+
+    const pub = mkdtempSync(join(tmpdir(), "blog-public-"));
+    mkdirSync(join(pub, "images"));
+    writeFileSync(join(pub, "images", "big.jpg"), Buffer.alloc(COVER_WARN_BYTES + 1));
+    const big = loadPosts(contentDir({ "a.md": post({ cover: "/blog/images/big.jpg", coverAlt: "x" }) }), { publicDir: pub });
+    expect(big[0]!.warnings.join()).toContain("500 KB altı önerilir");
   });
 });
 
@@ -170,7 +215,23 @@ describe("okuma süresi, etiketler, ilgili yazılar", () => {
   });
 
   const mk = (slug: string, date: string, tags: string[]): Post =>
-    ({ slug, date, tags, title: slug, description: DESC, author: "a", draft: false, file: "", html: "", words: 1, readingMinutes: 1, warnings: [] }) as Post;
+    ({
+      slug,
+      date,
+      tags,
+      title: slug,
+      description: DESC,
+      author: "a",
+      draft: false,
+      url: `https://gethanas.com/blog/${slug}`,
+      canonicalUrl: `https://gethanas.com/blog/${slug}`,
+      selfCanonical: true,
+      file: "",
+      html: "",
+      words: 1,
+      readingMinutes: 1,
+      warnings: [],
+    }) as Post;
 
   it("ilgili yazılar: önce ortak etiket sayısı, sonra en yeniler; kendisi hariç, en fazla 3", () => {
     const me = mk("me", "2026-11-01", ["a", "b"]);

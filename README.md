@@ -22,6 +22,19 @@ scripts/               tarayıcı kontrolleri (blog-check, cms-check), sync-site
 
 `gethanas.com/blog*` route'u aynı hostname'deki çekirdek Worker'ın (Custom Domain) önüne geçer; çekirdeğin diğer yolları etkilenmez.
 
+### Bilgi bloğu (src/schema.ts, CMS alanları cms/config.ts; ikisi test ile eşit tutulur)
+
+`title`, `description` (120–160), `date`, `updated`?, `author`?, `tags`? (≤ 6, küçük harf-tire), `draft`,
+`cover`? + `coverAlt` (kapak varsa zorunlu), `canonical`?. Bilinmeyen alan derlemeyi durdurur.
+
+- **Kapak (`cover`):** yalnızca `/blog/images/<dosya>.(jpg|jpeg|png|webp)` (ya da aynısının `https://gethanas.com` ile tam adresi);
+  dosya `public/images/` altında olmalı (derleme denetler, 500 KB üstü uyarı). Yazı başında `<figure class="post-cover">`, liste ve ilgili
+  yazı kartlarında küçük kapak; `og:image` + `og:image:alt` + `twitter:card=summary_large_image`. 1200×630 oranında gösterilir
+  (`object-fit: cover`, genişlik/yükseklik verili, düzen kaymaz). CMS: görsel alanı yalnızca yükleme (`choose_url: false`), dosya adları
+  slug'lanır, en çok 2 MB.
+- **Canonical (`canonical`):** yalnızca `https://` tam adres. `<link rel="canonical">` ve `og:url` bu olur. Yazının kendi adresinden
+  farklıysa yazı `sitemap.xml`'e girmez (listede ve RSS'te kalır).
+
 ## Komutlar
 
 ```

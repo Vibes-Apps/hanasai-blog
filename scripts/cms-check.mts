@@ -3,7 +3,9 @@
 // Gerçek GitHub girişi otomatikleştirilemez; canlıda sahibi tarayıcıdan dener (docs/BLOG.md).
 // Kullanım: npx tsx cms/build.ts --test && npx wrangler dev -c cms/wrangler.jsonc --port 8791  (ayrı pencerede), sonra
 //   npx tsx scripts/cms-check.mts [--base http://127.0.0.1:8791] [--shots .wrangler/shots]
-import { mkdirSync } from "node:fs";
+import { copyFileSync, mkdirSync, mkdtempSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { parseArgs } from "node:util";
 import { parsePost } from "../src/posts.js";
 import { Browser, checker, type Page } from "./lib/cdp.mjs";
@@ -56,6 +58,7 @@ async function fillField(page: Page, label: string, value: string): Promise<bool
 }
 
 const TITLE = "Browser test post for the editor";
+const COVER_ALT = "A pale teal card with the words Example cover image";
 const DESC = "This description is written by the automated editor check. It needs between 120 and 160 characters to pass the same rule as the build.";
 
 // Sveltia arayüz dilini tarayıcıdan seçer; metinle arandığı için test İngilizce arayüzle çalışır.
@@ -100,6 +103,23 @@ try {
   await sleep(500);
   check("önizlemede gövde görünüyor", await waitFor(page, `[...document.querySelectorAll("iframe")].some((f) => { try { return /typed by the automated/.test(f.contentDocument.body.innerText); } catch { return false; } }) || /typed by the automated[\\s\\S]*typed by the automated/.test(document.body.innerText)`, 5000));
 
+  // Kapak görseli: dosya adı bilerek boşluklu ve büyük harfli; CMS adresine uygun hale getirmeli (slugify_filename).
+  const upload = join(mkdtempSync(join(tmpdir(), "cms-cover-")), "Example Cover (1).PNG");
+  copyFileSync("public/images/example-cover.png", upload);
+  await page.setFiles('input[type="file"]', [upload]);
+  // Önizleme bir iframe içinde: kapak orada, yüklenmiş (naturalWidth > 0) bir resim olarak görünmeli.
+  check(
+    "kapak görseli yüklendi ve önizlemede",
+    await waitFor(
+      page,
+      `[document, ...[...document.querySelectorAll("iframe")].map((f) => { try { return f.contentDocument; } catch { return null; } })].filter(Boolean)
+        .some((d) => [...d.querySelectorAll("img")].some((i) => i.naturalWidth === 1200 && i.naturalHeight === 630))`,
+      10000,
+    ),
+  );
+  check("kapak alt metni", await fillField(page, "Cover image alt text", COVER_ALT));
+  await page.screenshot(`${SHOTS}/cms-4b-cover.png`);
+
   check("kaydet", await clickByText(page, /Save( as Draft)?/i));
   check("kaydedildi", await waitFor(page, `!/Creating/.test(document.body.innerText)`, 8000));
   await sleep(1000);
@@ -117,11 +137,20 @@ try {
     const out = {};
     for await (const [name, h] of d.entries()) out[name] = await (await h.getFile()).text();
     return out; })()`);
+  const images = await page.eval<string[]>(`(async () => {
+    const root = await navigator.storage.getDirectory();
+    let d = await root.getDirectoryHandle("sveltia-cms-test");
+    for (const part of ["public", "images"]) d = await d.getDirectoryHandle(part);
+    const out = [];
+    for await (const [name] of d.entries()) out.push(name);
+    return out; })()`).catch(() => [] as string[]);
+  check("görsel dosyası public/images altına yazıldı", images.includes("example-cover-1.png"), images.join(", "));
   const names = Object.keys(files);
   check("CMS dosyayı content/posts altına yazdı", names.length === 1 && names[0] === "browser-test-post-for-the-editor.md", names.join(", "));
   try {
     const p = parsePost(names[0]!, files[names[0]!]!);
     check("CMS'in yazdığı dosya blog şemasından geçti", p.title === TITLE && p.description === DESC && p.draft === true && /^\d{4}-\d{2}-\d{2}$/.test(p.date));
+    check("kapak yolu /blog/images altında, dosya adı düzeltilmiş", p.cover === "/blog/images/example-cover-1.png" && p.coverAlt === COVER_ALT, `${p.cover} | ${p.coverAlt}`);
   } catch (e) {
     check("CMS'in yazdığı dosya blog şemasından geçti", false, `${(e as Error).message}\n${files[names[0]!]}`);
   }
