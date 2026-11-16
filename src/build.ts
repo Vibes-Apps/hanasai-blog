@@ -65,7 +65,7 @@ export function build(opts: BuildOptions = {}): BuildResult {
   const stylesFile = opts.stylesFile ?? "styles/blog.css";
 
   // Önce içerik: hatalıysa dist/ silinmeden durur (son iyi çıktı yerinde kalır).
-  const posts = loadPosts(contentDir, { includeDrafts: opts.includeDrafts ?? false });
+  const posts = loadPosts(contentDir, { includeDrafts: opts.includeDrafts ?? false, publicDir });
 
   rmSync(out, { recursive: true, force: true });
   mkdirSync(out, { recursive: true });
@@ -97,7 +97,8 @@ export function build(opts: BuildOptions = {}): BuildResult {
     "sitemap.xml",
     sitemapXml([
       ...(posts.length ? [{ path: `${BASE}/`, ...(newest ? { lastmod: newest } : {}) }] : []),
-      ...posts.map((p) => ({ path: postPath(p.slug), lastmod: p.updated ?? p.date })),
+      // Canonical'ı başka bir adresi gösteren yazı sitemap'e girmez: sitemap yalnızca canonical adresleri listeler.
+      ...posts.filter((p) => p.selfCanonical).map((p) => ({ path: postPath(p.slug), lastmod: p.updated ?? p.date })),
       ...[...tags.keys()].map((t) => ({ path: tagPath(t) })),
     ]),
     files,

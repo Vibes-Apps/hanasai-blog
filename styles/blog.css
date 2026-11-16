@@ -27,6 +27,13 @@
 .post-tags .tag { text-decoration: none; height: 26px; font-size: var(--fs-xs); }
 .post-tags .tag:hover { border-color: var(--line-input); color: var(--ink); }
 
+/* ---------- Kapak görseli (1200×630 oranında kırpılır; düzen kaymaz) ---------- */
+.cover { display: block; width: 100%; height: auto; aspect-ratio: 1200 / 630; object-fit: cover; border-radius: var(--r-lg); border: 1px solid var(--line); background: var(--paper-2); }
+.post-cover { margin: 0 0 32px; }
+.post-card__cover { display: block; margin-bottom: 8px; }
+.post-card__cover .cover { border-radius: var(--r-md); }
+.related .post-card__cover { max-width: 360px; }
+
 /* ---------- Yazı ---------- */
 .post-head { display: grid; gap: 12px; margin-bottom: 32px; }
 .post-head h1 { margin-bottom: 0; overflow-wrap: anywhere; }

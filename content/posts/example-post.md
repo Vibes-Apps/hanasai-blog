@@ -1,6 +1,8 @@
 ---
 title: "Example post: every format feature in one place"
 description: "Reference post for writers. It shows headings, lists, quotes, tables, code, links and images. It is a draft and is never published on the site."
+cover: /blog/images/example-cover.png
+coverAlt: "A pale teal card with the words Example cover image and the recommended size, 1200 by 630 pixels"
 date: 2026-11-15
 updated: 2026-11-15
 author: The hanas.ai team
@@ -79,6 +81,12 @@ Facts and claims about other companies always need a source and a date, as on ou
 Images must live on our own domain and need alternative text that describes them:
 
 ![A simple diagram: a guest call goes to the receptionist, which sends a booking request to the hotel team](/blog/images/example-diagram.svg)
+
+## Cover image and canonical address
+
+The picture at the top of this post is its **cover image**. It also appears in the post list and as the picture when the link is shared on LinkedIn or WhatsApp. Use a 1200 × 630 pixel JPG or PNG under 500 KB, and always describe it in the alt text field.
+
+Leave **Canonical URL** empty. Fill it in only when a post was first published somewhere else, such as a LinkedIn article: then search engines treat that address as the original.
 
 ---
 

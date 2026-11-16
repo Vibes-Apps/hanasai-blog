@@ -1,14 +1,20 @@
-import { readdirSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { parse as parseYaml } from "yaml";
-import { WORDS_PER_MINUTE } from "./config.js";
+import { BASE, SITE_URL, WORDS_PER_MINUTE } from "./config.js";
 import { renderMarkdown } from "./markdown.js";
-import { formatIssues, frontmatterSchema, SLUG_RE, type Frontmatter } from "./schema.js";
+import { coverFile, formatIssues, frontmatterSchema, SLUG_RE, type Frontmatter } from "./schema.js";
 
 // Yazıları content/posts/*.md dosyalarından okur. Dosya adı = slug (adres: /blog/<slug>).
 
 export interface Post extends Frontmatter {
   slug: string;
+  // Yazının kendi tam adresi (https://gethanas.com/blog/<slug>).
+  url: string;
+  // <link rel="canonical"> ve og:url: bilgi bloğundaki canonical, yoksa kendi adresi.
+  canonicalUrl: string;
+  // Canonical başka bir adresi gösteriyorsa false: yazı sitemap'e girmez (Google sitemap'te yalnızca canonical adresleri ister).
+  selfCanonical: boolean;
   file: string;
   html: string;
   words: number;
@@ -61,9 +67,15 @@ export function parsePost(file: string, src: string): Post {
   problems.push(...r.problems.map((m) => `${where}: ${m}`));
   if (problems.length || !parsed.success) throw new ContentError(problems);
 
+  const url = `${SITE_URL}${BASE}/${slug}`;
+  const canonicalUrl = parsed.data.canonical ?? url;
   return {
     ...parsed.data,
     slug,
+    url,
+    canonicalUrl,
+    // Sondaki / farkı aynı adres sayılır.
+    selfCanonical: canonicalUrl.replace(/\/$/, "") === url,
     file: where,
     html: r.html,
     words: r.words,
@@ -75,8 +87,24 @@ export function parsePost(file: string, src: string): Post {
 // Yeniden eskiye; aynı gün yazılanlar slug sırasıyla (derleme her seferinde aynı çıktıyı verir).
 export const byDateDesc = (a: Post, b: Post): number => b.date.localeCompare(a.date) || a.slug.localeCompare(b.slug);
 
+// Kapak görseli için boyut uyarısı: büyük dosya sayfayı ve paylaşım kartını yavaşlatır (CMS en çok 2 MB kabul eder).
+export const COVER_WARN_BYTES = 500_000;
+
+// Kapak görseli public/ altında gerçekten var mı, boyutu makul mü. Yalnızca publicDir verilince bakılır (derleme verir).
+function checkCover(p: Post, publicDir: string, problems: string[]): void {
+  if (!p.cover) return;
+  const file = join(publicDir, coverFile(p.cover));
+  if (!existsSync(file)) {
+    problems.push(`${p.file}: cover: görsel dosyası bulunamadı (${coverFile(p.cover)}); CMS'ten yeniden yükleyin`);
+    return;
+  }
+  const size = statSync(file).size;
+  if (size > COVER_WARN_BYTES) p.warnings.push(`${p.file}: cover: görsel ${Math.round(size / 1000)} KB; 500 KB altı önerilir (1200×630 px JPG)`);
+}
+
 // Bütün yazıları okur; hatalar tek seferde, hepsi birlikte bildirilir. Taslaklar varsayılan olarak dışarıda kalır.
-export function loadPosts(dir: string, opts: { includeDrafts?: boolean } = {}): Post[] {
+// publicDir verilirse kapak görsellerinin dosyaları da denetlenir.
+export function loadPosts(dir: string, opts: { includeDrafts?: boolean; publicDir?: string } = {}): Post[] {
   let files: string[];
   try {
     files = readdirSync(dir).filter((f) => f.endsWith(".md")).sort();
@@ -87,7 +115,9 @@ export function loadPosts(dir: string, opts: { includeDrafts?: boolean } = {}): 
   const problems: string[] = [];
   for (const f of files) {
     try {
-      posts.push(parsePost(f, readFileSync(join(dir, f), "utf8")));
+      const p = parsePost(f, readFileSync(join(dir, f), "utf8"));
+      if (opts.publicDir) checkCover(p, opts.publicDir, problems);
+      posts.push(p);
     } catch (e) {
       if (e instanceof ContentError) problems.push(...e.problems);
       else throw e;

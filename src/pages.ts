@@ -1,5 +1,6 @@
 import { BASE, BLOG_DESCRIPTION, BLOG_TITLE, BLOG_URL, CTA_URL, FEED_TITLE, LANG, SITE_URL } from "./config.js";
 import type { Post } from "./posts.js";
+import { coverPath } from "./schema.js";
 import type { Shell } from "./shell.js";
 
 // Blog sayfalarının HTML'i. CSP (public/_headers): script yok, satır içi stil yok; her görünüm assets'teki CSS'te.
@@ -28,24 +29,36 @@ interface Meta {
   modified?: string;
   tags?: string[];
   noindex?: boolean;
+  // Varsayılan: sayfanın kendi adresi. Yazıda bilgi bloğundaki canonical ile değişebilir.
+  canonical?: string;
+  // Paylaşım kartı görseli (kapak); varsa büyük kart (summary_large_image).
+  image?: { url: string; alt: string };
 }
 
 export const postPath = (slug: string): string => `${BASE}/${slug}`;
 export const tagPath = (tag: string): string => `${BASE}/tag/${tag}`;
 const abs = (path: string): string => `${SITE_URL}${path}`;
 
+// Kapak görseli: önerilen 1200×630 (paylaşım kartı oranı). Sayfada aynı oranda kırpılır (object-fit), düzen kaymaz.
+const COVER_W = 1200;
+const COVER_H = 630;
+const coverImg = (p: Post, cls: string, eager = false): string =>
+  p.cover && p.coverAlt
+    ? `<img class="${cls}" src="${esc(coverPath(p.cover))}" alt="${esc(p.coverAlt)}" width="${COVER_W}" height="${COVER_H}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async">`
+    : "";
+
 const DATE_FMT = new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
 export const formatDate = (iso: string): string => DATE_FMT.format(new Date(`${iso}T00:00:00Z`));
 const time = (iso: string): string => `<time datetime="${iso}">${formatDate(iso)}</time>`;
 
 function head(m: Meta, a: Assets): string {
-  const url = abs(m.path);
+  const url = m.canonical ?? abs(m.path);
   const lines = [
     `<meta charset="utf-8">`,
     `<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">`,
     `<title>${esc(m.title)}</title>`,
     `<meta name="description" content="${esc(m.description)}">`,
-    m.noindex ? `<meta name="robots" content="noindex">` : `<link rel="canonical" href="${url}">`,
+    m.noindex ? `<meta name="robots" content="noindex">` : `<link rel="canonical" href="${esc(url)}">`,
     `<meta name="theme-color" content="#FBFAF7">`,
     `<link rel="icon" href="${BASE}/${a.favicon}" type="image/svg+xml">`,
     ...(a.font ? [`<link rel="preload" href="${BASE}/${a.font}" as="font" type="font/woff2" crossorigin>`] : []),
@@ -56,13 +69,19 @@ function head(m: Meta, a: Assets): string {
     `<meta property="og:type" content="${m.type ?? "website"}">`,
     `<meta property="og:title" content="${esc(m.title)}">`,
     `<meta property="og:description" content="${esc(m.description)}">`,
-    `<meta property="og:url" content="${url}">`,
+    `<meta property="og:url" content="${esc(url)}">`,
+    ...(m.image
+      ? [`<meta property="og:image" content="${esc(m.image.url)}">`, `<meta property="og:image:alt" content="${esc(m.image.alt)}">`]
+      : []),
     ...(m.published ? [`<meta property="article:published_time" content="${m.published}">`] : []),
     ...(m.modified ? [`<meta property="article:modified_time" content="${m.modified}">`] : []),
     ...(m.tags ?? []).map((t) => `<meta property="article:tag" content="${esc(t)}">`),
-    `<meta name="twitter:card" content="summary">`,
+    `<meta name="twitter:card" content="${m.image ? "summary_large_image" : "summary"}">`,
     `<meta name="twitter:title" content="${esc(m.title)}">`,
     `<meta name="twitter:description" content="${esc(m.description)}">`,
+    ...(m.image
+      ? [`<meta name="twitter:image" content="${esc(m.image.url)}">`, `<meta name="twitter:image:alt" content="${esc(m.image.alt)}">`]
+      : []),
   ];
   return lines.join("\n");
 }
@@ -89,10 +108,11 @@ const tagList = (tags: string[]): string =>
 
 const minutes = (p: Post): string => `${p.readingMinutes} min read`;
 
-// Liste kartı: başlık, tarih, okuma süresi, açıklama, etiketler.
+// Liste kartı: (varsa kapak), başlık, tarih, okuma süresi, açıklama, etiketler.
 function card(p: Post, h: "h2" | "h3"): string {
-  return `<li class="post-card">
-<${h} class="post-card__title"><a href="${postPath(p.slug)}">${esc(p.title)}</a></${h}>
+  const cover = p.cover ? `<a class="post-card__cover" href="${postPath(p.slug)}" tabindex="-1" aria-hidden="true">${coverImg(p, "cover")}</a>\n` : "";
+  return `<li class="post-card${p.cover ? " post-card--cover" : ""}">
+${cover}<${h} class="post-card__title"><a href="${postPath(p.slug)}">${esc(p.title)}</a></${h}>
 <p class="post-meta">${time(p.date)}<span aria-hidden="true"> · </span>${minutes(p)}</p>
 <p class="post-card__desc">${esc(p.description)}</p>
 ${tagList(p.tags)}
@@ -150,6 +170,8 @@ ${postList(related, "h3")}
       published: p.date,
       ...(p.updated ? { modified: p.updated } : {}),
       tags: p.tags,
+      canonical: p.canonicalUrl,
+      ...(p.cover && p.coverAlt ? { image: { url: abs(coverPath(p.cover)), alt: p.coverAlt } } : {}),
     },
     ctx,
     `<article class="post">
@@ -159,7 +181,7 @@ ${postList(related, "h3")}
 <p class="post-meta">${time(p.date)}${updated}<span aria-hidden="true"> · </span>By ${esc(p.author)}<span aria-hidden="true"> · </span>${minutes(p)}</p>
 ${tagList(p.tags)}
 </header>
-<div class="prose">
+${p.cover ? `<figure class="post-cover">${coverImg(p, "cover", true)}</figure>\n` : ""}<div class="prose">
 ${p.html}</div>
 </article>
 <aside class="post-cta" aria-labelledby="cta-h">

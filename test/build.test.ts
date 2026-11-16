@@ -116,6 +116,76 @@ describe("derleme çıktısı", () => {
   });
 });
 
+describe("kapak görseli", () => {
+  const { out } = site({
+    "with-cover.md": post({ title: "With cover", date: "2026-11-10", cover: "/blog/images/example-cover.png", coverAlt: "A teal card", tags: ["a"] }),
+    "no-cover.md": post({ title: "No cover", date: "2026-11-09", tags: ["a"] }),
+  });
+
+  it("yazının başında, düzen kaymadan (genişlik/yükseklik), alt metinle", () => {
+    const html = read(out, "with-cover.html");
+    expect(html).toContain(
+      '<figure class="post-cover"><img class="cover" src="/blog/images/example-cover.png" alt="A teal card" width="1200" height="630" fetchpriority="high" decoding="async"></figure>',
+    );
+    expect(html.indexOf("post-cover")).toBeGreaterThan(html.indexOf("<h1>"));
+    expect(html.indexOf("post-cover")).toBeLessThan(html.indexOf('class="prose"'));
+  });
+
+  it("paylaşım kartı: og:image tam adres, alt metin, büyük kart", () => {
+    const html = read(out, "with-cover.html");
+    expect(html).toContain('<meta property="og:image" content="https://gethanas.com/blog/images/example-cover.png">');
+    expect(html).toContain('<meta property="og:image:alt" content="A teal card">');
+    expect(html).toContain('<meta name="twitter:card" content="summary_large_image">');
+    expect(html).toContain('<meta name="twitter:image" content="https://gethanas.com/blog/images/example-cover.png">');
+  });
+
+  it("kapaksız yazıda og:image yok, küçük kart", () => {
+    const html = read(out, "no-cover.html");
+    expect(html).not.toContain("og:image");
+    expect(html).toContain('<meta name="twitter:card" content="summary">');
+    expect(html).not.toContain('class="post-cover"');
+  });
+
+  it("listede ve ilgili yazılarda küçük kapak (tembel yükleme)", () => {
+    const index = read(out, "index.html");
+    expect(index).toContain('<li class="post-card post-card--cover">');
+    expect(index).toContain('<img class="cover" src="/blog/images/example-cover.png" alt="A teal card" width="1200" height="630" loading="lazy" decoding="async">');
+    expect(read(out, "no-cover.html").slice(read(out, "no-cover.html").indexOf('id="related-h"'))).toContain("example-cover.png");
+  });
+
+  it("CSP'ye uygun kalır (satır içi stil yok)", () => {
+    for (const f of ["index.html", "with-cover.html", "no-cover.html"]) expect(read(out, f)).not.toMatch(/\sstyle=|<script/i);
+  });
+});
+
+describe("canonical", () => {
+  const { out, r } = site({
+    "republished.md": post({ title: "Republished", date: "2026-11-10", canonical: "https://www.linkedin.com/pulse/original-article" }),
+    "original.md": post({ title: "Original", date: "2026-11-09" }),
+  });
+
+  it("verilen adres canonical ve og:url olur", () => {
+    const html = read(out, "republished.html");
+    expect(html).toContain('<link rel="canonical" href="https://www.linkedin.com/pulse/original-article">');
+    expect(html).toContain('<meta property="og:url" content="https://www.linkedin.com/pulse/original-article">');
+    expect(read(out, "original.html")).toContain('<link rel="canonical" href="https://gethanas.com/blog/original">');
+  });
+
+  it("başka adresi gösteren yazı sitemap'e girmez, listede ve RSS'te kalır", () => {
+    expect(r.posts).toHaveLength(2);
+    const sitemap = read(out, "sitemap.xml");
+    expect(sitemap).not.toContain("/blog/republished");
+    expect(sitemap).toContain("/blog/original");
+    expect(read(out, "index.html")).toContain('href="/blog/republished"');
+    expect(read(out, "feed.xml")).toContain("<link>https://gethanas.com/blog/republished</link>");
+  });
+
+  it("canonical adresindeki & gibi karakterler kaçışlanır", () => {
+    const { out: o } = site({ "q.md": post({ canonical: "https://example.com/a?x=1&y=2" }) });
+    expect(read(o, "q.html")).toContain('<link rel="canonical" href="https://example.com/a?x=1&amp;y=2">');
+  });
+});
+
 describe("yayında yazı yokken", () => {
   it("liste noindex, sitemap boş, RSS geçerli ve öğesiz", () => {
     const { out, r } = site({ "only-draft.md": post({ draft: true }) });
