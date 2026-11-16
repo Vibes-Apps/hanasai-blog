@@ -1,6 +1,8 @@
 ---
 title: 'AI Receptionist for Hotels: What It Costs in the UK (2026)'
 description: Published prices for AI phone receptionists, compared with UK night staff and answering services, using sourced figures and transparent workings.
+cover: /blog/images/blog2-ai-receptionist-hotel-cost-uk.jpg
+coverAlt: Glass app tiles on a dark violet and teal background showing a pound sign, a phone, a price tag and a clock.
 date: 2026-11-16
 author: Hanas team
 tags:
