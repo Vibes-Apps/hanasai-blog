@@ -3,14 +3,12 @@ title: 7 Best AI Receptionists for UK Small Hotels and B&Bs (2026)
 description: A research-based shortlist of AI phone receptionists for small independent UK hotels, B&Bs and inns, compared on price, booking, PMS and data location.
 date: 2026-11-16
 author: hanas.ai
-canonical: https://gethanas.com/blog/best-ai-receptionist-small-hotels-uk/
+tags:
+  - ai-receptionist
+  - hotels-and-bbs
+  - comparisons
+  - pricing-and-costs
 draft: false
----
-
-**Başlık:** 7 Best AI Receptionists for UK Small Hotels and B&Bs (2026)
-
-**Meta description:** A research-based shortlist of AI phone receptionists for small independent UK hotels, B&Bs and inns, compared on price, booking, PMS and data location.
-
 ---
 
 > **Disclosure.** We make Hanas, one of the products on this list. We have tried to be fair, and we say where Hanas is the weaker choice. Everything below about other vendors comes from their public websites, checked on 15 November 2026 (prices and features as read on that date). We did not test any of the other products. The Hanas details come from our own product and our own website.
@@ -42,7 +40,7 @@ We ordered the seven by how well each matches a small independent hotel that wan
 ## At a glance
 
 | Product | Best for | Published price | Books on the call | Payment on the call | PMS named | Data location stated |
-|---|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- | --- |
 | Hanas | Small independents wanting a public price and staff approval | £49 a month, 150 minutes included (early-access price, ex VAT) | Sends a request for staff approval | No (current default) | None yet (roadmap) | Ireland, with US speech processing |
 | Motel4 | Self-serve enquiry capture | $149 to $599 a month, free 30 minutes | Captures an enquiry | Not stated | None needed | Not stated |
 | D3x | PMS-connected phone AI for independents | €5 per room a month, plus €100 a month for 5 phone hours | Looks up and confirms changes in the PMS | Not stated | Mews, Opera, Cloudbeds, Apaleo and others | Not stated |
@@ -159,6 +157,6 @@ Vendor pages read on 15 November 2026: [Hanas](https://gethanas.com/), [Motel4](
 
 Product names and trademarks belong to their owners. Hanas is not affiliated with any other vendor named here.
 
----
+***
 
 Kopyalarken dikkat: Chat'ten kopyalayınca tablo ve linkler düz metne dönebilir. Sveltia'nın editöründe "Markdown" modunu seçip yapıştırırsan tablo ve linkler korunur.
