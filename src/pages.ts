@@ -2,6 +2,9 @@ import { BASE, BLOG_DESCRIPTION, BLOG_TITLE, BLOG_URL, CTA_URL, FEED_TITLE, LANG
 import type { Post } from "./posts.js";
 import { coverPath } from "./schema.js";
 import type { Shell } from "./shell.js";
+import { tagLabel, TAGS } from "./tags.js";
+
+type Tag = (typeof TAGS)[number];
 
 // Blog sayfalarının HTML'i. CSP (public/_headers): script yok, satır içi stil yok; her görünüm assets'teki CSS'te.
 // Görünüm çekirdekteki alt sayfalarla aynı iskelet: üst çubuk + <main class="doc"> + footer (Ink & Lagoon).
@@ -35,7 +38,6 @@ interface Meta {
   image?: { url: string; alt: string };
 }
 
-export const postPath = (slug: string): string => `${BASE}/${slug}`;
 export const tagPath = (tag: string): string => `${BASE}/tag/${tag}`;
 const abs = (path: string): string => `${SITE_URL}${path}`;
 
@@ -103,16 +105,36 @@ ${ctx.shell.footer}
 `;
 }
 
+// Kartlardaki küçük etiketler (görünen ad, etiket sayfasına link).
 const tagList = (tags: string[]): string =>
-  tags.length ? `<ul class="post-tags" aria-label="Tags">${tags.map((t) => `<li><a class="tag" href="${tagPath(t)}">${esc(t)}</a></li>`).join("")}</ul>` : "";
+  tags.length ? `<ul class="post-tags" aria-label="Topics">${tags.map((t) => `<li><a class="tag" href="${tagPath(t)}">${esc(tagLabel(t))}</a></li>`).join("")}</ul>` : "";
+
+// Yazı başlığının üstündeki etiket kutucukları (yazının bütün etiketleri).
+const topicPills = (tags: string[]): string =>
+  tags.length
+    ? `<ul class="post-topics" aria-label="Topics">${tags.map((t) => `<li><a class="topic-pill" href="${tagPath(t)}">${esc(tagLabel(t))}</a></li>`).join("")}</ul>`
+    : "";
+
+// Liste ve etiket sayfalarındaki büyük konu butonları: "All" + sabit listenin bütün etiketleri (yazısı olmasa da), Ahmet'in sırasıyla.
+// JavaScript yok: her buton kendi sayfasına giden bir link, etkin olan aria-current ile işaretli.
+function topicBar(active: string | null): string {
+  const item = (href: string, label: string, on: boolean) =>
+    `<li><a class="topic${on ? " topic--active" : ""}" href="${href}"${on ? ' aria-current="page"' : ""}>${esc(label)}</a></li>`;
+  return `<nav class="topics" aria-label="Topics">
+<ul>
+${item(`${BASE}/`, "All", active === null)}
+${TAGS.map((t) => item(tagPath(t.slug), t.label, active === t.slug)).join("\n")}
+</ul>
+</nav>`;
+}
 
 const minutes = (p: Post): string => `${p.readingMinutes} min read`;
 
 // Liste kartı: (varsa kapak), başlık, tarih, okuma süresi, açıklama, etiketler.
 function card(p: Post, h: "h2" | "h3"): string {
-  const cover = p.cover ? `<a class="post-card__cover" href="${postPath(p.slug)}" tabindex="-1" aria-hidden="true">${coverImg(p, "cover")}</a>\n` : "";
+  const cover = p.cover ? `<a class="post-card__cover" href="${p.path}" tabindex="-1" aria-hidden="true">${coverImg(p, "cover")}</a>\n` : "";
   return `<li class="post-card${p.cover ? " post-card--cover" : ""}">
-${cover}<${h} class="post-card__title"><a href="${postPath(p.slug)}">${esc(p.title)}</a></${h}>
+${cover}<${h} class="post-card__title"><a href="${p.path}">${esc(p.title)}</a></${h}>
 <p class="post-meta">${time(p.date)}<span aria-hidden="true"> · </span>${minutes(p)}</p>
 <p class="post-card__desc">${esc(p.description)}</p>
 ${tagList(p.tags)}
@@ -132,24 +154,26 @@ export function indexPage(posts: Post[], ctx: Ctx): string {
 <h1>${esc(BLOG_TITLE)}</h1>
 <p class="lead">${esc(BLOG_DESCRIPTION)}</p>
 </header>
+${topicBar(null)}
 ${body}`,
   );
 }
 
-export function tagPage(tag: string, posts: Post[], ctx: Ctx): string {
-  const n = posts.length;
+// Etiket sayfası: sabit listenin her etiketi için üretilir. Yazısı yoksa "henüz yazı yok" ve noindex (sitemap'e de girmez).
+export function tagPage(tag: Tag, posts: Post[], ctx: Ctx): string {
+  const body = posts.length
+    ? postList(posts)
+    : `<p class="blog-empty">No posts in this topic yet. <a href="${BASE}/">See all posts</a>.</p>`;
   return layout(
-    {
-      title: `Posts tagged “${tag}” · hanas.ai`,
-      description: `${n} ${n === 1 ? "post" : "posts"} tagged “${tag}” on the hanas.ai blog for boutique hotel owners in the UK.`,
-      path: tagPath(tag),
-    },
+    { title: `${tag.label} · hanas.ai blog`, description: tag.description, path: tagPath(tag.slug), noindex: posts.length === 0 },
     ctx,
     `<header class="blog-head">
 <p class="label"><a href="${BASE}/">Blog</a></p>
-<h1>Posts tagged “${esc(tag)}”</h1>
+<h1>${esc(tag.label)}</h1>
+<p class="lead">${esc(tag.description)}</p>
 </header>
-${postList(posts)}`,
+${topicBar(tag.slug)}
+${body}`,
   );
 }
 
@@ -165,11 +189,11 @@ ${postList(related, "h3")}
     {
       title: `${p.title} · hanas.ai`,
       description: p.description,
-      path: postPath(p.slug),
+      path: p.path,
       type: "article",
       published: p.date,
       ...(p.updated ? { modified: p.updated } : {}),
-      tags: p.tags,
+      tags: p.tags.map(tagLabel),
       canonical: p.canonicalUrl,
       ...(p.cover && p.coverAlt ? { image: { url: abs(coverPath(p.cover)), alt: p.coverAlt } } : {}),
     },
@@ -177,9 +201,9 @@ ${postList(related, "h3")}
     `<article class="post">
 <header class="post-head">
 <p class="label"><a href="${BASE}/">Blog</a></p>
+${topicPills(p.tags)}
 <h1>${esc(p.title)}</h1>
 <p class="post-meta">${time(p.date)}${updated}<span aria-hidden="true"> · </span>By ${esc(p.author)}<span aria-hidden="true"> · </span>${minutes(p)}</p>
-${tagList(p.tags)}
 </header>
 ${p.cover ? `<figure class="post-cover">${coverImg(p, "cover", true)}</figure>\n` : ""}<div class="prose">
 ${p.html}</div>
@@ -213,11 +237,11 @@ export function rssXml(posts: Post[]): string {
     .map(
       (p) => `    <item>
       <title>${x(p.title)}</title>
-      <link>${abs(postPath(p.slug))}</link>
-      <guid isPermaLink="true">${abs(postPath(p.slug))}</guid>
+      <link>${p.url}</link>
+      <guid isPermaLink="true">${p.url}</guid>
       <pubDate>${rfc822(p.date)}</pubDate>
       <description>${x(p.description)}</description>
-${p.tags.map((t) => `      <category>${x(t)}</category>`).join("\n")}
+${p.tags.map((t) => `      <category>${x(tagLabel(t))}</category>`).join("\n")}
     </item>`.replace(/\n\n/g, "\n"),
     )
     .join("\n");

@@ -3,17 +3,23 @@ import { join } from "node:path";
 import { parse as parseYaml } from "yaml";
 import { BASE, SITE_URL, WORDS_PER_MINUTE } from "./config.js";
 import { renderMarkdown } from "./markdown.js";
-import { coverFile, formatIssues, frontmatterSchema, SLUG_RE, type Frontmatter } from "./schema.js";
+import { coverFile, formatIssues, frontmatterSchema, isOwnBlogUrl, ownBlogSlug, SLUG_RE, type Frontmatter } from "./schema.js";
+import { TAGS } from "./tags.js";
 
-// Yazıları content/posts/*.md dosyalarından okur. Dosya adı = slug (adres: /blog/<slug>).
+// Yazıları content/posts/*.md dosyalarından okur. Dosya adı = slug (yazının kimliği). Yayın adresi normalde /blog/<slug>;
+// canonical kendi blogumuzun bir adresini gösteriyorsa yazı o adreste yayınlanır ve /blog/<slug> oraya 301 ile yönlenir.
 
 export interface Post extends Frontmatter {
+  // Dosya adı (kimlik; CMS'teki adres alanı). Yayın adresi için `path` kullanılır.
   slug: string;
-  // Yazının kendi tam adresi (https://gethanas.com/blog/<slug>).
+  // Yayın adresinin son parçası: canonical kendi blogumuzu gösteriyorsa oradan, yoksa slug.
+  urlSlug: string;
+  // Site içi yol (/blog/<urlSlug>) ve tam adres.
+  path: string;
   url: string;
-  // <link rel="canonical"> ve og:url: bilgi bloğundaki canonical, yoksa kendi adresi.
+  // <link rel="canonical"> ve og:url: başka bir sitenin adresi verildiyse o, yoksa yazının kendi adresi.
   canonicalUrl: string;
-  // Canonical başka bir adresi gösteriyorsa false: yazı sitemap'e girmez (Google sitemap'te yalnızca canonical adresleri ister).
+  // Canonical başka bir siteyi gösteriyorsa false: yazı sitemap'e girmez (Google sitemap'te yalnızca canonical adresleri ister).
   selfCanonical: boolean;
   file: string;
   html: string;
@@ -67,15 +73,20 @@ export function parsePost(file: string, src: string): Post {
   problems.push(...r.problems.map((m) => `${where}: ${m}`));
   if (problems.length || !parsed.success) throw new ContentError(problems);
 
-  const url = `${SITE_URL}${BASE}/${slug}`;
-  const canonicalUrl = parsed.data.canonical ?? url;
+  // Kendi blogumuzun adresi verildiyse yazı orada yayınlanır (schema bu adresin biçimini zaten denetledi).
+  const canonical = parsed.data.canonical;
+  const urlSlug = (canonical && ownBlogSlug(canonical)) || slug;
+  const path = `${BASE}/${urlSlug}`;
+  const url = `${SITE_URL}${path}`;
+  const external = !!canonical && !isOwnBlogUrl(canonical);
   return {
     ...parsed.data,
     slug,
+    urlSlug,
+    path,
     url,
-    canonicalUrl,
-    // Sondaki / farkı aynı adres sayılır.
-    selfCanonical: canonicalUrl.replace(/\/$/, "") === url,
+    canonicalUrl: external ? canonical! : url,
+    selfCanonical: !external,
     file: where,
     html: r.html,
     words: r.words,
@@ -124,14 +135,39 @@ export function loadPosts(dir: string, opts: { includeDrafts?: boolean; publicDi
     }
   }
   if (problems.length) throw new ContentError(problems);
-  return posts.filter((p) => opts.includeDrafts || !p.draft).sort(byDateDesc);
+  const out = posts.filter((p) => opts.includeDrafts || !p.draft).sort(byDateDesc);
+  checkAddresses(out);
+  return out;
 }
 
-// Etiket → yazılar (yazılar zaten yeniden eskiye sıralı gelir). Etiketler alfabetik.
+// Yayın adresleri çakışmamalı: iki yazı aynı adresi isteyemez, bir yazının yeni adresi başka bir yazının adresi olamaz.
+// Ayrılmış adresler (tag/, assets/, images/, feed.xml…) dosya adı ya da canonical olarak kullanılamaz.
+const RESERVED = new Set(["tag", "assets", "images", "feed", "sitemap", "404", "index"]);
+function checkAddresses(posts: Post[]): void {
+  const problems: string[] = [];
+  const owner = new Map<string, Post>();
+  for (const p of posts) {
+    if (RESERVED.has(p.urlSlug)) problems.push(`${p.file}: adres "${p.urlSlug}" ayrılmış, başka bir adres seçin`);
+    const prev = owner.get(p.urlSlug);
+    if (prev) problems.push(`${p.file}: adres /blog/${p.urlSlug} başka bir yazıda da kullanılıyor (${prev.file})`);
+    else owner.set(p.urlSlug, p);
+  }
+  // Taşınan yazının eski adresi (dosya adı) başka bir yazının yayın adresi olamaz: yönlendirme onu ezerdi.
+  for (const p of posts) {
+    const other = owner.get(p.slug);
+    if (p.urlSlug !== p.slug && other && other !== p) problems.push(`${p.file}: eski adres /blog/${p.slug}, ${other.file} yazısının adresiyle çakışıyor`);
+  }
+  if (problems.length) throw new ContentError(problems);
+}
+
+// Eski adresten (dosya adı) yeni adrese kalıcı yönlendirmeler: canonical'la taşınan yazılar.
+export const movedPosts = (posts: Post[]): { from: string; to: string }[] =>
+  posts.filter((p) => p.urlSlug !== p.slug).map((p) => ({ from: `${BASE}/${p.slug}`, to: p.path }));
+
+// Etiket → yazılar (yazılar zaten yeniden eskiye sıralı gelir). Sabit listenin bütün etiketleri, listedeki sırayla; yazısı olmayan
+// etiketin listesi boş.
 export function tagIndex(posts: Post[]): Map<string, Post[]> {
-  const m = new Map<string, Post[]>();
-  for (const p of posts) for (const t of p.tags) m.set(t, [...(m.get(t) ?? []), p]);
-  return new Map([...m.entries()].sort(([a], [b]) => a.localeCompare(b)));
+  return new Map(TAGS.map((t) => [t.slug, posts.filter((p) => p.tags.includes(t.slug))]));
 }
 
 // İlgili yazılar: önce ortak etiket sayısı, sonra en yeniler. Kendisi hariç, en fazla `limit`.

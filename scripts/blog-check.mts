@@ -41,7 +41,7 @@ try {
       check(`${label}: Hanken Grotesk yüklendi`, font);
       // Taşmanın kaynağını bulmak için: sayfadan geniş öğeler.
       const wide = await page.eval<string[]>(
-        `[...document.querySelectorAll("main *")].filter((e) => e.getBoundingClientRect().right > window.innerWidth + 1 && !e.closest(".table-wrap, pre")).slice(0, 5).map((e) => e.tagName + "." + e.className)`,
+        `[...document.querySelectorAll("main *")].filter((e) => e.getBoundingClientRect().right > window.innerWidth + 1 && !e.closest(".table-wrap, pre, .topics")).slice(0, 5).map((e) => e.tagName + "." + e.className)`,
       );
       check(`${label}: içerik ekrandan taşmıyor`, wide.length === 0, wide.join(", "));
       await page.screenshot(`${SHOTS}/blog-${path.replace(/[^a-z0-9]+/gi, "_")}-${w}.png`);

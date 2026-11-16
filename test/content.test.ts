@@ -4,6 +4,8 @@ import { mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { COVER_WARN_BYTES, ContentError, loadPosts, parsePost, readingMinutes, relatedPosts, splitFrontmatter, tagIndex, type Post } from "../src/posts.js";
+import { SLUG_RE } from "../src/schema.js";
+import { tagLabel, TAGS } from "../src/tags.js";
 import { DESC, contentDir, post } from "./helpers.js";
 
 const problemsOf = (fn: () => unknown): string[] => {
@@ -18,22 +20,23 @@ const problemsOf = (fn: () => unknown): string[] => {
 
 describe("bilgi bloğu doğrulaması", () => {
   it("geçerli yazıyı okur, varsayılanları doldurur", () => {
-    const p = parsePost("guest-calls.md", post({ author: undefined, tags: undefined, draft: undefined }));
+    const p = parsePost("guest-calls.md", post({ author: undefined, draft: undefined }));
     expect(p.slug).toBe("guest-calls");
     expect(p.author).toBe("The hanas.ai team");
-    expect(p.tags).toEqual([]);
     expect(p.draft).toBe(false);
+    // Taslakta etiket şartı yok.
+    expect(parsePost("x.md", post({ tags: undefined, draft: true })).tags).toEqual([]);
   });
 
   it("CMS'in boş bıraktığı isteğe bağlı alanları yok sayar", () => {
-    const p = parsePost("x.md", post({ updated: "", author: "", tags: null }));
+    const p = parsePost("x.md", post({ updated: "", author: "", tags: null, draft: true }));
     expect(p.updated).toBeUndefined();
     expect(p.author).toBe("The hanas.ai team");
     expect(p.tags).toEqual([]);
   });
 
   it("YAML'daki tırnaksız tarihi metin olarak okur", () => {
-    const src = `---\ntitle: T\ndescription: "${DESC}"\ndate: 2026-11-15\n---\n\nBody.\n`;
+    const src = `---\ntitle: T\ndescription: "${DESC}"\ndate: 2026-11-15\ndraft: true\n---\n\nBody.\n`;
     expect(parsePost("x.md", src).date).toBe("2026-11-15");
   });
 
@@ -44,8 +47,13 @@ describe("bilgi bloğu doğrulaması", () => {
     ["tarih biçimi", { date: "15/11/2026" }, "date: YYYY-AA-GG biçiminde olmalı"],
     ["olmayan tarih", { date: "2026-02-30" }, "date: geçerli bir tarih değil"],
     ["güncelleme önce", { date: "2026-11-10", updated: "2026-11-01" }, "updated: güncellenme tarihi yayın tarihinden önce olamaz"],
-    ["etiket biçimi", { tags: ["Guest Calls"] }, "tags.0: etiket küçük harf"],
-    ["aynı etiket", { tags: ["a", "a"] }, "tags: aynı etiket iki kez"],
+    ["listede olmayan etiket", { tags: ["guest-calls", "ai-receptionist"] }, 'tags.0: bilinmeyen etiket "guest-calls"; geçerli etiketler: ai-receptionist, voice-ai'],
+    ["aynı etiket", { tags: ["comparisons", "comparisons"] }, "tags: aynı etiket iki kez"],
+    ["yayında tek etiket", { tags: ["comparisons"] }, "tags: yayındaki yazıda en az 2 etiket olmalı"],
+    ["yayında etiketsiz", { tags: [] }, "tags: yayındaki yazıda en az 2 etiket olmalı"],
+    ["5 etiket", { tags: ["ai-receptionist", "voice-ai", "comparisons", "missed-calls", "product-news"] }, "tags: en fazla 4 etiket"],
+    ["kendi blogumuzda bozuk adres", { canonical: "https://gethanas.com/blog/Bad_Address" }, "canonical: kendi blog adresimizde adres kısmı küçük harf"],
+    ["kendi blogumuzda iç içe adres", { canonical: "https://gethanas.com/blog/a/b" }, "canonical: kendi blog adresimizde adres kısmı küçük harf"],
     ["taslak türü", { draft: "yes" }, "draft: true ya da false olmalı"],
     ["bilinmeyen alan", { category: "hotels" }, "bilinmeyen alan: category"],
   ])("%s → anlaşılır hata", (_name, fm, expected) => {
@@ -96,7 +104,22 @@ describe("kapak görseli ve canonical", () => {
     expect(own).toMatchObject({ url: "https://gethanas.com/blog/my-post", canonicalUrl: "https://gethanas.com/blog/my-post", selfCanonical: true });
     const ext = parsePost("my-post.md", post({ canonical: "https://www.linkedin.com/pulse/original-article" }));
     expect(ext).toMatchObject({ canonicalUrl: "https://www.linkedin.com/pulse/original-article", selfCanonical: false });
-    expect(parsePost("my-post.md", post({ canonical: "https://gethanas.com/blog/my-post/" })).selfCanonical).toBe(true);
+    expect(parsePost("my-post.md", post({ canonical: "https://gethanas.com/blog/my-post/" }))).toMatchObject({ urlSlug: "my-post", selfCanonical: true });
+  });
+
+  it("kendi blogumuzun adresi yazının yayın adresi olur; blog dışı kendi sayfamız ise 'asıl sayfa orada' anlamında kalır", () => {
+    const moved = parsePost("long-name.md", post({ canonical: "https://gethanas.com/blog/short-name/" }));
+    expect(moved).toMatchObject({
+      slug: "long-name",
+      urlSlug: "short-name",
+      path: "/blog/short-name",
+      url: "https://gethanas.com/blog/short-name",
+      canonicalUrl: "https://gethanas.com/blog/short-name",
+      selfCanonical: true,
+    });
+    expect(parsePost("x.md", post({ canonical: "https://www.gethanas.com/blog/other" })).urlSlug).toBe("other");
+    const compare = parsePost("x.md", post({ canonical: "https://gethanas.com/compare/dextr" }));
+    expect(compare).toMatchObject({ urlSlug: "x", canonicalUrl: "https://gethanas.com/compare/dextr", selfCanonical: false });
   });
 
   it("derlemede kapak dosyası yoksa durur, büyükse uyarır", () => {
@@ -223,6 +246,8 @@ describe("okuma süresi, etiketler, ilgili yazılar", () => {
       description: DESC,
       author: "a",
       draft: false,
+      urlSlug: slug,
+      path: `/blog/${slug}`,
       url: `https://gethanas.com/blog/${slug}`,
       canonicalUrl: `https://gethanas.com/blog/${slug}`,
       selfCanonical: true,
@@ -241,9 +266,18 @@ describe("okuma süresi, etiketler, ilgili yazılar", () => {
     expect(relatedPosts(me, [me])).toEqual([]);
   });
 
-  it("etiket dizini alfabetik, yazılar sırasını korur", () => {
-    const idx = tagIndex([mk("n", "2026-11-02", ["zeta", "alpha"]), mk("o", "2026-11-01", ["alpha"])]);
-    expect([...idx.keys()]).toEqual(["alpha", "zeta"]);
-    expect(idx.get("alpha")!.map((p) => p.slug)).toEqual(["n", "o"]);
+  it("etiket dizini sabit listenin bütün etiketleri, Ahmet'in sırasıyla; yazılar sırasını korur, boş etiket boş liste", () => {
+    const idx = tagIndex([mk("n", "2026-11-02", ["comparisons", "ai-receptionist"]), mk("o", "2026-11-01", ["ai-receptionist", "voice-ai"])]);
+    expect([...idx.keys()]).toEqual(TAGS.map((t) => t.slug));
+    expect(idx.get("ai-receptionist")!.map((p) => p.slug)).toEqual(["n", "o"]);
+    expect(idx.get("product-news")).toEqual([]);
+  });
+
+  it("etiketlerin görünen adları", () => {
+    expect(tagLabel("hotels-and-bbs")).toBe("Hotels & B&Bs");
+    expect(TAGS.map((t) => t.label)).toEqual([
+      "AI Receptionist", "Voice AI", "Hotels & B&Bs", "Other Industries", "Pricing & Costs", "Comparisons", "Missed Calls", "Legal & Compliance", "Integrations & PMS", "Product News",
+    ]);
+    for (const t of TAGS) expect(t.slug).toMatch(SLUG_RE);
   });
 });

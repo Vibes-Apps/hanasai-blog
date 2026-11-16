@@ -13,6 +13,26 @@
 .blog-head .lead { max-width: 38em; }
 .blog-empty { color: var(--ink-2); }
 
+/* ---------- Konu butonları (liste ve etiket sayfaları) ----------
+   Masaüstünde hepsi görünür (satır kırılır); telefonda tek satır, parmakla yana kaydırılır. JavaScript yok: her buton bir link. */
+.topics { margin: 0 0 32px; }
+.topics ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.topic { display: inline-flex; align-items: center; height: 44px; padding: 0 18px; border-radius: var(--r-md); border: 1.5px solid transparent; background: var(--paper-2); color: var(--ink-2); font-size: var(--fs-body); font-weight: var(--fw-regular); text-decoration: none; white-space: nowrap; transition: border-color var(--t-fast) var(--ease), color var(--t-fast) var(--ease); }
+.topic:hover { color: var(--ink); border-color: var(--line-input); text-decoration: none; }
+.topic--active, .topic--active:hover { background: var(--surface); color: var(--ink); border-color: var(--ink); font-weight: var(--fw-strong); }
+@media (max-width: 719px) {
+  .topics { margin-left: calc(-1 * var(--gutter)); margin-right: calc(-1 * var(--gutter)); }
+  .topics ul { flex-wrap: nowrap; overflow-x: auto; scroll-snap-type: x proximity; padding: 2px var(--gutter) 6px; scrollbar-width: none; }
+  .topics ul::-webkit-scrollbar { display: none; }
+  .topics li { scroll-snap-align: start; flex: none; }
+  .topic { height: 40px; padding: 0 14px; font-size: var(--fs-small); }
+}
+
+/* ---------- Yazı başlığının üstündeki etiket kutucukları ---------- */
+.post-topics { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.topic-pill { display: inline-flex; align-items: center; height: 32px; padding: 0 14px; border-radius: var(--r-pill); background: var(--accent-soft); color: var(--accent-text); font-size: var(--fs-small); font-weight: var(--fw-strong); text-decoration: none; white-space: nowrap; }
+.topic-pill:hover { text-decoration: underline; }
+
 /* ---------- Liste ---------- */
 .post-list { list-style: none; margin: 0; padding: 0; display: grid; }
 .post-card { display: grid; gap: 8px; padding: 24px 0; border-top: 1px solid var(--line); min-width: 0; }

@@ -120,6 +120,25 @@ try {
   check("kapak alt metni", await fillField(page, "Cover image alt text", COVER_ALT));
   await page.screenshot(`${SHOTS}/cms-4b-cover.png`);
 
+  // Etiketler: sabit listeden işaret kutusuyla 2 seçim (CMS en az 2 ister).
+  // Sveltia kutunun adını ayrı bir öğeden bağlar (aria-labelledby); yoksa kutunun bulunduğu satırın metni.
+  const NAME_OF = `const nameOf = (e) => (e.getAttribute("aria-label")
+      || (e.getAttribute("aria-labelledby") || "").split(" ").map((id) => document.getElementById(id)?.textContent || "").join(" ")
+      || e.closest("label")?.textContent || e.parentElement?.textContent || e.textContent || "").trim();`;
+  const tick = (label: string) =>
+    page.eval<boolean>(`(() => { ${NAME_OF}
+      const box = [...document.querySelectorAll('[role="checkbox"], input[type="checkbox"]')].find((e) => {
+        const text = nameOf(e);
+        return text === ${JSON.stringify(label)} || text.endsWith(" " + ${JSON.stringify(label)});
+      });
+      if (!box) return false; box.click(); return true; })()`);
+  const tagBoxes = await page.eval<string[]>(`(() => { ${NAME_OF} return [...document.querySelectorAll('[role="checkbox"], input[type="checkbox"]')].map(nameOf); })()`);
+  check("10 etiket işaret kutusu olarak görünüyor", ["AI Receptionist", "Hotels & B&Bs", "Product News"].every((l) => tagBoxes.some((t) => t.endsWith(l))), tagBoxes.join(" | "));
+  check("etiket: AI Receptionist", await tick("AI Receptionist"));
+  check("etiket: Comparisons", await tick("Comparisons"));
+  await sleep(400);
+  await page.screenshot(`${SHOTS}/cms-4c-tags.png`);
+
   check("kaydet", await clickByText(page, /Save( as Draft)?/i));
   check("kaydedildi", await waitFor(page, `!/Creating/.test(document.body.innerText)`, 8000));
   await sleep(1000);
@@ -151,6 +170,7 @@ try {
     const p = parsePost(names[0]!, files[names[0]!]!);
     check("CMS'in yazdığı dosya blog şemasından geçti", p.title === TITLE && p.description === DESC && p.draft === true && /^\d{4}-\d{2}-\d{2}$/.test(p.date));
     check("kapak yolu /blog/images altında, dosya adı düzeltilmiş", p.cover === "/blog/images/example-cover-1.png" && p.coverAlt === COVER_ALT, `${p.cover} | ${p.coverAlt}`);
+    check("etiketler adres kısmıyla kaydedildi", JSON.stringify([...p.tags].sort()) === JSON.stringify(["ai-receptionist", "comparisons"]), p.tags.join(", "));
   } catch (e) {
     check("CMS'in yazdığı dosya blog şemasından geçti", false, `${(e as Error).message}\n${files[names[0]!]}`);
   }
