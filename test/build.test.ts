@@ -7,6 +7,12 @@ import { withBlogLink } from "../src/shell.js";
 import { contentDir, outDir, post } from "./helpers.js";
 
 const read = (dir: string, f: string) => readFileSync(join(dir, f), "utf8");
+// JSON-LD veri blokları (VIB-72): çalıştırılmaz, CSP'nin script yasağına girmez. Diğer her şey script'siz kalmalı.
+const LD_RE = /<script type="application\/ld\+json">([\s\S]*?)<\/script>/g;
+const stripLd = (html: string): string => html.replace(LD_RE, "");
+type LdNode = Record<string, unknown> & { "@type": string };
+const ldGraph = (html: string): LdNode[] => [...html.matchAll(LD_RE)].flatMap((m) => JSON.parse(m[1]!)["@graph"] as LdNode[]);
+const ldOf = (html: string, t: string): LdNode[] => ldGraph(html).filter((n) => n["@type"] === t);
 
 function site(files: Record<string, string>) {
   const out = outDir();
@@ -51,14 +57,14 @@ describe("derleme çıktısı", () => {
 
   it("yazı sayfası: meta etiketleri, güncellenme tarihi, yazar, CTA ve ilgili yazılar", () => {
     const html = read(out, "guest-calls.html");
-    expect(html).toContain("<title>Missed calls &amp; bookings · hanas.ai</title>");
+    expect(html).toContain("<title>Missed calls &amp; bookings · Hanas</title>");
     expect(html).toContain('<link rel="canonical" href="https://gethanas.com/blog/guest-calls">');
     expect(html).toContain('<meta property="og:type" content="article">');
     expect(html).toContain('<meta property="article:published_time" content="2026-11-10">');
     expect(html).toContain('<meta property="article:modified_time" content="2026-11-12">');
     expect(html).toContain('<meta name="twitter:card" content="summary">');
     expect(html).toContain('Updated <time datetime="2026-11-12">12 November 2026</time>');
-    expect(html).toContain("By The hanas.ai team");
+    expect(html).toContain("By The Hanas team");
     expect(html).toContain('<a class="btn btn--primary" href="/#early-access">Get early access</a>');
     const related = html.slice(html.indexOf('id="related-h"'));
     expect(related.indexOf("/blog/late-arrivals")).toBeGreaterThan(-1);
@@ -66,10 +72,10 @@ describe("derleme çıktısı", () => {
     expect(related).not.toContain('href="/blog/guest-calls"');
   });
 
-  it("CSP'ye uygun: script yok, satır içi stil yok", () => {
+  it("CSP'ye uygun: JSON-LD veri bloğu dışında script yok, satır içi stil yok", () => {
     for (const f of r.files.filter((x) => x.endsWith(".html"))) {
       const s = read(out, f);
-      expect(s, f).not.toMatch(/<script|<style|\sstyle=/i);
+      expect(stripLd(s), f).not.toMatch(/<script|<style|\sstyle=/i);
     }
     expect(read(out, "_headers")).toMatch(/Content-Security-Policy: default-src 'none'; style-src 'self'/);
   });
@@ -155,7 +161,7 @@ describe("kapak görseli", () => {
   });
 
   it("CSP'ye uygun kalır (satır içi stil yok)", () => {
-    for (const f of ["index.html", "with-cover.html", "no-cover.html"]) expect(read(out, f)).not.toMatch(/\sstyle=|<script/i);
+    for (const f of ["index.html", "with-cover.html", "no-cover.html"]) expect(stripLd(read(out, f))).not.toMatch(/\sstyle=|<script/i);
   });
 });
 
@@ -289,5 +295,87 @@ describe("footer Blog linki", () => {
   });
   it("Company sütunu yoksa açık hata verir", () => {
     expect(() => withBlogLink("<footer></footer>")).toThrow(/Company/);
+  });
+});
+
+// VIB-72 (çekirdek TECH_PLAN §28): BlogPosting + BreadcrumbList, liste ve etiket sayfalarında ItemList; marka "Hanas".
+describe("yapılandırılmış veri (JSON-LD) ve marka", () => {
+  const ORG = { "@type": "Organization", "@id": "https://gethanas.com/#org", name: "Hanas", url: "https://gethanas.com/", logo: "https://gethanas.com/logo-512.png" };
+  const { out, r } = site({
+    "with-cover.md": post({ title: "Cover </script> & co", date: "2026-11-10", updated: "2026-11-14", cover: "/blog/images/example-cover.png", coverAlt: "A teal card", tags: ["missed-calls", "hotels-and-bbs"] }),
+    "plain.md": post({ title: "Plain", date: "2026-11-09", tags: ["missed-calls", "voice-ai"] }),
+    "elsewhere.md": post({ title: "Elsewhere", date: "2026-11-08", canonical: "https://www.linkedin.com/pulse/original-article", tags: ["voice-ai", "ai-receptionist"] }),
+  });
+
+  it("yazı: BlogPosting (yazar ve yayıncı Organization Hanas, kapak, tarihler, canonical)", () => {
+    const [bp] = ldOf(read(out, "with-cover.html"), "BlogPosting");
+    expect(bp).toMatchObject({
+      "@id": "https://gethanas.com/blog/with-cover#article",
+      headline: "Cover </script> & co",
+      url: "https://gethanas.com/blog/with-cover",
+      datePublished: "2026-11-10",
+      dateModified: "2026-11-14",
+      image: "https://gethanas.com/blog/images/example-cover.png",
+      author: ORG,
+      publisher: ORG,
+      mainEntityOfPage: { "@type": "WebPage", "@id": "https://gethanas.com/blog/with-cover" },
+      inLanguage: "en-GB",
+      keywords: ["Missed Calls", "Hotels & B&Bs"],
+    });
+    expect(bp!.description).toBe(r.posts.find((p) => p.slug === "with-cover")!.description);
+  });
+
+  it("güncellenmeyen ve kapaksız yazıda dateModified ve image yok; dış canonical mainEntityOfPage olur", () => {
+    const [plain] = ldOf(read(out, "plain.html"), "BlogPosting");
+    expect(plain).not.toHaveProperty("dateModified");
+    expect(plain).not.toHaveProperty("image");
+    expect(ldOf(read(out, "elsewhere.html"), "BlogPosting")[0]!.mainEntityOfPage).toEqual({ "@type": "WebPage", "@id": "https://www.linkedin.com/pulse/original-article" });
+  });
+
+  it("yazıda BreadcrumbList: Home › Blog › yazı", () => {
+    const [bc] = ldOf(read(out, "plain.html"), "BreadcrumbList");
+    expect(bc!.itemListElement).toEqual([
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://gethanas.com/" },
+      { "@type": "ListItem", position: 2, name: "Blog", item: "https://gethanas.com/blog/" },
+      { "@type": "ListItem", position: 3, name: "Plain", item: "https://gethanas.com/blog/plain" },
+    ]);
+  });
+
+  it("liste ve etiket sayfası: BreadcrumbList + ItemList, sayfadaki sırayla", () => {
+    const index = read(out, "index.html");
+    expect((ldOf(index, "BreadcrumbList")[0]!.itemListElement as unknown[]).length).toBe(2);
+    const list = ldOf(index, "ItemList")[0]!;
+    expect(list.numberOfItems).toBe(3);
+    expect((list.itemListElement as { url: string }[]).map((x) => x.url)).toEqual(r.posts.map((p) => p.url));
+    const tag = read(out, "tag/missed-calls.html");
+    expect((ldOf(tag, "BreadcrumbList")[0]!.itemListElement as { item: string }[]).at(-1)!.item).toBe("https://gethanas.com/blog/tag/missed-calls");
+    expect((ldOf(tag, "ItemList")[0]!.itemListElement as { url: string }[]).map((x) => x.url)).toEqual([
+      "https://gethanas.com/blog/with-cover",
+      "https://gethanas.com/blog/plain",
+    ]);
+  });
+
+  it("noindex sayfalarda (boş etiket, 404) JSON-LD yok", () => {
+    expect(read(out, "tag/product-news.html")).not.toContain("application/ld+json");
+    expect(read(out, "404.html")).not.toContain("application/ld+json");
+  });
+
+  it('"<" kaçırılır: başlıktaki </script> veri bloğunu kapatamaz; blok geçerli JSON', () => {
+    const html = read(out, "with-cover.html");
+    const blocks = [...html.matchAll(LD_RE)];
+    expect(blocks).toHaveLength(1);
+    expect(blocks[0]![1]).not.toContain("<");
+    expect(() => ldGraph(html)).not.toThrow();
+  });
+
+  it('marka: og:site_name ve başlıklar "Hanas"; şablonda "hanas.ai" yok', () => {
+    for (const f of r.files.filter((x) => /\.(html|xml)$/.test(x))) {
+      const s = read(out, f);
+      expect(s, f).not.toMatch(/hanas\.ai/i);
+      if (f.endsWith(".html")) expect(s, f).toContain('<meta property="og:site_name" content="Hanas">');
+    }
+    expect(read(out, "index.html")).toContain("<title>Blog · Hanas</title>");
+    expect(read(out, "tag/missed-calls.html")).toContain("· Hanas blog</title>");
+    expect(read(out, "feed.xml")).toContain("<title>Hanas blog</title>");
   });
 });

@@ -25,7 +25,8 @@ const html = await (await get(PAGE)).text();
 const header = pick(html, /<header class="top"[\s\S]*?<\/header>/, "üst çubuk (<header class=\"top\">)");
 const footer = pick(html, /<footer class="foot">[\s\S]*?<\/footer>/, "footer (<footer class=\"foot\">)");
 const cssHref = pick(html, /<link rel="stylesheet" href="([^"]+)">/, "stylesheet linki");
-const iconHref = pick(html, /<link rel="icon" href="([^"]+)"/, "favicon linki");
+// SVG ikon: çekirdek 2026-11-18'den (VIB-72) beri önce /favicon.ico'yu listeliyor; blog yalnızca SVG'yi kullanır.
+const iconHref = pick(html, /<link rel="icon" href="([^"]+)" type="image\/svg\+xml">/, "SVG favicon linki");
 
 const cssUrl = new URL(cssHref, PAGE);
 let css = await (await get(cssUrl.href)).text();

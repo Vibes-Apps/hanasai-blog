@@ -22,7 +22,7 @@ describe("bilgi bloğu doğrulaması", () => {
   it("geçerli yazıyı okur, varsayılanları doldurur", () => {
     const p = parsePost("guest-calls.md", post({ author: undefined, draft: undefined }));
     expect(p.slug).toBe("guest-calls");
-    expect(p.author).toBe("The hanas.ai team");
+    expect(p.author).toBe("The Hanas team");
     expect(p.draft).toBe(false);
     // Taslakta etiket şartı yok.
     expect(parsePost("x.md", post({ tags: undefined, draft: true })).tags).toEqual([]);
@@ -31,7 +31,7 @@ describe("bilgi bloğu doğrulaması", () => {
   it("CMS'in boş bıraktığı isteğe bağlı alanları yok sayar", () => {
     const p = parsePost("x.md", post({ updated: "", author: "", tags: null, draft: true }));
     expect(p.updated).toBeUndefined();
-    expect(p.author).toBe("The hanas.ai team");
+    expect(p.author).toBe("The Hanas team");
     expect(p.tags).toEqual([]);
   });
 

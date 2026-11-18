@@ -1,4 +1,4 @@
-# hanas.ai blog
+# Hanas blog
 
 `https://gethanas.com/blog` ve yönetim ekranı `https://cms.gethanas.com`. Ürün çekirdeğinden (`Vibes-Apps/hanasai`) ayrı repo ve
 ayrı Worker'lar; mimari kararı ve gerekçesi çekirdek repoda `docs/TECH_PLAN.md` §19. Yazarlar için: [docs/BLOG.md](docs/BLOG.md).
@@ -46,6 +46,14 @@ scripts/               tarayıcı kontrolleri (blog-check, cms-check), sync-site
   - Başka bir site (ya da gethanas.com'un blog dışı bir sayfası) → `<link rel="canonical">` ve `og:url` o adres; yazı kendi adresinde
     kalır ama `sitemap.xml`'e girmez.
   - Yazının kimliği dosya adıdır (`slug`); yayın adresi `urlSlug`/`path`/`url`.
+- **Yapılandırılmış veri (JSON-LD, `src/seo.ts`; VIB-72, çekirdek TECH_PLAN §28):** `<script type="application/ld+json">`, `@graph`,
+  `<` karakteri unicode kaçışıyla yazılır (metindeki `</script>` bloğu erken kapatamaz). Yazı: `BlogPosting` (`headline`, `description`, `datePublished`, `updated` varsa `dateModified`, kapak varsa
+  `image`, `author` ve `publisher` = Organization "Hanas" `@id https://gethanas.com/#org` (kişi adı yok), `mainEntityOfPage` = canonical,
+  etiketler `keywords`) + `BreadcrumbList` (Home › Blog › yazı). `/blog/` ve etiket sayfaları: `BreadcrumbList` + yazıların `ItemList`'i.
+  noindex sayfalarda (boş etiket, 404) yok. Veri bloğu çalıştırılmaz: script'e izin vermeyen CSP onu engellemez (`npm run check`, ihlal
+  yok). Liste yazılarının ("7 best …") içeriğinden `ItemList` üretmek kapsam dışı.
+- **Marka:** şablonda "Hanas" (`BRAND`, `src/config.ts`): `og:site_name`, başlıklar, RSS başlığı, varsayılan yazar "The Hanas team".
+  Logodaki yazı (`vendor/site`) çekirdekle aynı kalır. Yazıların içeriği (ör. `author` alanı) editörün.
 
 ## Komutlar
 
@@ -111,10 +119,11 @@ npx wrangler secret put GITHUB_CLIENT_SECRET -c cms/wrangler.jsonc    # değeri 
 | Parça | Çekirdekte | Blogda | Güncelleme |
 | --- | --- | --- | --- |
 | Üst çubuk, footer | `site/pages.ts` `headerHtml`/`footerHtml` | `vendor/site/header.html`, `footer.html` (+ Blog linki `src/shell.ts`) | `npm run sync-site` |
-| Site CSS'i, font, favicon | `site/style.css`, `site/fonts/`, `site/static/favicon.svg` | `vendor/site/site.css`, `assets/`, `favicon.svg` | `npm run sync-site` |
+| Site CSS'i, font, favicon | `site/style.css`, `site/fonts/`, `site/static/favicon.svg` | `vendor/site/site.css`, `assets/`, `favicon.svg` (sayfadaki SVG ikon linkinden) | `npm run sync-site` |
 | Güvenlik başlıkları | `site/static/_headers` | `public/_headers` (daha katı: script yok) | elle |
 | CTA metni | landing "Early access" bölümü | `src/pages.ts` `postPage` | elle |
-| Blog linki (footer) | bayrak, ilk yazı yayınlanınca açılır | her zaman | çekirdek repo |
+| Blog linki (footer) | `BLOG_LIVE`, 2026-11-18'den beri açık | her zaman | çekirdek repo |
+| Marka ve Organization | `BRAND`, JSON-LD `Organization` (`@id https://gethanas.com/#org`, `/logo-512.png`) | `BRAND`, `ORG_ID`, `ORG_LOGO` (`src/config.ts`) | elle |
 | `robots.txt` | `Sitemap: https://gethanas.com/blog/sitemap.xml` | — | çekirdek repo |
 
 Fiyatlar ve saklama süreleri blogda yok (yazılarda fiyat rakamı yazılmaz, `/#pricing`'e link verilir): kopyalanan olgu yok.

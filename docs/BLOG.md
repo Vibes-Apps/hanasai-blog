@@ -1,6 +1,6 @@
 # Blog yazar kılavuzu
 
-hanas.ai blogu **https://gethanas.com/blog** adresinde. Yazılar tarayıcıdan, yönetim ekranında yazılır ve yayınlanır:
+Hanas blogu **https://gethanas.com/blog** adresinde. Yazılar tarayıcıdan, yönetim ekranında yazılır ve yayınlanır:
 **https://cms.gethanas.com**. Kod bilgisi gerekmez.
 
 ## Giriş
@@ -42,7 +42,7 @@ varken site bozulmaz; son çalışan hali yayında kalır.
 | **Cover image alt text** | Kapak varsa **zorunlu**, en çok 200 karakter: görseli göremeyen biri için ne gösterdiğini anlatın. | Ekran okuyucular, paylaşım kartı |
 | **Publish date** | Zorunlu. Yayın tarihi; liste yeniden eskiye bu tarihe göre sıralanır. | Yazı ve liste |
 | **Updated** | İsteğe bağlı. Yalnızca yazıdaki bilgiyi değiştirdiyseniz (yazım düzeltmesi için değil). | Yazının üstünde "Updated …" |
-| **Author** | İsteğe bağlı. Boş bırakılırsa "The hanas.ai team". | Yazının üstünde "By …" |
+| **Author** | İsteğe bağlı. Boş bırakılırsa "The Hanas team". Marka adı "Hanas" (2026-11-18); "hanas.ai" yazmayın. Arama motorları için yazar her zaman şirket (Hanas) olarak işaretlenir. | Yazının üstünde "By …" |
 | **Tags** | Sabit listeden **2–4 etiket** işaretlenir (aşağıda). Yayındaki yazıda en az 2 zorunlu. | Başlığın üstündeki kutucuklar, blogdaki konu butonları, etiket sayfaları, ilgili yazılar |
 | **Canonical URL** | İsteğe bağlı. Yazıya başlıktan gelenden **farklı bir adres** vermek için: `https://gethanas.com/blog/istediginiz-adres`. Yalnızca yazı önce başka bir sitede yayınlandıysa o sitenin adresi. | Yazının adresi (aşağıda) |
 | **Draft** | Yeni yazıda açık. Kapatıp kaydetmek = yayınlamak. | — |
@@ -121,6 +121,9 @@ Kurallar:
 - **Fiyat rakamı yazmayın:** paketler ve fiyatlar değişebilir; [pricing](/#pricing) bölümüne link verin.
 - **Ürün hakkında:** yalnızca bugün çalışanı yazın; landing'de olmayan özellik vaat etmeyin (ör. PMS entegrasyonu "roadmap").
 - **Alıntılar** gerçek kişilerden, izinle ve adıyla. Uydurma alıntı ya da müşteri yorumu yok.
+- **Marka adı:** "Hanas" (sahibinin kararı, 2026-11-18). "hanas.ai" yazmayın; logo görseli aynı kalır.
+- **Arama motorları:** her yazıya başlık, açıklama, tarih ve kapaktan otomatik yapılandırılmış veri (JSON-LD) eklenir; sizin bir şey
+  yapmanız gerekmez. Açıklamanın iyi yazılması ve "Updated" tarihinin içerik değişince güncellenmesi yeterli.
 
 ## Örnek yazı
 
