@@ -12,7 +12,7 @@ export const TAGS = [
   { slug: "missed-calls", label: "Missed Calls", description: "Posts about missed calls at small hotels: when they happen and what they cost in bookings." },
   { slug: "legal-and-compliance", label: "Legal & Compliance", description: "Posts about UK rules that matter when a hotel's phone is answered by AI, such as data protection." },
   { slug: "integrations-and-pms", label: "Integrations & PMS", description: "Posts about connecting an AI receptionist to the systems a hotel already uses, such as its PMS." },
-  { slug: "product-news", label: "Product News", description: "News about hanas.ai: new features, changes and what is coming next." },
+  { slug: "product-news", label: "Product News", description: "News about Hanas: new features, changes and what is coming next." },
 ] as const;
 
 export type TagSlug = (typeof TAGS)[number]["slug"];

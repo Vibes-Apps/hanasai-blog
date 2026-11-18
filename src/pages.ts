@@ -1,6 +1,7 @@
-import { BASE, BLOG_DESCRIPTION, BLOG_TITLE, BLOG_URL, CTA_URL, FEED_TITLE, LANG, SITE_URL } from "./config.js";
+import { BASE, BLOG_DESCRIPTION, BLOG_TITLE, BLOG_URL, BRAND, CTA_URL, FEED_TITLE, LANG, SITE_URL } from "./config.js";
 import type { Post } from "./posts.js";
 import { coverPath } from "./schema.js";
+import { blogPosting, breadcrumb, itemList, jsonLdScript, type LdNode } from "./seo.js";
 import type { Shell } from "./shell.js";
 import { tagLabel, TAGS } from "./tags.js";
 
@@ -36,6 +37,8 @@ interface Meta {
   canonical?: string;
   // Paylaşım kartı görseli (kapak); varsa büyük kart (summary_large_image).
   image?: { url: string; alt: string };
+  // Yapılandırılmış veri (VIB-72): src/seo.ts. noindex sayfada yazılmaz.
+  jsonLd?: LdNode[];
 }
 
 export const tagPath = (tag: string): string => `${BASE}/tag/${tag}`;
@@ -66,7 +69,7 @@ function head(m: Meta, a: Assets): string {
     ...(a.font ? [`<link rel="preload" href="${BASE}/${a.font}" as="font" type="font/woff2" crossorigin>`] : []),
     `<link rel="stylesheet" href="${BASE}/${a.css}">`,
     `<link rel="alternate" type="application/rss+xml" title="${esc(FEED_TITLE)}" href="${BLOG_URL}feed.xml">`,
-    `<meta property="og:site_name" content="hanas.ai">`,
+    `<meta property="og:site_name" content="${BRAND}">`,
     `<meta property="og:locale" content="en_GB">`,
     `<meta property="og:type" content="${m.type ?? "website"}">`,
     `<meta property="og:title" content="${esc(m.title)}">`,
@@ -84,6 +87,7 @@ function head(m: Meta, a: Assets): string {
     ...(m.image
       ? [`<meta name="twitter:image" content="${esc(m.image.url)}">`, `<meta name="twitter:image:alt" content="${esc(m.image.alt)}">`]
       : []),
+    ...(m.jsonLd?.length && !m.noindex ? [jsonLdScript(m.jsonLd)] : []),
   ];
   return lines.join("\n");
 }
@@ -148,7 +152,13 @@ export function indexPage(posts: Post[], ctx: Ctx): string {
     ? postList(posts)
     : `<p class="blog-empty">There are no posts yet. Please check back soon.</p>`;
   return layout(
-    { title: `${BLOG_TITLE} · hanas.ai`, description: BLOG_DESCRIPTION, path: `${BASE}/`, noindex: posts.length === 0 },
+    {
+      title: `${BLOG_TITLE} · ${BRAND}`,
+      description: BLOG_DESCRIPTION,
+      path: `${BASE}/`,
+      noindex: posts.length === 0,
+      jsonLd: [breadcrumb([["Blog", BLOG_URL]]), itemList(BLOG_URL, posts)],
+    },
     ctx,
     `<header class="blog-head">
 <h1>${esc(BLOG_TITLE)}</h1>
@@ -165,7 +175,13 @@ export function tagPage(tag: Tag, posts: Post[], ctx: Ctx): string {
     ? postList(posts)
     : `<p class="blog-empty">No posts in this topic yet. <a href="${BASE}/">See all posts</a>.</p>`;
   return layout(
-    { title: `${tag.label} · hanas.ai blog`, description: tag.description, path: tagPath(tag.slug), noindex: posts.length === 0 },
+    {
+      title: `${tag.label} · ${BRAND} blog`,
+      description: tag.description,
+      path: tagPath(tag.slug),
+      noindex: posts.length === 0,
+      jsonLd: [breadcrumb([["Blog", BLOG_URL], [tag.label, abs(tagPath(tag.slug))]]), itemList(abs(tagPath(tag.slug)), posts)],
+    },
     ctx,
     `<header class="blog-head">
 <p class="label"><a href="${BASE}/">Blog</a></p>
@@ -187,7 +203,7 @@ ${postList(related, "h3")}
     : "";
   return layout(
     {
-      title: `${p.title} · hanas.ai`,
+      title: `${p.title} · ${BRAND}`,
       description: p.description,
       path: p.path,
       type: "article",
@@ -196,6 +212,7 @@ ${postList(related, "h3")}
       tags: p.tags.map(tagLabel),
       canonical: p.canonicalUrl,
       ...(p.cover && p.coverAlt ? { image: { url: abs(coverPath(p.cover)), alt: p.coverAlt } } : {}),
+      jsonLd: [blogPosting(p), breadcrumb([["Blog", BLOG_URL], [p.title, p.url]])],
     },
     ctx,
     `<article class="post">
@@ -219,13 +236,13 @@ ${rel}`,
 
 export function notFoundPage(ctx: Ctx): string {
   return layout(
-    { title: `Page not found · hanas.ai`, description: "This blog page does not exist.", path: `${BASE}/404`, noindex: true },
+    { title: `Page not found · ${BRAND}`, description: "This blog page does not exist.", path: `${BASE}/404`, noindex: true },
     ctx,
     `<header class="blog-head">
 <h1>Page not found</h1>
 <p class="lead">This page does not exist or has moved.</p>
 </header>
-<div class="doc-actions"><a class="btn btn--primary" href="${BASE}/">See all posts</a><a class="btn btn--secondary" href="/">Go to hanas.ai</a></div>`,
+<div class="doc-actions"><a class="btn btn--primary" href="${BASE}/">See all posts</a><a class="btn btn--secondary" href="/">Go to the ${BRAND} home page</a></div>`,
   );
 }
 
