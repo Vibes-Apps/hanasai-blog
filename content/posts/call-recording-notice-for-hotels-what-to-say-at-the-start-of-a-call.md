@@ -37,7 +37,7 @@ On proportionality, the ICO says it is not usually proportionate to monitor or r
 
 On informing people, the ICO's own example describes a customer service call centre where customers "are informed during calls and are signposted to detailed privacy information". That is the pattern to copy: a short notice in the call, and the detail elsewhere.
 
-![Call flow: caller connects, the notice says who is speaking and that the call is recorded, the caller can carry on or hang up, the purpose and privacy information are available on the website, recordings are kept for a set time and then deleted](/blog/images/call-recording-notice-for-hotels-what-to-say-at-the-start-of-a-call-recording-notice-flow.png)
+![Call flow: caller connects, the notice says who is speaking and that the call is recorded, the caller can carry on or hang up, the purpose and privacy information are available on the website, recordings are kept for a set time and then deleted](/blog/images/call-recording-notice-for-hotels-what-to-say-at-the-start-of-a-call-notice-flow-v2.png)
 
 _Where the notice fits in a call_
 
@@ -51,7 +51,7 @@ These are examples to adapt, not approved legal wording.
 
 Whatever the wording, keep it short, say it before the caller shares personal details, and make sure it matches what actually happens. If you say "for training and quality" but also use recordings for something else, the notice and the practice no longer match.
 
-![Table card of three example opening lines: a human-answered line saying calls are recorded for training and quality, an AI line saying it is an AI assistant and the call is recorded, and a voicemail line saying messages are recorded and used to reply](/blog/images/call-recording-notice-for-hotels-what-to-say-at-the-start-of-a-call-recording-notice-wording.png)
+![Table card of three example opening lines: a human-answered line saying calls are recorded for training and quality, an AI line saying it is an AI assistant and the call is recorded, and a voicemail line saying messages are recorded and used to reply](/blog/images/call-recording-notice-for-hotels-what-to-say-at-the-start-of-a-call-notice-wording-v2.png)
 
 _Three example opening lines_
 
@@ -81,7 +81,7 @@ Before you write the line, decide:
 3. **Where it is kept.** Which system, which country, who has access.
 4. **How long.** A fixed retention period, and a way to delete on request.
 
-![Four icons for the decisions behind a recording notice: why you record, what you say, where details are kept and how long they are kept](/blog/images/call-recording-notice-for-hotels-what-to-say-at-the-start-of-a-call-recording-notice-decisions.png)
+![Four icons for the decisions behind a recording notice: why you record, what you say, where details are kept and how long they are kept](/blog/images/call-recording-notice-for-hotels-what-to-say-at-the-start-of-a-call-notice-decisions-v2.png)
 
 _Four decisions behind the notice_
 
