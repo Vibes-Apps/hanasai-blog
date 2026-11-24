@@ -4,6 +4,7 @@ description: Does an AI receptionist need to connect to your PMS? How it works w
 cover: /blog/images/ai-receptionist-without-pms-small-hotel-cover.jpg
 coverAlt: Illustration of a smiling woman in a navy blazer beside glass app tiles showing a phone, a calendar and a check mark on a dark violet and teal background.
 date: 2026-11-17
+updated: 2026-11-24
 author: Hanas.ai
 tags:
   - ai-receptionist
@@ -34,7 +35,7 @@ Without a PMS connection, the AI works from information you give it. The useful 
 
 **Answering questions from a profile.** Opening times, check-in and check-out, parking, pets, breakfast, directions, room types, cancellation policy and which languages you cover. These answers change rarely, so a reviewed profile serves them well. Hanas builds a draft profile from your website and your team reviews it before anything goes live.
 
-**Taking booking requests.** The AI collects dates, party size, room preference, a name and a contact number, and sends a request to staff. In Hanas, staff approve or decline by email or in a web dashboard, and by default nothing is confirmed to the guest until they do. By default it does not take payment either, which is a current setting, not a permanent limit.
+**Taking booking requests.** The AI collects dates, party size, room preference, a name and a contact number, and sends a request to staff. In Hanas, if you keep approval with staff, they approve or decline by email or in a web dashboard and nothing is confirmed to the guest until they do. The owner can instead set Hanas to confirm automatically.
 
 **Taking messages and covering the hours you cannot answer.** Evenings, early mornings and busy check-in times are when small teams miss calls. Our post on [how many calls a small hotel misses](https://gethanas.com/blog/how-many-calls-does-a-small-hotel-miss-what-it-costs) covers how to measure your own.
 
@@ -102,12 +103,12 @@ Integration also brings costs of its own: setup time with your PMS provider, pos
 
 We would rather say this directly. Hanas is the weaker choice if:
 
-- you want the AI to confirm bookings on the call, or write them into your PMS, today;
+- you want bookings written into your PMS today;
 - you take a high volume of phone bookings and double entry would cost more staff time than the AI saves;
 - your rates change several times a day and you need the AI to quote them live;
-- you need payment taken on the call today. By default, Hanas does not take payment.
+- you need live availability checked against your PMS on the call today.
 
-Hanas is more likely to suit you if you want staff to see and approve every request, want a set-up that starts from your website with no project, and are content with a short manual step. Mews, Cloudbeds, Little Hotelier, Guestline and eviivo are on the Hanas roadmap, with no dates yet. Hanas is in early access, so there are no customer reviews or case studies to show you. For published prices across vendors, see [what an AI receptionist costs in the UK](https://gethanas.com/blog/ai-receptionist-for-hotels-what-it-costs-in-the-uk-2026), and for a wider comparison see [the best AI receptionists for small UK hotels](https://gethanas.com/blog/7-best-ai-receptionists-for-uk-small-hotels-and-b-bs-2026). There is also a page for [boutique hotels](https://gethanas.com/for/boutique-hotels).
+Hanas is more likely to suit you if you want to decide how much it handles, including having staff approve every request, want a set-up that starts from your website with no project, and are content with a short manual step. Mews, Cloudbeds, Little Hotelier, Guestline and eviivo are on the Hanas roadmap, with no dates yet. Hanas is in early access, so there are no customer reviews or case studies to show you. For published prices across vendors, see [what an AI receptionist costs in the UK](https://gethanas.com/blog/ai-receptionist-for-hotels-what-it-costs-in-the-uk-2026), and for a wider comparison see [the best AI receptionists for small UK hotels](https://gethanas.com/blog/7-best-ai-receptionists-for-uk-small-hotels-and-b-bs-2026). There is also a page for [boutique hotels](https://gethanas.com/for/boutique-hotels).
 
 ## What to ask any vendor about integration
 
