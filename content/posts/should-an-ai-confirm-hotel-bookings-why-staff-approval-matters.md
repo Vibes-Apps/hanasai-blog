@@ -4,6 +4,7 @@ description: Should an AI receptionist confirm bookings on the call, or send a r
 cover: /blog/images/should-ai-confirm-hotel-bookings-staff-approval-cover.jpg
 coverAlt: Glass app tiles on a dark violet and teal background showing a phone, a check mark and a shield.
 date: 2026-11-17
+updated: 2026-11-24
 author: Hanas.ai
 tags:
   - ai-receptionist
@@ -16,13 +17,13 @@ draft: false
 
 It depends on how much your hotel can trust the data the AI sees and how much a wrong booking would cost you. If your availability and rates are held in a system the AI can read and write reliably, confirming on the call is faster for the guest and loses fewer bookings. If they are not, or your rooms vary in ways a system does not capture, having a person approve each request is the safer design. It is slower, and that delay has a real cost. Which suits you is a business decision, not a technical one.
 
-> **Disclosure.** We make Hanas, an AI phone receptionist for small hotels. By default Hanas takes a booking request and staff approve it, so we have an interest in this question. We say below where that choice is the weaker one. This is general information, not legal advice. We are a software company, not a law firm.**Key Takeaways**Confirm-on-call has real advantages: no wait for the guest, and fewer callers who book elsewhere while waiting for a reply. Staff approval gives up some of that speed.Staff approval protects against the AI quoting a room or rate that is wrong, and lets a person handle odd requests. It does not remove the need for staff to respond promptly.The legal rules we read apply to both models. Staff approval is not a legal requirement we found, but it makes it easier to argue that a person decides each booking. That is our interpretation, not a ruling.Taking card details by voice raises separate payment-security questions. Hanas does not take payment by default, which is a limit, not a virtue in every hotel.
+> **Disclosure.** We make Hanas, an AI phone receptionist for small hotels. Hanas lets the owner choose between staff approval and automatic confirmation, so we have an interest in this question. We say below where each choice is the weaker one. This is general information, not legal advice. We are a software company, not a law firm.**Key Takeaways**Confirm-on-call has real advantages: no wait for the guest, and fewer callers who book elsewhere while waiting for a reply. Staff approval gives up some of that speed.Staff approval protects against the AI quoting a room or rate that is wrong, and lets a person handle odd requests. It does not remove the need for staff to respond promptly.The legal rules we read apply to both models. Staff approval is not a legal requirement we found, but it makes it easier to argue that a person decides each booking. That is our interpretation, not a ruling.Taking card details by voice raises separate payment-security questions.
 
 ## The two models
 
 **Model A: the AI confirms.** The AI checks availability, quotes a rate, and creates the reservation, usually by writing into the property management system (PMS). Some products also take payment or a card hold on the call.
 
-**Model B: the AI takes a request.** The AI collects dates, room type, guest details and any special requests, reads them back, and sends a request. A member of staff checks it and then approves, declines or calls back. Nothing is confirmed to the guest until the person says yes. This is the current Hanas default.
+**Model B: the AI takes a request.** The AI collects dates, room type, guest details and any special requests, reads them back, and sends a request. A member of staff checks it and then approves, declines or calls back. Nothing is confirmed to the guest until the person says yes. Hanas supports this model: the owner can set it so that staff approve each booking.
 
 ![Two booking flows side by side: in one the AI checks availability and confirms the booking on the call; in the other the AI takes a request, staff review it and then confirm or decline](/blog/images/should-ai-confirm-hotel-bookings-staff-approval-booking-flows.png)
 
@@ -34,7 +35,7 @@ Within Model A, vendors differ on what they write to the PMS and whether they ta
 
 **Speed for the guest.** A caller who is told "you are booked" can stop looking. A caller who is told "we will come back to you" may ring the next hotel on the list. We have no measured figure for how many requests are lost this way, and we will not invent one.
 
-**Less manual entry.** If the AI writes to the PMS, staff do not retype bookings. Hanas does not connect to a PMS yet, so staff enter approved bookings themselves. Mews, Cloudbeds, Little Hotelier, Guestline and eviivo are on its roadmap, with no dates stated as of 17 November 2026.
+**Less manual entry.** If the AI writes to the PMS, staff do not retype bookings. Hanas does not connect to a PMS yet, so staff enter bookings themselves. Mews, Cloudbeds, Little Hotelier, Guestline and eviivo are on its roadmap, with no dates stated as of 17 November 2026.
 
 ## What staff approval does well
 
@@ -52,7 +53,7 @@ Be honest about this part, because it is the case against our own default.
 - **Staff time.** Someone has to read every request and act on it. For a hotel with no front-desk cover for part of the day, that is a real constraint.
 - **Lost bookings.** A slow reply can lose the booking, as above.
 
-If your hotel cannot approve requests quickly, or you need bookings written into a PMS today, Hanas is the weaker choice.
+If your hotel cannot approve requests quickly, you can set Hanas to confirm automatically instead. If you need bookings written into a PMS today, Hanas is the weaker choice.
 
 ## The two models side by side
 
@@ -65,14 +66,14 @@ If your hotel cannot approve requests quickly, or you need bookings written into
 | Unusual requests | Needs rules for handing off | Person decides each one |
 | Staff workload | Lower if written to the PMS | Every request needs a decision |
 | Out-of-hours | Works with no one on shift | Waits for staff |
-| Payment | Possible, with security obligations | None by default at Hanas |
+| Payment | Possible, with security obligations | Not part of the model itself |
 | Integration needed | Usually yes (PMS, sometimes payment) | Not required; staff enter bookings |
 
 ## Payment on the call
 
-Taking money by voice brings obligations that a request-only model avoids. The PCI Security Standards Council's [FAQ on audio recordings](https://www.pcisecuritystandards.org/faqs/1210/), read on 17 November 2026, says that storing card validation codes in audio recordings after authorisation violates PCI DSS Requirement 3.3.1, in any form of digital audio recording. It says that if such data is collected on a call, every effort must be made to prevent it being recorded, and if that is not possible it should be deleted right after authorisation, with compensating controls where deletion is not feasible.
+Taking money by voice brings obligations that a request-and-approve model can avoid. The PCI Security Standards Council's [FAQ on audio recordings](https://www.pcisecuritystandards.org/faqs/1210/), read on 17 November 2026, says that storing card validation codes in audio recordings after authorisation violates PCI DSS Requirement 3.3.1, in any form of digital audio recording. It says that if such data is collected on a call, every effort must be made to prevent it being recorded, and if that is not possible it should be deleted right after authorisation, with compensating controls where deletion is not feasible.
 
-A recording voice AI needs a deliberate design for payment. As of 17 November 2026, the [Hanas website](https://gethanas.com/) says the AI never takes payments and never asks for card details. That is the current default. Hanas may offer payment later where a hotel wants it, and if it does, the points above are the ones to ask about.
+A recording voice AI needs a deliberate design for payment. Whatever a vendor offers, including Hanas, ask how it handles card details on recorded calls. For Hanas, check the [Hanas website](https://gethanas.com/) for its current position on payment; the points above are the ones to ask about.
 
 ## Consumer contract rules
 
@@ -133,7 +134,7 @@ It can, if replies are slow. We have no measured figure, so the best test is you
 
 ### Does Hanas confirm bookings or take payment?
 
-Not by default. As of 17 November 2026 the Hanas website says it never confirms a booking and never takes payment, and that it sends a request for staff approval. Hanas does not connect to a PMS yet. This describes the current default, and it may change.
+That is the owner's setting. Hanas can send each booking to staff for approval, so nothing is confirmed to the guest until a person says yes, or it can confirm automatically. Payment is not part of what this article assumes. Hanas does not connect to a PMS yet, and it is in early access, so check its site for the current position.
 
 ## Sources
 
