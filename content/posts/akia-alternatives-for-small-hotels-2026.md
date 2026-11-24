@@ -4,6 +4,7 @@ description: Akia sells guest messaging with an AI Voice add-on on its top tier.
 cover: /blog/images/akia-alternatives-small-hotels-cover.jpg
 coverAlt: Illustration of glass icons for phone, price tag, chart and shield on a dark teal and violet background
 date: 2026-11-18
+updated: 2026-11-24
 author: Hanas.ai
 tags:
   - ai-receptionist
@@ -13,9 +14,9 @@ tags:
 draft: false
 ---
 
-If you run a small hotel and are looking at Akia for phone answering, the alternatives worth comparing are Canary Technologies (a wider platform with AI Voice), Dextr AI (booking across channels), D3x (PMS-connected, public per-room price), Motel4 (self-serve, no PMS) and Hanas (public price, staff approval). Which one fits depends on whether you want the phone bundled with a messaging suite, whether you want to see a price before talking to sales, how much setup you can take on, and where call data is stored.
+If you run a small hotel and are looking at Akia for phone answering, the alternatives worth comparing are Canary Technologies (a wider platform with AI Voice), Dextr AI (booking across channels), D3x (PMS-connected, public per-room price), Motel4 (self-serve, no PMS) and Hanas (public price, owner-set control). Which one fits depends on whether you want the phone bundled with a messaging suite, whether you want to see a price before talking to sales, how much setup you can take on, and where call data is stored.
 
-> **Disclosure.** We make Hanas, one of the alternatives below. We say where Hanas is the weaker choice. Everything about other vendors comes from their own public pages, read on 18 November 2026 for Akia and Canary and on 17 November 2026 for the rest. We did not test any other product. Where a page did not answer a question, we write "not stated".**Key Takeaways**On Akia's own pricing page, AI Voice (with call transfers and call summaries) appears only on the top tier, Max. All three tiers show "Talk to Sales" instead of a price.Akia's homepage says its voice agent resolves what the caller needs and takes payment before hanging up. That is a vendor claim we have not tested, and the pricing page does not say how payments are charged.If you want the phone answered and nothing else, a narrower tool may cost less and take less setup. If you already want a messaging inbox, check-in and guest guides, a bundle can make sense.Hanas is the weaker choice if you need PMS integration or payment on the call today. It is in early access and has no customer reviews yet.
+> **Disclosure.** We make Hanas, one of the alternatives below. We say where Hanas is the weaker choice. Everything about other vendors comes from their own public pages, read on 18 November 2026 for Akia and Canary and on 17 November 2026 for the rest. We did not test any other product. Where a page did not answer a question, we write "not stated".**Key Takeaways**On Akia's own pricing page, AI Voice (with call transfers and call summaries) appears only on the top tier, Max. All three tiers show "Talk to Sales" instead of a price.Akia's homepage says its voice agent resolves what the caller needs and takes payment before hanging up. That is a vendor claim we have not tested, and the pricing page does not say how payments are charged.If you want the phone answered and nothing else, a narrower tool may cost less and take less setup. If you already want a messaging inbox, check-in and guest guides, a bundle can make sense.Hanas is the weaker choice if you need PMS integration today. It is in early access and has no customer reviews yet.
 
 ## What Akia does well, and who it suits
 
@@ -47,7 +48,7 @@ _The five questions that separate these products_
 | Dextr AI | Multi-channel booking into a PMS | Not stated on the homepage (17 Nov) | Yes (vendor claim) | Pre-authorisation shown in an example | Cloudbeds, Hostaway, Mews, ResNexus, Stayntouch, Track PMS | Not stated |
 | D3x | Independents wanting PMS-connected phone AI | €5 per room a month, plus €100 a month for 5 phone hours (17 Nov) | Looks up and confirms changes in the PMS (new bookings not stated) | Not stated | Mews, Opera, Cloudbeds, Apaleo and others | Not stated |
 | Motel4 | Self-serve enquiry capture, no PMS | Free 30 minutes; $149, $299, $599 a month (17 Nov) | Captures an enquiry | Not stated | None needed | Not stated |
-| Hanas | Small independents wanting a public price and staff approval | £49 a month incl. 150 minutes, then £0.30 a minute (early access, ex VAT) | Sends a request for staff approval | No (current default) | None yet (roadmap) | Transcripts in Ireland; speech processing in the US |
+| Hanas | Small independents wanting a public price, self-onboarding and owner-set control | £49 a month incl. 150 minutes, then £0.30 a minute (early access, ex VAT) | Owner sets it: staff approve, or Hanas confirms automatically | Not stated | None yet (roadmap) | Transcripts in Ireland; speech processing in the US |
 
 Currencies are as each vendor shows them. VAT treatment is stated only for Hanas. Conduit and HiJiffy, which combine voice and messaging, are covered in our [Conduit alternatives article](https://gethanas.com/blog/conduit-alternatives-for-independent-hotels-2026).
 
@@ -69,13 +70,13 @@ D3x publishes an "Independent & SMB" tier at €5 per room a month for messaging
 
 Motel4's site describes a three-step setup of about 15 minutes: add property details, forward the front-desk line, go live. It says no PMS integration or new hardware is needed and that it captures booking enquiries with the caller's number. Pricing is a free 30 minutes a month, then $149, $299 and $599 a month, with a 30-day money-back guarantee. The minutes in each paid tier, and data location, are not stated.
 
-### Hanas: public price, staff approval, early access
+### Hanas: public price, owner-set control, early access
 
-Hanas answers the phone at any hour in the caller's language, says it is an AI, quotes only the rates the hotel enters, and sends a booking request to staff to approve or decline. Setup starts from your website: it drafts a profile, and your team reviews it before anything goes live.
+Hanas answers the phone at any hour in the caller's language, says it is an AI, quotes only the rates the hotel enters, and either sends a booking request to staff to approve or confirms it automatically, depending on how the owner sets it. Hanas is built as an orchestrator: beyond calls it is designed to handle DMs, WhatsApp, Instagram, Facebook and a CRM, with channels rolling out during early access. Setup starts from your website: it drafts a profile, and your team reviews it before anything goes live.
 
 The price is on the page: £49 a month with 150 minutes, then £0.30 a minute (early-access price, excluding VAT, which the site says may change before general availability). The demo offers English, German, French, Spanish, Italian, Russian and Arabic.
 
-**Where Hanas is the weaker choice.** It has no PMS integration yet, so staff enter approved bookings themselves (Mews, Cloudbeds, Little Hotelier, Guestline and eviivo are on the roadmap, with no dates). By default it sends requests rather than confirming bookings, and by default it does not take payment. That is the current default and may change, but if you need either today, Akia, Dextr AI, Canary or D3x are better matches on their own claims. It is a phone product only, with no messaging inbox, check-in or guest-guide modules. Hanas is in early access with no customer reviews or case studies yet. See the [privacy notice](https://gethanas.com/privacy) and [Hanas for boutique hotels](https://gethanas.com/for/boutique-hotels).
+**Where Hanas is the weaker choice.** It has no PMS integration yet, so staff enter bookings themselves (Mews, Cloudbeds, Little Hotelier, Guestline and eviivo are on the roadmap, with no dates). If you need PMS-written bookings today, Akia, Dextr AI, Canary or D3x are better matches on their own claims. Its phone product is the one documented on the site today; it has no check-in or guest-guide modules, and its messaging channels are rolling out in early access. Hanas is in early access with no customer reviews or case studies yet. See the [privacy notice](https://gethanas.com/privacy) and [Hanas for boutique hotels](https://gethanas.com/for/boutique-hotels).
 
 ![Table card showing the published-price totals for 300 call minutes a month: Hanas £94 and D3x about €200 for a 20-room hotel, while Akia, Canary and Dextr AI publish no price](/blog/images/akia-alternatives-small-hotels-akia-alternatives-300-minutes.png)
 
@@ -100,7 +101,7 @@ _A simple way to narrow the field_
 - **You want messaging, check-in and phone together:** Akia or Canary, on their own descriptions. Ask each for a quote at your room count.
 - **You need bookings written into your PMS:** Akia, Canary, Dextr AI or D3x, according to their own claims. Confirm exactly which PMS and which actions.
 - **You want a price you can model and a quick start:** D3x, Hanas or Motel4, depending on whether you need PMS connection.
-- **You want a person to approve every booking:** Hanas does this by default. Others may offer it; not stated on the pages we read.
+- **You want to choose how much the AI decides:** Hanas lets the owner set whether staff approve each booking or it confirms automatically. Others may offer similar controls; not stated on the pages we read.
 
 Whichever you choose, trial it on your own call types. Our post on [how many calls a small hotel misses](https://gethanas.com/blog/how-many-calls-does-a-small-hotel-miss-what-it-costs) shows how to measure first.
 
