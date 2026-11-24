@@ -4,6 +4,7 @@ description: 'Which fits a small UK hotel: an AI voice agent, an answering servi
 cover: /blog/images/ai-voice-agent-vs-answering-service-vs-night-porter-uk-cover.jpg
 coverAlt: Illustration of a smiling man in a dark suit beside glass app tiles showing a phone, a service bell and a shield on a dark violet and teal background.
 date: 2026-11-17
+updated: 2026-11-24
 author: Hanas.ai
 tags:
   - comparisons
@@ -35,7 +36,7 @@ The table compares the functions that decide most purchases. "Depends" means the
 | Answers calls out of hours | Yes, 24/7 per the Hanas site | Yes. TTNC and Posh both say 24/7 | Only on the shift |
 | Takes a message | Yes, as a callback request for staff | Yes, its core job | Yes |
 | Answers questions | From the information you give it. If it cannot answer, it offers to pass the question on | Depends on your script and the provider | Yes, with local knowledge |
-| Takes a booking | Logs a request. By default staff approve it and no payment is taken | Depends. TTNC says it can take orders and book appointments from your script | Yes, and can use your system |
+| Takes a booking | Logs a request for staff to approve, or confirms it automatically, as the owner sets | Depends. TTNC says it can take orders and book appointments from your script | Yes, and can use your system |
 | Handles an emergency | Not stated on the Hanas site. Do not rely on it | Depends. Ask how urgent calls reach you | Yes, if trained, and can act in person |
 | Several languages | Seven on the Hanas site, with a warning that quality varies by language | Not stated on the TTNC or Posh pages we read | Whatever your staff speak |
 | Deals with guests in the building | No | No | Yes |
@@ -49,7 +50,7 @@ Two rows are worth a longer look.
 
 ## The AI voice agent: who it suits, and when it is the weaker choice
 
-An AI voice agent is software that answers a phone call and holds a conversation. Hanas answers in the guest's language, tells the caller it is an assistant and that the call is recorded, and passes bookings and callback requests to your staff to approve.
+An AI voice agent is software that answers a phone call and holds a conversation. Hanas answers in the guest's language, tells the caller it is an assistant and that the call is recorded, and passes bookings and callback requests to your staff to approve, or confirms bookings automatically if the owner sets it that way.
 
 **It suits** properties where:
 
@@ -61,7 +62,7 @@ An AI voice agent is software that answers a phone call and holds a conversation
 **It is the weaker choice** when:
 
 - **A caller needs judgement or empathy.** Complaints, weddings and group bookings suit a person.
-- **You need the booking confirmed on the call.** By default Hanas does not confirm bookings or take payment, and it does not yet connect to a PMS, so staff enter approved bookings themselves. Other vendors do offer PMS-connected booking, which we cover in our [comparison of seven AI receptionists](https://gethanas.com/blog/7-best-ai-receptionists-for-uk-small-hotels-and-b-bs-2026).
+- **You need the booking written into your PMS on the call.** Hanas can confirm a booking itself if the owner sets it to, but it does not yet connect to a PMS, so staff enter bookings themselves. Other vendors do offer PMS-connected booking, which we cover in our [comparison of seven AI receptionists](https://gethanas.com/blog/7-best-ai-receptionists-for-uk-small-hotels-and-b-bs-2026).
 - **Data location matters to you.** Hanas stores transcripts in Ireland and deletes them after 30 days by default, but its speech provider, ElevenLabs, processes calls in the US. It is also an early-access product with no published customer case studies yet.
 
 ## The human answering service: who it suits
