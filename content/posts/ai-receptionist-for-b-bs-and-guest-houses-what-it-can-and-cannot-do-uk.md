@@ -4,6 +4,7 @@ description: 'What an AI receptionist can and cannot do for a UK B&B or guest ho
 cover: /blog/images/ai-receptionist-bb-guest-house-uk-cover.jpg
 coverAlt: Illustration of a smiling man in a dark suit beside glass app tiles showing a phone, a clock and a bell, for an AI receptionist at a B&B.
 date: 2026-11-17
+updated: 2026-11-24
 author: Hanas.ai
 tags:
   - ai-receptionist
@@ -14,7 +15,7 @@ draft: false
 
 An AI receptionist can answer your phone when you are cooking breakfast, changing beds or out of the house. It can answer routine questions from a profile you have reviewed, take booking requests, take messages and talk to callers in other languages. It cannot be in the building, deal with a guest standing at the door, handle an emergency or make judgement calls. For a B&B or guest house where the owner does everything, it is a way to stop missing calls, not a replacement for you.
 
-> **Disclosure.** We make Hanas, an AI receptionist for small hotels, B&Bs and inns. Hanas facts in this article come from gethanas.com, read on 17 November 2026. Hanas is in early access, so we have no customer reviews or case studies to show. We did not test any other vendor's product, and we say where Hanas is the weaker choice.**Key Takeaways**An AI receptionist suits B&Bs best as cover for calls you cannot answer: routine questions, booking requests, messages and callers who speak other languages.It cannot be in the house, help a guest in person, handle an emergency or make a judgement call. You stay the person who decides.Before you start, write down what the profile says, when the AI answers, who approves requests and how quickly.Hanas is the weaker choice if you need bookings confirmed or paid for on the call, or written into a booking system, today.
+> **Disclosure.** We make Hanas, an AI receptionist for small hotels, B&Bs and inns. Hanas facts in this article come from gethanas.com, read on 17 November 2026. Hanas is in early access, so we have no customer reviews or case studies to show. We did not test any other vendor's product, and we say where Hanas is the weaker choice.**Key Takeaways**An AI receptionist suits B&Bs best as cover for calls you cannot answer: routine questions, booking requests, messages and callers who speak other languages.It cannot be in the house, help a guest in person, handle an emergency or make a judgement call. You stay the person who decides.Before you start, write down what the profile says, when the AI answers, who approves requests and how quickly.Hanas is the weaker choice if you need bookings written into a booking system today.
 
 ## Why calls get missed at a B&B
 
@@ -40,7 +41,7 @@ An AI receptionist answers calls using a profile of your property. It does not k
 
 **Answer routine questions from a profile.** Check-in and check-out times, breakfast hours, parking, dogs, directions, room types, whether rooms are en suite, and your cancellation policy. These are the questions that fill a B&B's phone, and the answers rarely change. With Hanas, the AI drafts a hotel profile from your website and your team reviews it. The site says missing details are flagged, not guessed.
 
-**Take booking requests.** The AI collects dates, number of guests, room preference, a name and a contact number, then sends a request to you. On Hanas, requests arrive by email and in a dashboard, and staff approve or decline them. Its site says the AI does not confirm a booking and does not take payment, and that is how it works currently. For rates, you paste them in, and the receptionist quotes only those. If no rate applies, it takes details and asks you to call back.
+**Take booking requests.** The AI collects dates, number of guests, room preference, a name and a contact number, then either sends a request to you or confirms it, depending on how you set it. On Hanas, requests arrive by email and in a dashboard, and you or your staff approve or decline them when you keep approval with you. You can also set Hanas to confirm automatically. For rates, you paste them in, and the receptionist quotes only those. If no rate applies, it takes details and asks you to call back.
 
 **Answer in other languages.** Hanas lists demo calls in English, German, French, Spanish, Italian, Russian and Arabic, and says it can switch to other languages when a caller changes language. It also says no language is guaranteed and that details are read back before a request is sent. Our article on [handling foreign-language callers](https://gethanas.com/blog/how-to-handle-foreign-language-callers-at-a-small-uk-hotel) goes into this in more detail.
 
@@ -57,7 +58,7 @@ This part matters more than the list above.
 | Complaint from a guest in the house | Take a message | Apologise in person, fix the problem, offer a refund |
 | Unusual request ("can we bring a horse?") | Take details for you | Decide. Only you know what you will allow |
 | Live availability | Take a request | See your calendar or booking sites (Hanas has no PMS or channel connection today) |
-| Confirming and taking payment | Pass the request to you | Confirm or take a card, by default and currently on Hanas |
+| Confirming a booking | Pass the request to you, or confirm it if you set it that way | Confirm it yourself when approval stays with you |
 
 Three of these deserve a closer look.
 
@@ -91,7 +92,7 @@ Decide whether you want the AI to answer all calls, or only when you are busy or
 
 ### 3. Decide who approves requests and how fast
 
-Name one person for requests, and a backup. Set a response time you can keep: "within two hours during the day, by 9am for overnight requests" is realistic for many owners. Guests who are told staff will confirm should hear from you when they were told. In Hanas, nothing is confirmed to a guest until a person says yes. Our article on [why staff approval matters](https://gethanas.com/blog/should-an-ai-confirm-hotel-bookings-why-staff-approval-matters) explains the reasoning.
+Name one person for requests, and a backup. Set a response time you can keep: "within two hours during the day, by 9am for overnight requests" is realistic for many owners. Guests who are told staff will confirm should hear from you when they were told. In Hanas, if you keep approval with you, nothing is confirmed to a guest until a person says yes. Our article on [why staff approval matters](https://gethanas.com/blog/should-an-ai-confirm-hotel-bookings-why-staff-approval-matters) explains the reasoning.
 
 ### 4. Tell your guests
 
@@ -111,7 +112,7 @@ Read a sample of calls weekly at first, and update rates and closures. Hanas del
 | --- | --- |
 | Does it answer every call, or only unanswered calls? | Decides whether it fits around your day |
 | Can a caller reach me urgently? | Some calls should not go to a message |
-| Who confirms a booking, and does it take payment? | Defines what the AI promises to guests |
+| Who confirms a booking, and can you set that? | Defines what the AI promises to guests |
 | Does it connect to my booking system, and if so, how deeply? | Affects double entry. See [our PMS article](https://gethanas.com/blog/ai-receptionist-without-a-pms-how-it-works-alongside-your-booking-system) |
 | Which languages, and is that tested or only a demo list? | Matters if you host many overseas guests |
 | Where is call data stored, and for how long? | You are responsible for your guests' data |
@@ -148,17 +149,17 @@ If you go over, the receptionist keeps answering and you get emails at 80% and 1
 - you rely on a booking system and want the AI to read availability or write bookings into it. Hanas does not connect to a booking system yet; Mews, Cloudbeds, Little Hotelier, Guestline and eviivo are planned, with no dates;
 - you need someone to answer the phone and then actually do something, such as transfer to a mobile. Hanas does not state call transfer on its site, so check before you rely on it.
 
-**Where Hanas is the weaker choice:** if you need confirmation, payment or live availability on the call, other products may do more. Check their own pages. Our [comparison](https://gethanas.com/blog/7-best-ai-receptionists-for-uk-small-hotels-and-b-bs-2026) lists several. Hanas has a page for [boutique hotels](https://gethanas.com/for/boutique-hotels), which is close to, but not the same as, a B&B.
+**Where Hanas is the weaker choice:** if you need live availability on the call, other products may do more. Check their own pages. Our [comparison](https://gethanas.com/blog/7-best-ai-receptionists-for-uk-small-hotels-and-b-bs-2026) lists several. Hanas has a page for [boutique hotels](https://gethanas.com/for/boutique-hotels), which is close to, but not the same as, a B&B.
 
 ## Frequently asked questions
 
 ### Will an AI receptionist replace me?
 
-No. It covers calls you cannot take. You still approve requests, welcome guests and make every decision.
+No. It covers calls you cannot take. You decide how much it handles, and you still welcome your guests.
 
 ### Can it take a booking and confirm it?
 
-On Hanas, no. It sends a request to you, and nothing is confirmed to the guest until you approve it. It does not take card details. Other vendors work differently, so check their pages.
+On Hanas, that is your setting. If you keep approval with you, it sends a request and nothing is confirmed to the guest until you approve it; you can also set it to confirm automatically. Other vendors work differently, so check their pages.
 
 ### What if a guest calls with an emergency?
 
