@@ -4,6 +4,7 @@ description: A research-based shortlist of AI phone receptionists for small inde
 cover: /blog/images/blog1-best-ai-receptionists-uk-small-hotels.jpg
 coverAlt: Glass app tiles on a dark violet and teal background showing a phone, a service bell, a bar chart and a checkmark.
 date: 2026-11-16
+updated: 2026-11-24
 author: hanas.ai
 tags:
   - ai-receptionist
@@ -43,7 +44,7 @@ We ordered the seven by how well each matches a small independent hotel that wan
 
 | Product | Best for | Published price | Books on the call | Payment on the call | PMS named | Data location stated |
 | --- | --- | --- | --- | --- | --- | --- |
-| Hanas | Small independents wanting a public price and staff approval | £49 a month, 150 minutes included (early-access price, ex VAT) | Sends a request for staff approval | No (current default) | None yet (roadmap) | Ireland, with US speech processing |
+| Hanas | Small independents wanting a public price, self-onboarding and owner-set control | £49 a month, 150 minutes included (early-access price, ex VAT) | Owner sets it: staff approve, or Hanas confirms automatically | Not stated | None yet (roadmap) | Ireland, with US speech processing |
 | Motel4 | Self-serve enquiry capture | $149 to $599 a month, free 30 minutes | Captures an enquiry | Not stated | None needed | Not stated |
 | D3x | PMS-connected phone AI for independents | €5 per room a month, plus €100 a month for 5 phone hours | Looks up and confirms changes in the PMS | Not stated | Mews, Opera, Cloudbeds, Apaleo and others | Not stated |
 | Dextr AI | Bookings into a PMS and card pre-authorisation | Not published | Yes (vendor claim) | Not stated | Cloudbeds, Mews, Stayntouch and others | Not stated |
@@ -53,13 +54,13 @@ We ordered the seven by how well each matches a small independent hotel that wan
 
 Currency is as each vendor shows it. Where a page showed "$" without a currency code, we write "$". VAT treatment is stated only for Hanas; for the other vendors it is not stated on the pages we read.
 
-## 1. Hanas: best for small independents who want a public price and staff approval
+## 1. Hanas: best for small independents who want a public price and control over what the AI decides
 
-Hanas answers the phone around the clock in the caller's language (from the seven it supports), says that it is an AI and that the call is recorded, quotes only the rates the hotel enters, and sends a booking request to staff for approval. Staff approve or decline by email or in a web dashboard.
+Hanas answers the phone around the clock in the caller's language (from the seven it supports), says that it is an AI and that the call is recorded, quotes only the rates the hotel enters, and either sends a booking request to staff or confirms it automatically, depending on how the owner sets it. When approval stays with staff, they approve or decline by email or in a web dashboard. Hanas is built as an orchestrator: beyond calls it is designed to handle DMs, WhatsApp, Instagram, Facebook and a CRM, with channels rolling out during early access.
 
 **Why it fits small hotels:** setup starts from your website. Hanas drafts a profile of rooms, hours and policies, and your team reviews it before anything goes live. The price is on the page: from £49 a month with 150 minutes of calls, then £0.30 a minute (early-access price, excluding VAT). Callers can use English, German, French, Spanish, Italian, Russian or Arabic.
 
-**Limits, plainly:** Hanas does not connect to a PMS yet, so staff enter approved bookings themselves. Mews, Cloudbeds, Little Hotelier, Guestline and eviivo are on the roadmap. By default it never confirms a booking and never takes payment. If you need PMS write-back or payment on the call today, Hanas is the weaker choice. It is in early access and looking for its first pilot hotels, so there are no customer reviews or case studies yet. As stated in the [privacy and security section of the Hanas website](https://gethanas.com/#trust), call transcripts are stored in Ireland and deleted after 30 days by default, but the speech provider, ElevenLabs, processes calls in the US. The Hanas [privacy notice](https://gethanas.com/privacy) covers the detail.
+**Limits, plainly:** Hanas does not connect to a PMS yet, so staff enter bookings themselves. Mews, Cloudbeds, Little Hotelier, Guestline and eviivo are on the roadmap. If you need PMS write-back today, Hanas is the weaker choice. It is in early access and looking for its first pilot hotels, so there are no customer reviews or case studies yet. As stated in the [privacy and security section of the Hanas website](https://gethanas.com/#trust), call transcripts are stored in Ireland and deleted after 30 days by default, but the speech provider, ElevenLabs, processes calls in the US. The Hanas [privacy notice](https://gethanas.com/privacy) covers the detail.
 
 **Pricing:** the [Hanas pricing section](https://gethanas.com/#pricing) lists £49 a month. See also [Hanas for boutique hotels](https://gethanas.com/for/boutique-hotels).
 
@@ -133,7 +134,7 @@ Start with what happens after the call: does a booking land in your PMS, or does
 
 ### Do I need PMS integration?
 
-Not necessarily. A request-based AI such as Hanas or an enquiry-capture tool such as Motel4 works alongside your PMS: staff enter confirmed bookings themselves. PMS integration saves staff time. The vendors that emphasise it, such as Dextr AI and Akia, route pricing through a demo or sales conversation on the pages we read, and D3x describes a demo-led setup, though it publishes a per-room price.
+Not necessarily. An AI that does not connect to your PMS, such as Hanas today, or an enquiry-capture tool such as Motel4 works alongside your PMS: staff enter confirmed bookings themselves. PMS integration saves staff time. The vendors that emphasise it, such as Dextr AI and Akia, route pricing through a demo or sales conversation on the pages we read, and D3x describes a demo-led setup, though it publishes a per-room price.
 
 ### Does an AI receptionist replace night staff?
 
