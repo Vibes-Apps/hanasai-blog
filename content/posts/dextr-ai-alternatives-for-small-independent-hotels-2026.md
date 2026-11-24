@@ -4,6 +4,7 @@ description: Dextr AI is built for broad hospitality. Here are alternatives for 
 cover: /blog/images/dextr-ai-alternatives-small-hotels-cover.jpg
 coverAlt: Illustration of a smiling hotel receptionist beside glass app tiles showing a phone, a price tag, a shield and a chart on a dark violet and teal background.
 date: 2026-11-17
+updated: 2026-11-24
 author: Hanas.ai
 tags:
   - ai-receptionist
@@ -14,7 +15,7 @@ draft: false
 
 If you run a small independent hotel, B&B or inn and are looking at Dextr AI, the alternatives worth comparing are D3x (PMS-connected, public per-room price), Motel4 (self-serve, no PMS), Conduit and HiJiffy (platforms that also cover guest messaging), Akia (claims booking and payment on the call) and Hanas. Which one fits depends mostly on four things: whether you need bookings written into your property management system (PMS), whether you want to see a price before talking to sales, how much setup you can take on, and where call data is stored.
 
-> **Disclosure.** We make Hanas, one of the alternatives below. We say where Hanas is the weaker choice. Everything about other vendors comes from their own public pages, read on 17 November 2026. We did not test any other product. Where a page did not answer a question, we write "not stated".**Key Takeaways**Dextr AI is a broad hospitality platform that, according to its own site, books across calls, texts and web chat, syncs with several PMSs and uses a seven-day, kickoff-led setup. It publishes no price on the page we could read.Alternatives differ mainly on three points: PMS write-back, a public price, and setup effort. No single product wins on all three for every hotel.On published prices and 300 call minutes a month, Hanas comes to £94 and D3x to about €200 for a 20-room hotel. The others publish no price or no minutes per tier.Hanas is the weaker choice if you need PMS integration or payment on the call today. It is in early access and has no customer reviews yet.
+> **Disclosure.** We make Hanas, one of the alternatives below. We say where Hanas is the weaker choice. Everything about other vendors comes from their own public pages, read on 17 November 2026. We did not test any other product. Where a page did not answer a question, we write "not stated".**Key Takeaways**Dextr AI is a broad hospitality platform that, according to its own site, books across calls, texts and web chat, syncs with several PMSs and uses a seven-day, kickoff-led setup. It publishes no price on the page we could read.Alternatives differ mainly on three points: PMS write-back, a public price, and setup effort. No single product wins on all three for every hotel.On published prices and 300 call minutes a month, Hanas comes to £94 and D3x to about €200 for a 20-room hotel. The others publish no price or no minutes per tier.Hanas is the weaker choice if you need PMS integration today. It is in early access and has no customer reviews yet.
 
 ## What Dextr AI does well, and who it suits
 
@@ -47,7 +48,7 @@ _The five questions that separate these products_
 | Conduit | Voice and guest messaging together | $18, $30, $48 per unit a month; $899 flat for 0 to 25 units | Not stated | Not stated | None named | Not stated |
 | Akia | Booking and payment on the call | Not published | Yes (vendor claim, read 15 Nov) | Yes (vendor claim, read 15 Nov) | Opera, Mews, Cloudbeds and others (read 15 Nov) | Not stated |
 | HiJiffy | Voice plus chat, EU hosting | Per room, from £99 a month (Basic); voice listed under Pro | Not stated for voice | Not stated | 100+ unnamed | Ireland (AWS) |
-| Hanas | Small independents wanting a public price and staff approval | £49 a month incl. 150 minutes, then £0.30 a minute (early access, ex VAT) | Sends a request for staff approval | No (current default) | None yet (roadmap) | Transcripts in Ireland; speech processing in the US |
+| Hanas | Small independents wanting a public price, self-onboarding and owner-set control | £49 a month incl. 150 minutes, then £0.30 a minute (early access, ex VAT) | Owner sets it: staff approve, or Hanas confirms automatically | Not stated | None yet (roadmap) | Transcripts in Ireland; speech processing in the US |
 
 Currencies are as each vendor shows them. VAT treatment is stated only for Hanas.
 
@@ -73,13 +74,13 @@ Akia's pricing page lists no prices: tiers called Basic, Pro and Max each have a
 
 HiJiffy's pricing is per room (per bed for hostels), shown as starting prices. Basic starts at £99 a month and Pro at £159, with a second set of figures (£105 and £170) on the same page; the page does not say which applies to which billing. Voice is listed under Pro as "Voice & Text", with 2 voice languages in Pro and 6 in Premium. Setup is a one-off fee per five properties. Its [security page](https://www.hijiffy.com/security-and-compliance) says servers are in Ireland on AWS and lists subprocessors including AWS, Google Cloud, Twilio and OpenAI (for AI add-ons only). We did not find a GDPR statement on that page today, so ask. Booking and payment on calls are not stated. Per-room pricing needs careful arithmetic for your room count.
 
-### Hanas: public price, staff approval, early access
+### Hanas: public price, owner-set control, early access
 
-Hanas answers the phone at any hour in the caller's language, says it is an AI, quotes only the rates the hotel enters, and sends a booking request to staff to approve or decline. Setup starts from your website: it drafts a profile, and your team reviews it before anything goes live.
+Hanas answers the phone at any hour in the caller's language, says it is an AI, quotes only the rates the hotel enters, and either sends a booking request to staff to approve or confirms it automatically, depending on how the owner sets it. Hanas is built as an orchestrator: beyond calls it is designed to handle DMs, WhatsApp, Instagram, Facebook and a CRM, with channels rolling out during early access. Setup starts from your website: it drafts a profile, and your team reviews it before anything goes live.
 
 The price is on the page: £49 a month with 150 minutes, then £0.30 a minute (early-access price, excluding VAT, which the site says may change before general availability). Higher tiers exist. The demo offers English, German, French, Spanish, Italian, Russian and Arabic, which is seven languages.
 
-**Where Hanas is the weaker choice.** It has no PMS integration yet, so staff enter approved bookings themselves (Mews, Cloudbeds, Little Hotelier, Guestline and eviivo are on the roadmap, with no dates). By default it sends requests rather than confirming bookings, and by default it does not take payment. That is the current default and may change, but if you need either today, Dextr AI, D3x or Akia are better matches on their own claims. Hanas is in early access with no customer reviews or case studies yet. Transcripts are stored in Ireland and deleted after 30 days by default, but the speech provider, ElevenLabs, processes calls in the US. See the [privacy notice](https://gethanas.com/privacy) and [Hanas for boutique hotels](https://gethanas.com/for/boutique-hotels).
+**Where Hanas is the weaker choice.** It has no PMS integration yet, so staff enter bookings themselves (Mews, Cloudbeds, Little Hotelier, Guestline and eviivo are on the roadmap, with no dates). If you need PMS-written bookings today, Dextr AI, D3x or Akia are better matches on their own claims. Hanas is in early access with no customer reviews or case studies yet. Transcripts are stored in Ireland and deleted after 30 days by default, but the speech provider, ElevenLabs, processes calls in the US. See the [privacy notice](https://gethanas.com/privacy) and [Hanas for boutique hotels](https://gethanas.com/for/boutique-hotels).
 
 ![Table card showing the two published-price totals for 300 call minutes a month: Hanas £94 and D3x about €200 for a 20-room hotel](/blog/images/dextr-ai-alternatives-small-hotels-dextr-alternatives-300-minutes.png)
 
@@ -104,7 +105,7 @@ _A simple way to narrow the field_
 - **You need bookings written into your PMS, and can run a guided rollout:** Dextr AI, D3x or Akia, according to their own claims. Confirm exactly which PMS and which actions.
 - **You want a price you can model and a quick start:** D3x, Hanas or Motel4, depending on whether you need PMS connection.
 - **You want guest messaging as well as phone:** Conduit or HiJiffy.
-- **You want a person to approve every booking:** Hanas does this by default. Others may offer it; not stated on the pages we read.
+- **You want to choose how much the AI decides:** Hanas lets the owner set whether staff approve each booking or it confirms automatically. Others may offer similar controls; not stated on the pages we read.
 
 Whichever you choose, trial it on your own call types. Our post on [how many calls a small hotel misses](https://gethanas.com/blog/how-many-calls-does-a-small-hotel-miss-what-it-costs) shows how to measure first.
 
