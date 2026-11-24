@@ -4,6 +4,7 @@ description: 'A practical checklist for small hotels: who answers when the desk 
 cover: /blog/images/out-of-hours-call-handling-checklist-small-hotels-cover.jpg
 coverAlt: AI-generated illustration of a smiling man in a dark blazer beside glass icons for a clock, phone, check mark and document on a dark teal and violet background
 date: 2026-11-21
+updated: 2026-11-24
 author: Hanas.ai
 tags:
   - hotels-and-bbs
@@ -92,7 +93,7 @@ This is the step most small hotels skip. Decide:
 - **How** staff reply: phone, email or both, in the caller's language where you can.
 - **What happens** to a request nobody answers, and who is alerted.
 
-If you use an AI receptionist that sends requests for staff approval, the follow-up step is where the booking is won or lost. According to its own site (read 21 November 2026), Hanas sends a request by email with an approve or decline button and keeps it in a dashboard; the site says the AI does not confirm a booking by default. We describe that as the current default, not a permanent rule.
+If you use an AI receptionist that sends requests for staff approval, the follow-up step is where the booking is won or lost. According to its own site (read 21 November 2026), Hanas sends a request by email with an approve or decline button and keeps it in a dashboard. Whether it waits for staff or confirms automatically is the owner's setting, so decide that before you go live.
 
 ## The checklist in one place
 
