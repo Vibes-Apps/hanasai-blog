@@ -4,6 +4,7 @@ description: A plain-English guide to UK call recording, UK GDPR, automated deci
 cover: /blog/images/blog4-ai-receptionist-uk-hotel-legal.jpg
 coverAlt: Glass app tiles on a dark violet and teal background showing a shield with a checkmark, a padlock, a document and a phone.
 date: 2026-11-16
+updated: 2026-11-24
 author: The hanas.ai team
 tags:
   - ai-receptionist
@@ -88,7 +89,7 @@ Practical steps that follow from the tests: keep a person making the final decis
 
 ## Card details on calls
 
-The PCI Security Standards Council's [FAQ on audio recordings](https://www.pcisecuritystandards.org/faqs/1210/) says storing card validation codes after authorisation is a violation, and that applies to recorded audio. The simplest way to avoid the problem is not to let an AI line collect card details at all. As stated on the Hanas website on 15 November 2026, Hanas never asks callers for card details and does not take payments by default. We found no ICO or NCSC page on card data spoken on recorded calls.
+The PCI Security Standards Council's [FAQ on audio recordings](https://www.pcisecuritystandards.org/faqs/1210/) says storing card validation codes after authorisation is a violation, and that applies to recorded audio. The simplest way to avoid the problem is not to let an AI line collect card details at all. Ask every vendor, Hanas included, how it handles card details spoken on a call. We found no ICO or NCSC page on card data spoken on recorded calls.
 
 ## Marketing rules and retention
 
