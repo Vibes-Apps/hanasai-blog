@@ -4,6 +4,7 @@ description: An AI voice agent talks with callers, an IVR asks them to press key
 cover: /blog/images/ai-voice-agent-vs-ivr-vs-chatbot-hotels-cover.jpg
 coverAlt: AI-generated illustration of a smiling woman in a dark blazer beside glass icons for phone, bell, document and shield on a dark teal and violet background
 date: 2026-11-20
+updated: 2026-11-24
 author: Hanas.ai
 tags:
   - ai-receptionist
@@ -93,9 +94,9 @@ _Five questions to put to any vendor_
 
 ## How Hanas does it, as one example
 
-Hanas is the product we make, so this is one vendor's approach, not a standard. According to its own site (read 20 November 2026), it is a voice agent that answers in the caller's language, says at the start of the call that it is an AI assistant and that the call is recorded, quotes only rates the hotel enters, and sends a booking request to staff to approve. The site says it never confirms a booking or takes payment; we describe that as the current default, which may change. It does not connect to a PMS yet. Call transcripts are stored in Ireland, its speech provider processes calls in the US, and transcripts are deleted after 30 days by default. It is in early access and has no customer reviews yet.
+Hanas is the product we make, so this is one vendor's approach, not a standard. As of 24 November 2026, it is a voice agent that answers in the caller's language, says at the start of the call that it is an AI assistant and that the call is recorded, quotes only rates the hotel enters, and either sends a booking request to staff to approve or confirms it automatically, depending on how the owner sets it. Voice is one channel: Hanas is built to cover DMs, WhatsApp, Instagram, Facebook and a CRM too, with channels rolling out during early access. It does not connect to a PMS yet. Call transcripts are stored in Ireland, its speech provider processes calls in the US, and transcripts are deleted after 30 days by default. It is in early access and has no customer reviews yet.
 
-If you need a booking written into your PMS or card payment on the call today, other products describe those features. Our [comparison of AI receptionists for UK small hotels](https://gethanas.com/blog/7-best-ai-receptionists-for-uk-small-hotels-and-b-bs-2026) sets out what some of them say.
+If you need a booking written into your PMS today, other products describe that feature. Our [comparison of AI receptionists for UK small hotels](https://gethanas.com/blog/7-best-ai-receptionists-for-uk-small-hotels-and-b-bs-2026) sets out what some of them say.
 
 ## Frequently asked questions
 
