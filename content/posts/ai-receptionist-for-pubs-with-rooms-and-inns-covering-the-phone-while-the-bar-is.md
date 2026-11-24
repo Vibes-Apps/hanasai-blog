@@ -4,6 +4,7 @@ description: Can an AI receptionist cover the phone at a UK pub with rooms or in
 cover: /blog/images/ai-receptionist-pub-with-rooms-inn-uk-cover.jpg
 coverAlt: Glass app tiles on a dark violet and teal background showing a phone, a calendar and a bell icon.
 date: 2026-11-17
+updated: 2026-11-24
 author: Hanas.ai
 tags:
   - ai-receptionist
@@ -37,7 +38,7 @@ _One phone number, three kinds of call_
 
 **Answer routine room questions from a profile.** You paste your website link and the AI drafts a profile of rooms, hours and policies. Your team reviews it before anything goes live. For a pub: check-in times, parking, dogs, breakfast, whether the bar is the reception, and rates. Hanas quotes only the rates you enter. If no rate applies, it takes details and asks staff to call back.
 
-**Take room-booking requests.** The AI collects the details and sends a request to staff. On Hanas, staff approve or decline each request by email, with a single approval button, or in a web dashboard. By default the AI does not confirm bookings and does not take payment or card details, and nothing is confirmed to the guest until staff say yes. These are current defaults. See [why staff approval matters](https://gethanas.com/blog/should-an-ai-confirm-hotel-bookings-why-staff-approval-matters).
+**Take room-booking requests.** The AI collects the details and sends a request to staff. On Hanas, if you keep approval with staff, they approve or decline each request by email, with a single approval button, or in a web dashboard, and nothing is confirmed to the guest until staff say yes. You can instead set Hanas to confirm automatically. See [why staff approval matters](https://gethanas.com/blog/should-an-ai-confirm-hotel-bookings-why-staff-approval-matters).
 
 **Pass on questions it cannot answer.** If a caller asks something the profile does not cover, Hanas says so, offers to pass it on and creates a callback request.
 
@@ -59,7 +60,7 @@ This is the section that matters most for a pub.
 
 **Late arrivals and key handover.** The site does not mention late-arrival handling or key handover. The AI can tell a guest what your policy is if you write it into the profile, but it cannot hand over a key, open a door or know that a guest has been delayed by a train. We cover this in the next section.
 
-**Messages, payment and pub systems.** Hanas states that message taking is limited to callback requests. By default no payment is taken. Connections to tills or table-booking platforms are not stated.
+**Messages and pub systems.** Hanas states that message taking is limited to callback requests. Connections to tills or table-booking platforms are not stated.
 
 Put plainly: Hanas is designed for the accommodation side of an inn or pub with rooms. It is a weaker fit if most of your phone traffic is food bookings or events, and you want the AI to deal with those directly.
 
@@ -136,7 +137,7 @@ It is more likely to be the wrong choice if:
 
 - most calls are table bookings and you want the AI to take and confirm them;
 - you take events and functions through the phone and want instant answers on availability and price;
-- you need payment or deposits on the call today, or a PMS, till or booking-platform connection now.
+- you need a PMS, till or booking-platform connection now.
 
 Hanas is in early access, so there are no customer reviews or case studies, and we will not suggest otherwise. For a comparison across vendors, see [seven AI receptionists for small UK hotels and B&Bs](https://gethanas.com/blog/7-best-ai-receptionists-for-uk-small-hotels-and-b-bs-2026). Hanas also has a page for [boutique hotels](https://gethanas.com/for/boutique-hotels).
 
@@ -148,7 +149,7 @@ Hanas's site does not list table bookings as a feature. Whether a call about a t
 
 ### Will the AI confirm a room booking while we are busy?
 
-Not by default. Hanas sends each request to staff, and nothing is confirmed to the guest until they approve it.
+That is your setting. If you keep approval with staff, nothing is confirmed to the guest until they approve it; you can instead set Hanas to confirm automatically.
 
 ### What about guests who arrive after the bar closes?
 
