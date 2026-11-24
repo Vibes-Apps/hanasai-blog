@@ -4,6 +4,7 @@ description: Who phones UK hotels from abroad, what goes wrong when there is a l
 cover: /blog/images/foreign-language-callers-small-hotel-cover.jpg
 coverAlt: Glass app tiles on a dark violet and teal background showing a phone, a service bell and a document.
 date: 2026-11-17
+updated: 2026-11-24
 author: Hanas.ai
 tags:
   - ai-receptionist
@@ -117,7 +118,7 @@ Hanas answers calls around the clock. According to its website, a caller can use
 What the Hanas website states, as read on 17 November 2026:
 
 - Every call starts by saying it is an AI assistant and that the call is recorded.
-- It reads details back before it sends a request, and nothing is confirmed to a guest until staff say yes. It takes no payment by default.
+- It reads details back before it sends a request. If the owner keeps approval with staff, nothing is confirmed to a guest until staff say yes; the owner can also set Hanas to confirm automatically.
 - If it cannot answer, it offers to pass the question on and creates a callback request for staff.
 - "Quality differs by language and we do not guarantee any language", and "a name, a number or an accent can still be misheard".
 - Transcripts are stored in Ireland and deleted after 30 days by default. The speech provider, ElevenLabs, processes calls in the US.
@@ -132,7 +133,7 @@ Where it is weaker, or not stated:
 - **How the language is detected, and how accents and dialects are handled:** not stated.
 - **Live transfer of a call to a person:** not stated. The site describes requests and callback requests.
 - **Languages beyond the seven:** not guaranteed.
-- **PMS integration:** not yet; staff enter approved bookings themselves.
+- **PMS integration:** not yet; staff enter bookings themselves.
 - **Customer evidence:** Hanas is in early access with no customer reviews or case studies yet.
 
 See [Hanas for boutique hotels](https://gethanas.com/for/boutique-hotels). For a wider comparison, read [7 best AI receptionists for UK small hotels and B&Bs](https://gethanas.com/blog/7-best-ai-receptionists-for-uk-small-hotels-and-b-bs-2026); for costs, [what an AI receptionist costs in the UK](https://gethanas.com/blog/ai-receptionist-for-hotels-what-it-costs-in-the-uk-2026).
@@ -147,7 +148,7 @@ Start with your own booking history. VisitBritain's 2024 market data points to F
 
 ### Do AI receptionists handle accents and names well?
 
-We do not know of an accuracy figure we can cite. Hanas's own website says a name, a number or an accent can still be misheard, so it reads details back and sends a request for staff to approve rather than confirming a booking.
+We do not know of an accuracy figure we can cite. Hanas's own website says a name, a number or an accent can still be misheard, so it reads details back before a request is sent or a booking is confirmed.
 
 ### Does Hanas transfer calls to a person?
 
