@@ -4,6 +4,7 @@ description: A booking request asks a hotel to hold a room; a confirmed booking 
 cover: /blog/images/booking-request-vs-confirmed-booking-hotels-cover.jpg
 coverAlt: Dark background with teal and violet accents and glass icons for a document, check mark, clock and phone
 date: 2026-11-20
+updated: 2026-11-24
 author: Hanas.ai
 tags:
   - ai-receptionist
@@ -14,7 +15,7 @@ draft: false
 
 A booking request is a guest asking a hotel for a room on given dates. A confirmed booking is the hotel saying yes, usually with a confirmation sent to the guest. Until that yes, the guest has asked and the hotel has not answered. The distinction matters most when an AI receptionist takes the call, because the product's design decides who says yes: the software, or a member of staff.
 
-> **Disclosure.** We make Hanas, an AI receptionist for small hotels. By default Hanas sends booking requests for staff to approve, so we have a stake in this topic. This is general information, not legal advice. We are a software company, not a law firm.**Key Takeaways**A request is what the guest sends or says. A confirmation is what the hotel sends back. The guest should always know which one they have.Hotels differ on whether the confirmation comes from a person, a booking system or an AI. Ask which, and what the guest is told on the call.Clear wording protects both sides: "we have passed your request to the team" is not "you are booked".Whether and when a binding contract exists is a legal question. We give no rule here; we point to the primary sources we read.
+> **Disclosure.** We make Hanas, an AI receptionist for small hotels. Hanas lets the owner choose between staff approval and automatic confirmation, so we have a stake in this topic. This is general information, not legal advice. We are a software company, not a law firm.**Key Takeaways**A request is what the guest sends or says. A confirmation is what the hotel sends back. The guest should always know which one they have.Hotels differ on whether the confirmation comes from a person, a booking system or an AI. Ask which, and what the guest is told on the call.Clear wording protects both sides: "we have passed your request to the team" is not "you are booked".Whether and when a binding contract exists is a legal question. We give no rule here; we point to the primary sources we read.
 
 ## The two terms in plain English
 
@@ -30,7 +31,7 @@ _From request to confirmation_
 
 Even hotels that answer every call have a gap between asking and confirming. Someone has to check the room is free, that the rate is right for those dates and that any special request can be met. The gap can be seconds, when a system confirms instantly, or hours, when a person approves each one.
 
-An AI receptionist adds one more question: does it only take the request, or can it also say yes? Vendors answer differently. According to its own site (read 20 November 2026), Hanas takes a request and staff approve or decline it, and the site says the AI never confirms a booking. We call that the current default, not a permanent rule. Our post on [whether an AI should confirm hotel bookings](https://gethanas.com/blog/should-an-ai-confirm-hotel-bookings-why-staff-approval-matters) sets out both models and the trade-offs.
+An AI receptionist adds one more question: does it only take the request, or can it also say yes? Vendors answer differently. On Hanas the owner decides: staff can approve or decline each request, or Hanas can confirm automatically. Our post on [whether an AI should confirm hotel bookings](https://gethanas.com/blog/should-an-ai-confirm-hotel-bookings-why-staff-approval-matters) sets out both models and the trade-offs.
 
 ## What the guest should be told
 
@@ -91,7 +92,7 @@ Not in everyday terms. It is an ask. The hotel's confirmation is what tells the 
 
 ### Can an AI receptionist confirm a booking?
 
-Some vendors say their agents can, usually with a PMS connection. Others, including Hanas by default, send a request for staff to approve. Check each vendor's own pages.
+Some vendors say their agents can, usually with a PMS connection. Others send a request for staff to approve, and Hanas lets the owner choose either way. Check each vendor's own pages.
 
 ### What should a confirmation include?
 
