@@ -4,6 +4,7 @@ description: 'Conduit alternatives for small independent hotels: what its credit
 cover: /blog/images/conduit-alternatives-independent-hotels-cover.jpg
 coverAlt: Glass app tiles on a dark violet and teal background showing a phone, a price tag and a check mark.
 date: 2026-11-17
+updated: 2026-11-24
 author: Hanas.ai
 tags:
   - comparisons
@@ -15,7 +16,7 @@ draft: false
 
 Conduit is a capable platform built around messaging, operations and credit-based usage, and a small hotel cannot work out its monthly phone cost from the public pages. If you want a phone receptionist with a price you can calculate, D3x and Hanas publish one. If you need messaging and PMS context in one tool, Conduit may be the better fit and you may not need an alternative.
 
-> **Disclosure.** We make Hanas, one of the products compared here, so read our view with that in mind. Everything about other vendors comes from their own public pages, read on 17 November 2026, and is attributed to them. We did not test any of the other products. Where a page did not answer a question, we write "not stated".**Key Takeaways**According to its own site, Conduit lists "Voice AI, inbound and outbound" from $18 per unit a month, but bills voice in credits: its documentation gives 8 credits per AI voice minute. The included credits per plan and the price per credit are not stated on the pages we read.Conduit has strengths a small phone-only tool does not: PMS context on calls, several messaging channels, and a stated SOC 2 Type II certification.Of the alternatives, only D3x and Hanas publish prices from which we could calculate a monthly phone cost for a given number of minutes.Hanas is the weaker choice if you need PMS integration, bookings confirmed on the call, payment on the call or a vendor with a track record. It is in early access, with no customer reviews yet.
+> **Disclosure.** We make Hanas, one of the products compared here, so read our view with that in mind. Everything about other vendors comes from their own public pages, read on 17 November 2026, and is attributed to them. We did not test any of the other products. Where a page did not answer a question, we write "not stated".**Key Takeaways**According to its own site, Conduit lists "Voice AI, inbound and outbound" from $18 per unit a month, but bills voice in credits: its documentation gives 8 credits per AI voice minute. The included credits per plan and the price per credit are not stated on the pages we read.Conduit has strengths a small phone-only tool does not: PMS context on calls, several messaging channels, and a stated SOC 2 Type II certification.Of the alternatives, only D3x and Hanas publish prices from which we could calculate a monthly phone cost for a given number of minutes.Hanas is the weaker choice if you need PMS integration or a vendor with a track record. It is in early access, with no customer reviews yet.
 
 ## Why independent hotels look for Conduit alternatives
 
@@ -80,7 +81,7 @@ We used the same five checks on every vendor, and "not stated" means the page di
 | Product | Voice price on public pages | Can you calculate a month for 300 minutes? | Books on the call | PMS named on pages read | Data location stated |
 | --- | --- | --- | --- | --- | --- |
 | Conduit | Credit-based; 8 credits per AI minute | No: credits per plan and price per credit not stated | Not stated for general reservations | Opera, Mews, Cloudbeds, Apaleo, StayNTouch and others | Not stated |
-| Hanas | £49 a month with 150 minutes, then £0.30 a minute (early-access, ex VAT) | Yes: £94 | Sends a request for staff approval | None yet (roadmap) | Ireland for transcripts, US speech processing |
+| Hanas | £49 a month with 150 minutes, then £0.30 a minute (early-access, ex VAT) | Yes: £94 | Owner sets it: staff approve, or Hanas confirms automatically | None yet (roadmap) | Ireland for transcripts, US speech processing |
 | D3x | €5 per room a month, plus €100 a month for 5 phone hours | Yes, for a 20-room hotel: about €200 | Looks up and confirms changes in the PMS (new bookings not stated) | Mews, Opera, Cloudbeds, Apaleo and others | Not stated |
 | Motel4 | $149, $299 or $599 a month | No: minutes per paid tier not stated | Captures an enquiry | None needed | Not stated |
 | HiJiffy | Per-room starting prices | No: voice usage limits not stated | Not stated for voice | 100+, unnamed | Ireland (AWS), as read on 15 November |
@@ -109,18 +110,18 @@ Currencies are as each vendor shows them. The D3x figure assumes 20 rooms (€5 
 
 |  | Conduit | Hanas |
 | --- | --- | --- |
-| What it is | Guest communication platform with voice, messaging and operations tools | Phone receptionist for small hotels, B&Bs and inns |
+| What it is | Guest communication platform with voice, messaging and operations tools | Receptionist for small hotels, B&Bs and inns, built as an orchestrator (phone first; DMs, WhatsApp, Instagram, Facebook and CRM rolling out in early access) |
 | Voice price | Credit-based; plan allowance and credit price not stated | £49 a month, 150 minutes, then £0.30 a minute (early-access, excluding VAT) |
-| Booking | Not stated for general reservations; PMS context on calls | Request sent to staff for approval; the AI does not confirm bookings by default |
-| Payment on calls | Not stated | None by default |
+| Booking | Not stated for general reservations; PMS context on calls | Owner sets it: staff approve each request, or Hanas confirms automatically |
+| Payment on calls | Not stated | Not stated |
 | PMS | Opera, Mews, Cloudbeds, Apaleo and others named | None yet; Mews, Cloudbeds, Little Hotelier, Guestline and eviivo on the roadmap |
 | Languages | Long list in docs for voice | Seven in the demo; no language guaranteed |
 | Security statements | SOC 2 Type II stated | Transcripts stored in Ireland, 30-day deletion by default; ElevenLabs processes calls in the US; no certification stated |
 | Track record | Customer quotes on its site | Early access; no customer reviews or case studies yet |
 
-**Where Conduit is the stronger choice.** If you want the AI to read live reservation data, answer by text and WhatsApp as well as phone, or hand work to housekeeping and maintenance, Conduit does far more than Hanas. It also states SOC 2 Type II. Hanas has no PMS integration yet, so your staff enter approved bookings themselves.
+**Where Conduit is the stronger choice.** If you want the AI to read live reservation data, answer by text and WhatsApp as well as phone today (Hanas is rolling out those channels in early access), or hand work to housekeeping and maintenance, Conduit does far more than Hanas. It also states SOC 2 Type II. Hanas has no PMS integration yet, so your staff enter bookings themselves.
 
-**Where Hanas may be the better fit.** If your problem is unanswered calls and you want the monthly price before a sales call, Hanas states it: £49 a month for 150 minutes. Setup starts from your website link, nothing goes live until you switch it on, and every booking is a request your staff approve. It offers a 14-day or 60-minute trial on your own number; we did not see Conduit state a trial.
+**Where Hanas may be the better fit.** If your problem is unanswered calls and you want the monthly price before a sales call, Hanas states it: £49 a month for 150 minutes. Setup starts from your website link, nothing goes live until you switch it on, and the owner sets how much it decides: staff approve each booking, or it confirms automatically. It offers a 14-day or 60-minute trial on your own number; we did not see Conduit state a trial.
 
 **Be cautious about.** Hanas is in early access and its site warns that pricing may change. We make Hanas, so verify each Conduit detail with Conduit.
 
