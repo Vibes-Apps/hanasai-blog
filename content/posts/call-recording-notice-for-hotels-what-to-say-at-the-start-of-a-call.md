@@ -1,9 +1,10 @@
 ---
-title: 'Call Recording Notice for Hotels: What to Say at the Start of a Call'
-description: 'What a UK hotel should tell callers when it records calls: when to say it, example opening lines, and what the law and ICO guidance say. Not legal advice.'
+title: 'Call Recording Notice for Hotels: Wording to Say at the Start of a Call (UK)'
+description: 'Copy-ready call recording notices for UK hotels: when to say them, example opening lines, and what the law and ICO guidance say. Not legal advice.'
 cover: /blog/images/call-recording-notice-for-hotels-what-to-say-at-the-start-of-a-call-cover.jpg
 coverAlt: Dark background with teal and violet accents and glass icons for a phone, microphone-style recording notice, document and shield
 date: 2026-11-21
+updated: 2026-11-27
 author: Hanas.ai
 tags:
   - hotels-and-bbs
