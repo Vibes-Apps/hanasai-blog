@@ -116,6 +116,8 @@ We found nothing on this in the sources we read. Say it on whichever line the ca
 
 If it records or transcribes calls, the same expectation applies. Hanas, by its own site, says it at the start of every call.
 
+Do hotels record phone calls? Some do, and some do not. We do not have figures on how common it is. If your hotel records or transcribes calls, the points in this guide apply: tell callers, record only for a reason you can explain and keep recordings only as long as you need them. This is general information, not legal advice.
+
 ## About this article
 
 Written and checked by the Hanas team at Vibesapps, the company behind Hanas. We cite primary sources with the date we read them, say where we extend them, attribute vendor claims to the vendor's own page and disclose that we make Hanas. More about us: [About Hanas](https://gethanas.com/about).
