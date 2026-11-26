@@ -19,7 +19,7 @@ An AI receptionist can answer your phone when you are cooking breakfast, changin
 
 ## Why calls get missed at a B&B
 
-In a hotel with a front desk, someone is paid to answer the phone. In a B&B or guest house, the person who would answer is usually also making breakfast, cleaning rooms, doing laundry, greeting arrivals or shopping for supplies. The phone rings at exactly the moments when your hands are full.
+In a hotel with a front desk, someone is paid to answer the phone. In a B&B (bed and breakfast) or guest house, the person who would answer is usually also making breakfast, cleaning rooms, doing laundry, greeting arrivals or shopping for supplies. The phone rings at exactly the moments when your hands are full.
 
 The common patterns are easy to recognise:
 
