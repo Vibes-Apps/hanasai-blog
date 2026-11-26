@@ -19,7 +19,7 @@ An AI receptionist for hotels is software that answers the hotel's phone with a 
 
 ## The short definition
 
-An AI receptionist (also called an AI voice agent or AI phone agent) has three parts:
+An AI receptionist (also called an AI voice agent, AI phone agent, AI hotel receptionist or AI front desk) has three parts:
 
 1. **Speech in and out.** It turns the caller's speech into text, decides what to say, and speaks the reply in a synthetic voice.
 2. **Knowledge about your hotel.** Room types, opening hours, policies and rates, taken from your website or entered by you.
