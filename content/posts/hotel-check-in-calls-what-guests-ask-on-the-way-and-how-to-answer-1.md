@@ -9,7 +9,7 @@ tags:
   - hotels-and-bbs
   - missed-calls
   - ai-receptionist
-draft: false
+draft: true
 ---
 
 Guests who ring on the way to a hotel usually ask about five things: where to park, whether they can check in early, how to get in if the desk is unstaffed, how to find the place, and whether anything has changed since they booked. These calls arrive when the front desk is busiest, so a simple set of ready answers, and a plan for who picks up, makes arrival smoother for guests and staff.
