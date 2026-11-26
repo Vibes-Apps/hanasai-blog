@@ -1,10 +1,10 @@
 ---
-title: 'Booking Request vs Confirmed Booking: What Is the Difference?'
-description: A booking request asks a hotel to hold a room; a confirmed booking is the hotel's yes. Why the difference matters for guests, staff and AI receptionists.
+title: 'Booking Request vs Confirmed Booking: What Hotels Should Tell Guests'
+description: A booking request is not a confirmed booking. See the difference, the wording to use with guests, and who should say yes when an AI receptionist takes the call.
 cover: /blog/images/booking-request-vs-confirmed-booking-hotels-cover.jpg
 coverAlt: Dark background with teal and violet accents and glass icons for a document, check mark, clock and phone
 date: 2026-11-20
-updated: 2026-11-24
+updated: 2026-11-27
 author: Hanas.ai
 tags:
   - ai-receptionist
