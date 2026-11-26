@@ -22,7 +22,7 @@ Many small hotels and B&Bs open check-in in the afternoon. That is also when gue
 
 You cannot count the cost of those calls from this article, but you can count them in your own building. Our post on [how to count your own missed calls](https://gethanas.com/blog/how-many-calls-does-a-small-hotel-miss-what-it-costs) shows a simple method. Look at the hour before and after your check-in start time first.
 
-![Flow: a guest rings on the way, the question is answered from an approved sheet, a request is logged or a person is called, and the guest arrives to a smooth check-in](/blog/images/hotel-check-in-calls-what-guests-ask-on-the-way-and-how-to-answer-checkin-calls-flow.png)
+![Flow: a guest rings on the way, the question is answered from an approved sheet, a request is logged or a person is called, and the guest arrives to a smooth check-in](/blog/images/checkin-calls-flow.png)
 
 _What happens to an arrival-day call_
 
@@ -66,7 +66,7 @@ This covers late arrival, a different number of guests, a change of dates or a r
 - **Changes to the booking.** Take the details and say who will confirm and by when, or make the change if you or your system can do so there and then.
 - **Special requests.** Record them. Do not promise what housekeeping has not agreed.
 
-![Table card of five arrival questions and what each answer must include: parking spaces and cost, early check-in time and decision maker, access method and backup number, directions by landmark, booking changes with who confirms](/blog/images/hotel-check-in-calls-what-guests-ask-on-the-way-and-how-to-answer-checkin-calls-answers.png)
+![Table card of five arrival questions and what each answer must include: parking spaces and cost, early check-in time and decision maker, access method and backup number, directions by landmark, booking changes with who confirms](/blog/images/checkin-calls-answers.png)
 
 _Five arrival questions and what each answer must include_
 
@@ -92,7 +92,7 @@ You have a few options, and they can be mixed:
 
 Hanas, which we make, lets the owner choose when it picks up (for example only at busy periods, only out of hours or at all times) and how much it may do, including whether bookings and changes need a person's approval or can be handled automatically. Some of this is in early access, so check what is live with any vendor before you plan around it. Whatever you choose, decide in advance which calls always go to a person, such as safety, access problems and complaints.
 
-![Four icons for the arrival-day basics: parking, early check-in, access and directions](/blog/images/hotel-check-in-calls-what-guests-ask-on-the-way-and-how-to-answer-checkin-calls-tiles.png)
+![Four icons for the arrival-day basics: parking, early check-in, access and directions](/blog/images/checkin-calls-tiles.png)
 
 _Four arrival-day basics to have an answer for_
 
