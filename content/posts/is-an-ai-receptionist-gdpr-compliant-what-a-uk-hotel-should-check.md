@@ -28,7 +28,7 @@ Data protection law separates roles. In simple terms, a **controller** decides w
 
 The practical point: using a supplier does not move your responsibility to the supplier. The ICO's guidance on contracts says a controller must only use a processor that can give "sufficient guarantees" to implement appropriate technical and organisational measures, and it is for the controller to satisfy itself that this is the case.
 
-![Flow: a caller rings the hotel, the hotel decides how call data is used, the AI receptionist vendor acts on the hotel's instructions, and a written contract sits between them](/blog/images/gdpr-roles-flow.png)
+![Flow: a caller rings the hotel, the hotel decides how call data is used, the AI receptionist vendor acts on the hotel's instructions, and a written contract sits between them](/blog/images/gdpr-roles.png)
 
 _Who does what when a hotel uses an AI receptionist_
 
