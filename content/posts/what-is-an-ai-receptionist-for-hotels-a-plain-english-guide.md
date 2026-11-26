@@ -27,7 +27,7 @@ An AI receptionist (also called an AI voice agent, AI phone agent, AI hotel rece
 
 Everything else, such as languages, bookings and payment, is a feature layered on top.
 
-## What it does on a typical call
+## How an AI voice receptionist works on a typical call
 
 A caller rings at 9pm asking whether a double room is free next Friday and whether dogs are allowed. The agent greets the caller, says it is an AI, answers the dog question from your policy, and takes the dates and contact details. What happens next depends on the product:
 
