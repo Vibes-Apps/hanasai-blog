@@ -1,6 +1,7 @@
 ---
 title: What Is a Night Auditor, and Do Small Hotels Need One?
 description: A night auditor checks the day's hotel accounts and covers the desk overnight. See what the job involves, what small hotels do instead, and how to decide.
+cover: /blog/images/aud-cover.jpg
 coverAlt: Dark background with teal and violet accents and glass icons for a clock, a document, a check mark and a phone
 date: 2026-11-26
 author: Hanas.ai
